@@ -26,3 +26,11 @@ jobs:
 
       - name: Rodar flake8
         run: pipenv run flake8
+
+      - name: Rodar testes automáticos
+        run: pipenv run pytest --cov=mcfields
+
+      - name: Upload coverage reports to Codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: pipenv run codecov
