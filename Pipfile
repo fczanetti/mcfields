@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 pytest-django = "*"
+psycopg2-binary = "*"
+python-decouple = "*"
+dj-database-url = "*"
 
 [dev-packages]
 flake8 = "*"

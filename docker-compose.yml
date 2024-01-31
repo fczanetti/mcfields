@@ -1,0 +1,14 @@
+services:
+
+  database:
+    container_name: mcfields_database
+    image: postgres
+    restart: no
+    volumes:
+      - ./.pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: mcfieldsdbpass
+      POSTGRES_USER: mcfieldsdbuser
+      POSTGRES_DB: mcfields_db
+    ports:
+      - 5436:5432
