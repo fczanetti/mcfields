@@ -9,6 +9,7 @@ pytest-django = "*"
 psycopg2-binary = "*"
 python-decouple = "*"
 dj-database-url = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 flake8 = "*"
