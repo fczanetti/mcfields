@@ -1,0 +1,24 @@
+/*
+:root {
+    --first-color: ;
+    --second-color: ;
+    --third-color: ;
+    --fourth-color: ;
+    --fifth-color: ;
+}
+Primery color, light primary etc. são variáveis de css. Quando precisarmos de uma cor, esta será chamada pela sua
+variável. A pseudo-classe CSS :root se equipara à raiz de uma árvore, que por sua vez representa o documento. Aplicado
+ao HTML, :root representa o elemento <html> e é idêntico ao seletor html , exceto que sua especificidade é mais alta.*/
+
+* {
+    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+} /* O * indica que as configurações definidas aqui serão aplicadas a todos os elementos do projeto. Automaticamente são
+aplicadas, não sendo necessário indicar em cada elemento.*/
+
+#top-nav {
+    padding: 1rem;
+    background-color: gray;
+}
