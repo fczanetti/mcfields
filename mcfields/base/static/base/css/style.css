@@ -1,24 +1,192 @@
-/*
 :root {
-    --first-color: ;
-    --second-color: ;
-    --third-color: ;
+    --dark-green: #18340c;
+    /*--light-green: #00ae67;*/
+    --light-green: #21642c;
+    --white-color: #f7f7f7;
     --fourth-color: ;
     --fifth-color: ;
 }
-Primery color, light primary etc. são variáveis de css. Quando precisarmos de uma cor, esta será chamada pela sua
-variável. A pseudo-classe CSS :root se equipara à raiz de uma árvore, que por sua vez representa o documento. Aplicado
-ao HTML, :root representa o elemento <html> e é idêntico ao seletor html , exceto que sua especificidade é mais alta.*/
 
 * {
     box-sizing:border-box;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-} /* O * indica que as configurações definidas aqui serão aplicadas a todos os elementos do projeto. Automaticamente são
-aplicadas, não sendo necessário indicar em cada elemento.*/
+}
 
-#top-nav {
-    padding: 1rem;
-    background-color: gray;
+#body {
+    /*background-color: var(--dark-green);*/
+    /*padding: 2rem;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Configurações NAVBAR */
+
+#navbar {
+    /*background-color: rgba(33, 100, 44);*/
+    background-color: var(--white-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+#logo-nav-bar {
+    width: 80px;
+}
+
+#navbar-links {
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: var(--dark-green);
+    font-size: 1.2rem;
+    align-self: center;
+}
+
+/* --------------------------------- */
+
+#main-content {
+    width: 100%;
+    background-color: var(--white-color);
+    position: relative;
+    top: 80px;
+}
+
+
+#top-image-div {
+    height: 30rem;
+    background-image: url(../img/header-photo2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#top-image {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+    position: fixed;
+}
+
+/*#middle-nav {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    *//*background-color: var(--light-green);*//*
+    display: inline-flex;
+    width: 55%;
+    justify-content: space-evenly;
+}
+
+.middle-nav-item {
+    text-decoration: none;
+    color: var(--white-color);
+    width: 24%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-green);
+    font-size: 2.5rem;
+    padding: 8% 0;
+    border-radius: 5px;
+    border: 5px solid white;
+}*/
+
+#our-services-div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 4%;
+    background-color: var(--white-color);
+    position: relative;
+    z-index: 1;
+}
+
+#our-services-links {
+    display: flex;
+    width: 40%;
+    margin: 2rem auto;
+    justify-content: space-between;
+}
+
+.service-link {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+    text-decoration: none;
+    color: var(--dark-green);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: var(--light-green);
+}
+
+#about {
+    padding: 4%;
+    display: flex;
+}
+
+#about-img {
+    width: 45%;
+    margin-right: 4rem;
+    border-radius: 20px;
+}
+
+#about-text-div {}
+
+#about-text {
+    color: var(--dark-green);
+    margin-top: 10%;
+}
+
+#mais-infos {
+    height: 25rem;
+    /*background-color: var(--white-color);
+    position: relative;
+    z-index: 1;*/
+    background-image: url(../img/background03.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#mais-infos-bg {
+    padding: 4%;
+    height: 100%;
+    background-color: rgba(33, 100, 44, .3);
+}
+
+#mais-infos-text {
+    width: 40%;
+    color: var(--white-color);
+}
+
+#footer {
+    padding: 4%;
+    width: 100%;
+    background-color: var(--light-green);
+    position: relative;
+    top: 80px;
+    z-index: 1;
+}
+
+#logo-footer {
+    height: 10rem;
+}
+
+#hr-footer {
+    color: var(--white-color);
 }
