@@ -22,7 +22,7 @@
     align-items: center;
 }
 
-/* Configurações NAVBAR */
+/* --------------- Configurações NAVBAR --------------- */
 
 #navbar {
     /*background-color: rgba(33, 100, 44);*/
@@ -52,7 +52,9 @@
     align-self: center;
 }
 
-/* --------------------------------- */
+/* ---------------------------------------------------- */
+
+/* --------------- Configurações MAIN CONTENT --------------- */
 
 #main-content {
     width: 100%;
@@ -174,8 +176,12 @@
     color: var(--white-color);
 }
 
+/* ---------------------------------------------------------- */
+
+/* --------------- Configurações FOOTER --------------- */
+
 #footer {
-    padding: 4%;
+    padding: 3% 4% 4% 4%;
     width: 100%;
     background-color: var(--light-green);
     position: relative;
@@ -183,10 +189,111 @@
     z-index: 1;
 }
 
+#top-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#infos-footer {
+    display: flex;
+}
+
+#logo-div {
+    display: inline-flex;
+    flex-direction: column;
+    margin-right: 3rem;
+    justify-content: space-between;
+}
+
 #logo-footer {
-    height: 10rem;
+    height: 8rem;
+    margin-bottom: 1rem;
 }
 
 #hr-footer {
     color: var(--white-color);
+}
+
+#soc-net-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.soc-net-icon {
+    font-size: 1.5rem;
+    color: var(--white-color);
+    line-height: 0;
+}
+
+.footer-title {
+    color: var(--white-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.links-div-footer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+}
+
+.link-div-footer {
+    text-decoration: none;
+    color: var(--white-color);
+    margin-bottom: 0.5rem;
+}
+
+#contact-div {
+    margin-left: 3rem;
+}
+
+.contact-info {
+    color: var(--white-color);
+    margin: 0;
+}
+
+#form-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 25%;
+    justify-content: end;
+}
+
+#email-form {
+    width: 100%;
+}
+
+#label-email-form {
+    color: var(--white-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#email-input {
+    height: 2rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 68%;
+    padding: 0 5px;
+}
+
+#input-button {
+    height: 2rem;
+    border-radius: 5px;
+    width: 30%;
+    background-color: var(--light-green);
+    color: var(--white-color);
+    border: 1px solid white;
+}
+
+#input-button:hover {
+    background-color: var(--white-color);
+    color: var(--dark-green);
+}
+
+#form-text {
+    color: var(--white-color);
+    margin: 1rem 0 0 0;
 }
