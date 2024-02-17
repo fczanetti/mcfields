@@ -28,17 +28,10 @@
             <!--<img id="top-image" src="{% static 'base/img/header-photo2.jpg' %}" alt="Foto de plantação">-->
         </div>
 
-        <!--<div id="middle-nav">
-            <i class="bi bi-tree middle-nav-item"></i>
-            <i class="bi bi-tree middle-nav-item"></i>
-            <i class="bi bi-tree middle-nav-item"></i>
-            <i class="bi bi-tree middle-nav-item"></i>
-        </div>-->
-
         <div id="about">
             <img id="about-img" src="{% static 'base/img/foto_victor_02.png' %}" alt="Foto do logotipo">
             <div id="about-text-div">
-                <h2>Sobre o consultor</h2>
+                <h1 id="about-title">Sobre o consultor</h1>
                 <p id="about-text">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolorum ducimus eum,
                     fuga harum id, incidunt iure mollitia nisi quas quidem, quisquam quos ratione sequi sint ullam veniam
@@ -49,15 +42,73 @@
             </div>
         </div>
 
-        <div id="our-services-div">
-            <h4 id="our-services-title">Nossos Serviços</h4>
-            <h5 id="our-services-subtitle">IMPLANTAR CAROUSEL COM SERVIÇOS PRESTADOS E TEXTOS EXPLICATIVOS</h5>
-            <nav id="our-services-links">
-                <a href="" class="service-link"><i class="bi bi-tree service-icon"></i>Título</a>
-                <a href="" class="service-link"><i class="bi bi-tree service-icon"></i>Título</a>
-                <a href="" class="service-link"><i class="bi bi-tree service-icon"></i>Título</a>
-                <a href="" class="service-link"><i class="bi bi-tree service-icon"></i>Título</a>
-            </nav>
+        <div id="our-services">
+
+            <div id="our-services-text">
+                <h2 id="our-services-title" >Nossos serviços</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Aut blanditiis fuga fugit inventore modi ratione rerum
+                    sequi soluta unde veritatis? Dolorem dolores ipsam nulla,
+                    optio praesentium quaerat quod repellendus. Beatae.
+                    Lorem ipsum dolor sit amet, consectetur.
+                </p>
+            </div>
+
+            <div id="slider">
+                <div class="slide">
+                    <img src="{% static 'base/img/abacate.jpg' %}" alt="">
+                    <h3 class="slide-title">Título do serviço</h3>
+                    <p class="text-slide">
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                    </p>
+                </div>
+
+                <div class="slide">
+                    <img src="{% static 'base/img/colheita.jpg' %}" alt="">
+                    <h3 class="slide-title">Título do serviço</h3>
+                    <p class="text-slide">
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                    </p>
+                </div>
+
+                <div class="slide">
+                    <img src="{% static 'base/img/exportacao.jpg' %}" alt="">
+                    <h3 class="slide-title">Título do serviço</h3>
+                    <p class="text-slide">
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                    </p>
+                </div>
+
+                <div class="slide">
+                    <img src="{% static 'base/img/plantacao.jpg' %}" alt="">
+                    <h3 class="slide-title">Título do serviço</h3>
+                    <p class="text-slide">
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                        Lorem ipsum dolor sit amet, consectetur.
+                        Aliquam amet autem commodi, corporis
+                        cupiditate eius eligendi exercitationem.
+                    </p>
+                </div>
+                <button class="btn btn-next">></button>
+                <button class="btn btn-prev"><</button>
+            </div>
         </div>
 
         <div id="mais-infos">
@@ -127,5 +178,6 @@
 
         <hr id="hr-footer"/>
     </footer>
+    <script src="{% static 'base/js/script.js' %}" ></script>
 </body>
 </html>
