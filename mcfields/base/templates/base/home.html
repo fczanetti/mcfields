@@ -13,13 +13,21 @@
 </head>
 <body id="body">
     <header id="navbar" class="">
-        <a href=""><img id="logo-nav-bar" src="{% static 'base/img/logo-red.jpg' %}" alt=""></a>
-        <nav id="navbar-links">
-            <a href="" class="navbar-link">Sobre</a>
-            <a href="" class="navbar-link">Newsletter</a>
-            <a href="" class="navbar-link">Artigos</a>
-            <a href="" class="navbar-link">Vídeos</a>
-        </nav>
+        <a href="#" id="name-nav-bar">McField's</a>
+        <button class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="">Sobre</a></li>
+                <li><a href="">Newsletter</a></li>
+                <li><a href="">Artigos</a></li>
+                <li><a href="">Vídeos</a></li>
+            </ul>
+        </div>
     </header>
 
     <section id="main-content">
@@ -164,7 +172,7 @@
                 <form id="email-form" action="">
                     <label id="label-email-form" for="email-input">Fique por dentro:</label>
                     <div id="input-email-form">
-                        <input id="email-input" type="text" placeholder="example@gmail.com">
+                        <input id="email-input" type="text" placeholder="example@gmail.com" name="email">
                         <input id="input-button" type="submit" value="Inscrever-se">
                     </div>
                 </form>
