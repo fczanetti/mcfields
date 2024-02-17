@@ -49,7 +49,6 @@ prevSlide.addEventListener("click", function () {
   });
 });
 
-// ----------------------------------------------------------------
 
 let biggestSlideHeight = 0
 
@@ -64,3 +63,16 @@ slides.forEach((slide) => {
 });
 
 slider = document.getElementById('slider').style.height = `${biggestSlideHeight}px`
+
+// ----------------------------------------------------------------
+
+// ---------------------Configurações navbar-----------------------
+
+const toggleButton = document.getElementsByClassName('toggle-button')[0]
+const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+toggleButton.addEventListener('click', () => {
+    navbarLinks.classList.toggle('active')
+});
+
+// ----------------------------------------------------------------
