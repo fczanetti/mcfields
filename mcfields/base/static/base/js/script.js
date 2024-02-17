@@ -1,3 +1,5 @@
+// Configurações carousel/slider ----------------------------------
+
 // Select all slides
 const slides = document.querySelectorAll('.slide')
 
@@ -46,3 +48,19 @@ prevSlide.addEventListener("click", function () {
     slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
   });
 });
+
+// ----------------------------------------------------------------
+
+let biggestSlideHeight = 0
+
+slides.forEach((slide) => {
+        let height = slide.offsetHeight
+  if (biggestSlideHeight == 0) {
+        biggestSlideHeight = height;
+   }
+   else if (slide.style.height > biggestSlideHeight) {
+        biggestSlideHeight = slide.style.height;
+   }
+});
+
+slider = document.getElementById('slider').style.height = `${biggestSlideHeight}px`

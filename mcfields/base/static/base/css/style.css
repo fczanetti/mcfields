@@ -80,10 +80,10 @@
 }
 
 #our-services {
-    height: 35rem;
+    /*height: 35rem;*/
     display: flex;
     justify-content: space-evenly;
-    padding: 5% 6%;
+    padding: 5%;
 }
 
 #our-services-text {
@@ -140,7 +140,6 @@
     padding: 10px;
     border: none;
     border-radius: 50%;
-    z-index: 10px;
     cursor: pointer;
     background-color: #fff;
     font-size: 18px;
@@ -161,7 +160,7 @@
 }
 
 #about {
-    padding: 5% 8%;
+    padding: 5%;
     display: flex;
 }
 
@@ -169,6 +168,7 @@
     width: 45%;
     margin-right: 4rem;
     border-radius: 20px;
+    object-fit: cover;
 }
 
 #about-title {
@@ -195,7 +195,7 @@
 }
 
 #mais-infos-bg {
-    padding: 4%;
+    padding: 5%;
     height: 100%;
     background-color: rgba(33, 100, 44, .3);
 }
@@ -225,9 +225,11 @@
 
 #infos-footer {
     display: flex;
+    min-width: 50%;
 }
 
 #logo-div {
+    width: 20%;
     display: inline-flex;
     flex-direction: column;
     margin-right: 3rem;
@@ -235,7 +237,6 @@
 }
 
 #logo-footer {
-    height: 8rem;
     margin-bottom: 1rem;
 }
 
@@ -287,6 +288,7 @@
     align-items: end;
     width: 25%;
     justify-content: end;
+    margin-left: 3rem;
 }
 
 #email-form {
@@ -304,11 +306,14 @@
     height: 2rem;
     border: 1px solid white;
     border-radius: 5px;
-    width: 68%;
+    min-width: 68%;
     padding: 0 5px;
 }
 
 #input-button {
+    min-width: fit-content;
+    margin: 5px 0;
+    padding: 0 5px;
     height: 2rem;
     border-radius: 5px;
     width: 30%;
@@ -325,4 +330,99 @@
 #form-text {
     color: var(--white-color);
     margin: 1rem 0 0 0;
+}
+
+@media screen and (max-width: 1100px) {
+        #top-footer {
+            flex-direction: column;
+        }
+
+        #form-footer {
+            display: flex;
+            width: 70%;
+            margin: 5% auto;
+        }
+
+        #infos-footer {
+            justify-content: center;
+        }
+}
+
+@media screen and (max-width: 850px) {
+            #logo-div {
+                width: 30%;
+            }
+
+            #logo-div {
+                margin-right: 0;
+            }
+}
+
+@media screen and (max-width: 750px) {
+                #about {
+                    flex-direction: column;
+                }
+
+                #about-img {
+                    width: 100%;
+                    margin-bottom: 5%;
+                }
+
+                #our-services {
+                    flex-direction: column;
+                    justify-content: start;
+
+                }
+
+                #our-services-text {
+                    width: 100%;
+                }
+
+                #slider {
+                    width: 100%;
+                    max-width: 100%;
+                    margin-top: 1rem;
+                }
+
+                #mais-infos-text {
+                    width: 55%;
+                }
+
+                #top-footer {
+                    flex-direction: column;
+                }
+
+                #infos-footer {
+                    flex-direction: column;
+                }
+
+                #logo-div {
+                    margin: 5% auto;
+                    width: 50%;
+                }
+
+                #servicos-footer {
+                    margin: 5% 0;
+                }
+
+                .links-div-footer {
+                    margin: 0;
+                }
+
+                .footer-title {
+                    margin-bottom: 0.5rem;
+                }
+
+                #atalhos-footer {
+                    margin: 5% 0;
+                }
+
+                #contact-div {
+                    margin: 5% 0;
+                }
+
+                #form-footer {
+                    width: 100%;
+                    margin: 5% 0;
+                }
 }
