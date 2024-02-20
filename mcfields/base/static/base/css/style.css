@@ -14,16 +14,6 @@
     font-family: sans-serif;
 }
 
-.wrapper {
-    position: absolute;
-    top: 0.5px;
-    left: 0;
-    right: 0;
-    bottom: 0.5px;
-    overflow-x: hidden; /* or any other value */
-    overflow-y: auto; /* or any other value */
-}
-
 #body {
     display: flex;
     flex-direction: column;
@@ -464,6 +454,19 @@
 @media screen and (max-width: 750px) {
                 .toggle-button {
                     display: flex;
+                    top: 20px;
+                }
+
+                #logo-nav-bar img {
+                    width: 50%;
+                }
+
+                #main-content, #footer {
+                    top: 77.8px;
+                }
+
+                #top-image-div, #mais-infos {
+                    background-attachment: unset;
                 }
 
                 #top-message h2 {
@@ -509,11 +512,6 @@
                     top: 5%;
                     transform: translateY(0);
                 }
-
-
-
-
-
 
                 #mais-infos-text {
                     width: 55%;
