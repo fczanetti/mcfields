@@ -13,7 +13,7 @@
 </head>
 <body id="body">
     <header id="navbar" class="">
-        <a href="#" id="name-nav-bar">McField's</a>
+        <a href="#" id="logo-nav-bar"><img src="{% static 'base/img/logo-red-2.jpg' %}" alt="Logotipo"></a>
         <button class="toggle-button">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -32,8 +32,11 @@
 
     <section id="main-content">
 
-        <div id="top-image-div">
-            <!--<img id="top-image" src="{% static 'base/img/header-photo2.jpg' %}" alt="Foto de plantação">-->
+        <div id="top-image-div" style="background-image: url({% static 'base/img/top_picture.jpg' %})">
+            <div id="top-message">
+                <h2>Bem vindo!</h2>
+                <h4>Alguma mensagem de boas vindas para quem visita o site, ou o que achar interessante.</h4>
+            </div>
         </div>
 
         <div id="about">
@@ -52,9 +55,10 @@
 
         <div id="our-services">
 
-            <div id="our-services-text">
+            <div id="our-services-div">
                 <h1 id="our-services-title" >Serviços prestados</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                <p id="our-services-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Aut blanditiis fuga fugit inventore modi ratione rerum
                     sequi soluta unde veritatis? Dolorem dolores ipsam nulla,
                     optio praesentium quaerat quod repellendus. Beatae.
@@ -119,7 +123,7 @@
             </div>
         </div>
 
-        <div id="mais-infos">
+        <div id="mais-infos" style="background-image: url({% static 'base/img/background03.jpg' %})">
             <div id="mais-infos-bg">
                 <div id="mais-infos-text">
                     <h2>Ficou com alguma dúvida?</h2>

@@ -10,6 +10,9 @@ psycopg2-binary = "*"
 python-decouple = "*"
 dj-database-url = "*"
 django-debug-toolbar = "*"
+gunicorn = "*"
+django-s3-folder-storage = "*"
+collectfast = "*"
 
 [dev-packages]
 flake8 = "*"
