@@ -14,7 +14,7 @@
     </head>
     <body id="body">
         <header id="navbar" class="">
-            <a href="#" id="logo-nav-bar"><img src="{% static 'base/img/logo-red-2.jpg' %}" alt="Logotipo"></a>
+            <a href="{% url 'base:home' %}" id="logo-nav-bar"><img src="{% static 'base/img/logo-red-2.jpg' %}" alt="Logotipo"></a>
             <button class="toggle-button">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -68,7 +68,7 @@
 
                 <div id="slider">
                     <div class="slide">
-                        <img src="{% static 'base/img/abacate.jpg' %}" alt="">
+                        <img src="{% static 'base/img/abacate.jpg' %}" alt="Foto relacionada ao serviço prestado">
                         <h3 class="slide-title">Título do serviço</h3>
                         <p class="text-slide">
                             Lorem ipsum dolor sit amet, consectetur.
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="slide">
-                        <img src="{% static 'base/img/colheita.jpg' %}" alt="">
+                        <img src="{% static 'base/img/colheita.jpg' %}" alt="Foto relacionada ao serviço prestado">
                         <h3 class="slide-title">Título do serviço</h3>
                         <p class="text-slide">
                             Lorem ipsum dolor sit amet, consectetur.
@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="slide">
-                        <img src="{% static 'base/img/exportacao.jpg' %}" alt="">
+                        <img src="{% static 'base/img/exportacao.jpg' %}" alt="Foto relacionada ao serviço prestado">
                         <h3 class="slide-title">Título do serviço</h3>
                         <p class="text-slide">
                             Lorem ipsum dolor sit amet, consectetur.
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="slide">
-                        <img src="{% static 'base/img/plantacao.jpg' %}" alt="">
+                        <img src="{% static 'base/img/plantacao.jpg' %}" alt="Foto relacionada ao serviço prestado">
                         <h3 class="slide-title">Título do serviço</h3>
                         <p class="text-slide">
                             Lorem ipsum dolor sit amet, consectetur.
@@ -183,8 +183,6 @@
                     <p id="form-text">Inscreva-se para ser notificado sempre que uma newsletter for publicada.</p>
                 </div>
             </div>
-
-
 
             <hr id="hr-footer"/>
         </footer>
