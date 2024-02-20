@@ -226,24 +226,24 @@
     right: 2%;
 }
 
-#about {
+#about-consultant {
     padding: 5% 10%;
     display: flex;
 }
 
-#about-img {
+#about-consultant-img {
     width: 45%;
     margin-right: 4rem;
     border-radius: 20px;
     object-fit: cover;
 }
 
-#about-title {
+#about-consultant-title {
     color: var(--dark-green);
     font-weight: 600;
 }
 
-#about-text {
+#about-consultant-text {
     color: var(--dark-green);
     margin-top: 5%;
 }
@@ -420,12 +420,12 @@
                 margin-right: 0;
             }
 
-            #about {
+            #about-consultant {
                     flex-direction: column;
                     padding: 5%;
                 }
 
-                #about-img {
+                #about-consultant-img {
                     width: 100%;
                     margin-bottom: 5%;
                 }
