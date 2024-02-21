@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'base/css/sobre.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Home</title>
+{% endblock title %}
+
+{% block maincontent %}
+    <div id="main-content-sobre">
+        <h1>A McField's</h1>
+        <p>Montar texto (geral) sobre a empresa</p>
+
+        <h1>Propósito</h1>
+        <p>Montar texto se achar interessante</p>
+
+        <h1>Missão, visão e valores</h1>
+        <p>Montar texto sobre missão, visão e valores se achar interessante</p>
+
+        <h1>Nossos serviços</h1>
+        <p>Falar sobre cada serviço/área de atuação para complementar pequenos textos da home page se achar interessante</p>
+
+        <h1>Alguns números</h1>
+        <p>Podemos falar sobre alguns resultados obtidos, número de clientes atentidos, número de hectares cobertos etc.
+         se achar interessante</p>
+    </div>
+{% endblock maincontent %}
+

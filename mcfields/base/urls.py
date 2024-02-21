@@ -1,7 +1,8 @@
 from django.urls import path
-from mcfields.base.views import home
+from mcfields.base import views
 
 app_name = 'base'
 urlpatterns = [
-    path('', home, name='home')
+    path('', views.home, name='home'),
+    path('sobre', views.sobre, name='sobre'),
 ]
