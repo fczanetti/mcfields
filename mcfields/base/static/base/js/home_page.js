@@ -1,4 +1,4 @@
-// Configurações carousel/slider ----------------------------------
+// Configurações carousel -------------------------------------
 
 // Select all slides
 const slides = document.querySelectorAll('.slide')
@@ -28,7 +28,6 @@ nextSlide.addEventListener("click", function () {
   } else {
     curSlide++;
   }
-
   slides.forEach((slide, indx) => {
     slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
   });
@@ -42,7 +41,6 @@ prevSlide.addEventListener("click", function () {
   } else {
     curSlide--;
   }
-
   //   move slide by 100%
   slides.forEach((slide, indx) => {
     slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
@@ -50,8 +48,11 @@ prevSlide.addEventListener("click", function () {
 });
 
 
-let biggestSlideHeight = 0
+// Configuração altura da div our-services da home page ----------------
 
+// Verifica a altura do maior slide do carousel e ajusta a
+// altura da div slider, tornando a altura da div our-services dinâmica.
+let biggestSlideHeight = 0
 slides.forEach((slide) => {
         let height = slide.offsetHeight
   if (biggestSlideHeight == 0) {
@@ -61,18 +62,5 @@ slides.forEach((slide) => {
         biggestSlideHeight = slide.style.height;
    }
 });
-
 slider = document.getElementById('slider').style.height = `${biggestSlideHeight}px`
 
-// ----------------------------------------------------------------
-
-// ---------------------Configurações navbar-----------------------
-
-const toggleButton = document.getElementsByClassName('toggle-button')[0]
-const navbarLinks = document.getElementsByClassName('navbar-links')[0]
-
-toggleButton.addEventListener('click', () => {
-    navbarLinks.classList.toggle('active')
-});
-
-// ----------------------------------------------------------------
