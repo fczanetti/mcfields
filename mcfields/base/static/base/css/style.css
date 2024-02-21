@@ -226,6 +226,10 @@
     right: 2%;
 }
 
+.btn-next i, .btn-prev i {
+    -webkit-text-stroke: 1px;
+}
+
 #about-consultant {
     padding: 5% 10%;
     display: flex;
