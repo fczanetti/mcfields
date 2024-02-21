@@ -13,6 +13,7 @@ django-debug-toolbar = "*"
 gunicorn = "*"
 django-s3-folder-storage = "*"
 collectfast = "*"
+sentry-sdk = {extras = ["django"], version = "*"}
 
 [dev-packages]
 flake8 = "*"
