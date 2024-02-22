@@ -258,6 +258,7 @@
 #about-consultant-text {
     color: var(--dark-green);
     margin-top: 5%;
+    text-align: justify;
 }
 
 #beneficios {
@@ -283,6 +284,7 @@
 .texto-lista-beneficios {
     color: var(--dark-green);
     margin-bottom: 1.5rem;
+    text-align: justify;
 }
 
 #mais-infos {
