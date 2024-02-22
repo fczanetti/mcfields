@@ -35,7 +35,7 @@ def test_nav_bar_home_page(resp_home):
     assert_contains(resp_home, '<button class="toggle-button">')
     assert_contains(resp_home, '<div class="navbar-links">')
     assert_contains(resp_home, f'<li><a href="{reverse("base:sobre")}">Sobre</a></li>')
-    assert_contains(resp_home, '<li><a href="">Newsletter</a></li>')
+    assert_contains(resp_home, f'<li><a href="{reverse("newsletter:indice_newsletters")}">Newsletter</a></li>')
     assert_contains(resp_home, '<li><a href="">Artigos</a></li>')
     assert_contains(resp_home, '<li><a href="">Vídeos</a></li>')
 
@@ -98,6 +98,8 @@ def test_footer_home_page(resp_home):
     assert_contains(resp_home, '<div id="logo-div">')
     assert_contains(resp_home, '<img id="logo-footer" src="/static/base/img/logo_branco.png" alt="Logotipo">')
     assert_contains(resp_home, f'<a class="link-div-footer" href="{reverse("base:sobre")}">Sobre</a>')
+    assert_contains(resp_home, f'<a class="link-div-footer" '
+                               f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a>')
     assert_contains(resp_home, '<label id="label-email-form" for="email-input">Fique por dentro:</label>')
     assert_contains(resp_home, '<input id="email-input" type="text" placeholder="example@gmail.com" name="email">')
     assert_contains(resp_home, '<input id="input-button" type="submit" value="Inscrever-se">')

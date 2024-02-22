@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mcfields.base.urls')),
+    path('newsletter/', include('mcfields.newsletter.urls')),
 ]
 
 # Configurações django-debug-toolbar

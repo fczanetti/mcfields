@@ -28,7 +28,7 @@
             <div class="navbar-links">
                 <ul>
                     <li><a href="{% url 'base:sobre' %}">Sobre</a></li>
-                    <li><a href="">Newsletter</a></li>
+                    <li><a href="{% url 'newsletter:indice_newsletters' %}">Newsletter</a></li>
                     <li><a href="">Artigos</a></li>
                     <li><a href="">Vídeos</a></li>
                 </ul>
@@ -47,6 +47,7 @@
                     <div id="logo-div">
                         <img id="logo-footer" src="{% static 'base/img/logo_branco.png' %}" alt="Logotipo">
                         <nav id="soc-net-links">
+                            <i class="bi bi-linkedin soc-net-icon"></i>
                             <i class="bi bi-instagram soc-net-icon"></i>
                             <i class="bi bi-facebook soc-net-icon"></i>
                             <i class="bi bi-youtube soc-net-icon"></i>
@@ -65,7 +66,7 @@
                         <nav class="links-div-footer">
                             <h5 class="footer-title">Atalhos</h5>
                             <a class="link-div-footer" href="{% url 'base:sobre' %}">Sobre</a>
-                            <a class="link-div-footer" href="">Newsletter</a>
+                            <a class="link-div-footer" href="{% url 'newsletter:indice_newsletters' %}">Newsletter</a>
                             <a class="link-div-footer" href="">Artigos</a>
                             <a class="link-div-footer" href="">Vídeos</a>
                         </nav>
