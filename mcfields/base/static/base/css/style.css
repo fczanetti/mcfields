@@ -521,9 +521,9 @@
                     top: 75.2px;
                 }
 
-                #top-image-div, #mais-infos {
+                /*#top-image-div, #mais-infos {
                     background-attachment: unset;
-                }
+                }*/
 
                 #top-message h2 {
                     font-size: 1.4rem;
