@@ -43,11 +43,13 @@
     text-decoration: none;
     font-size: 2rem;
     color: var(--dark-green);
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 0rem;
+    width: 8rem;
+    margin-left: 1.2rem;
 }
 
 #logo-nav-bar img {
-    width: 70%;
+    max-width: -webkit-fill-available;
 }
 
 .navbar-links {
@@ -107,8 +109,8 @@
     width: 100%;
     background-color: var(--white-color);
     position: relative;
-    top: 103.8px;
-    padding-bottom: 103.8px;
+    top: 96.7px;
+    padding-bottom: 96.7px;
 }
 
 
@@ -466,16 +468,16 @@
                     top: 20px;
                 }
 
-                #logo-nav-bar img {
-                    width: 50%;
+                #logo-nav-bar { /* Talvez comentar/trocar para ajuste de logo-nav-bar apenas */
+                    width: 6rem;
                 }
 
                 #main-content {
                     padding-bottom: 0;
                 }
 
-                #main-content, #footer {
-                    top: 77.8px;
+                #main-content, #footer { /* Talvez ajustar para nova altura da navbar */
+                    top: 75.2px;
                 }
 
                 #top-image-div, #mais-infos {
