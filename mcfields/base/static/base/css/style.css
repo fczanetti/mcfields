@@ -152,7 +152,7 @@
     /*height: 35rem;*/
     display: flex;
     justify-content: space-evenly;
-    padding: 5% 10%;
+    padding: 2% 10%;
 }
 
 #our-services-div {
@@ -194,7 +194,7 @@
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
-    max-height: 250px;
+    height: 200px;
 }
 
 .slide-title {
@@ -204,6 +204,7 @@
 
 .text-slide {
     text-align: center;
+    color: var(--light-green);
 }
 
 .btn {
@@ -257,6 +258,31 @@
 #about-consultant-text {
     color: var(--dark-green);
     margin-top: 5%;
+}
+
+#beneficios {
+    padding: 5% 10%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#benecifios-titulo {
+    width: 35%;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+#lista-beneficios {
+    width: 45%;
+}
+
+.titulo-lista-beneficios {
+    color: var(--dark-green);
+}
+
+.texto-lista-beneficios {
+    color: var(--dark-green);
+    margin-bottom: 1.5rem;
 }
 
 #mais-infos {
@@ -432,34 +458,47 @@
             }
 
             #about-consultant {
-                    flex-direction: column;
-                    padding: 5%;
-                }
+                flex-direction: column;
+                padding: 5%;
+            }
 
-                #about-consultant-img {
-                    width: 100%;
-                    margin-bottom: 5%;
-                }
+            #about-consultant-img {
+                width: 100%;
+                margin-bottom: 5%;
+            }
 
-                #our-services {
-                    flex-direction: column;
-                    justify-content: start;
-                    padding: 5%;
-                }
+            #our-services {
+                flex-direction: column;
+                justify-content: start;
+                padding: 5%;
+            }
 
-                #our-services-div {
-                    width: 100%;
-                }
+            #our-services-div {
+                width: 100%;
+            }
 
-                #slider {
-                    width: 100%;
-                    max-width: 100%;
-                    margin-top: 1rem;
-                }
+            #slider {
+                width: 100%;
+                max-width: 100%;
+                margin-top: 1rem;
+            }
 
-                #mais-infos-bg {
-                    padding: 5%;
-                }
+            #beneficios {
+                flex-direction: column;
+                padding: 5%;
+            }
+
+            #benecifios-titulo {
+                margin-bottom: 5%;
+            }
+
+            #lista-beneficios {
+                width: 100%;
+            }
+
+            #mais-infos-bg {
+                padding: 5%;
+            }
 }
 
 @media screen and (max-width: 750px) {
