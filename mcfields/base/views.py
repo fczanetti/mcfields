@@ -13,7 +13,7 @@ def home(request):
             email = emailform.cleaned_data['email']
             sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
             data = {"contacts": [{"email": email}], 'list_ids': [settings.SENDGRID_NEWSLETTER_LIST_ID]}
-            response = sg.client.marketing.contacts.put(request_body=data)
+            sg.client.marketing.contacts.put(request_body=data)
             return redirect(reverse('base:inscricao_concluida'))
     return render(request, 'base/home.html')
 
