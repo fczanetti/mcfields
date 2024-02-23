@@ -100,8 +100,9 @@ def test_footer_home_page(resp_home):
     assert_contains(resp_home, f'<a class="link-div-footer" href="{reverse("base:sobre")}">Sobre</a>')
     assert_contains(resp_home, f'<a class="link-div-footer" '
                                f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a>')
-    assert_contains(resp_home, '<label id="label-email-form" for="email-input">Fique por dentro:</label>')
-    assert_contains(resp_home, '<input id="email-input" type="text" placeholder="example@gmail.com" name="email">')
+    assert_contains(resp_home, '<label id="label-email-form" for="id_email">Fique por dentro:</label>')
+    assert_contains(resp_home, '<input type="email" name="email" placeholder="example@gmail.com" '
+                               'maxlength="128" required id="id_email">')
     assert_contains(resp_home, '<input id="input-button" type="submit" value="Inscrever-se">')
 
 

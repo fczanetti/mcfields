@@ -1,0 +1,27 @@
+:root {
+    --dark-green: #21642c;
+    /*--light-green: #00ae67;*/
+    --light-green: #21642c;
+    --white-color: #f7f7f7;
+    --fourth-color: ;
+    --fifth-color: ;
+}
+
+#main-content-inscr-concluida {
+    padding: 5% 20%;
+    text-align: center;
+}
+
+h2, p {
+    margin-bottom: 10%;
+}
+
+@media screen and (max-width: 850px) {
+    #main-content-inscr-concluida {
+        padding: 5%;
+    }
+
+    #link-pag-inicial {
+        width: 50%;
+    }
+}

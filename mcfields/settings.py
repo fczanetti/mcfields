@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mcfields.base.context_processors.emailform',
             ],
         },
     },
@@ -187,3 +188,8 @@ if SENTRY_DSN:
         # We recommend adjusting this value in production.
         profiles_sample_rate=1.0,
     )
+
+
+# Configurações de cadastro de emails do Sendgrid
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+SENDGRID_NEWSLETTER_LIST_ID = config('SENDGRID_NEWSLETTER_LIST_ID')
