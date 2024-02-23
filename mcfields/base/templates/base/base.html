@@ -79,13 +79,16 @@
                     </div>
                 </div>
                 <div id="form-footer">
-                    <form id="email-form" action="">
-                        <label id="label-email-form" for="email-input">Fique por dentro:</label>
+
+                    <form id="email-form" method="POST">
+                        {% csrf_token %}
+                        <label id="label-email-form" for="{{ EMAILFORM.email.id_for_label }}">Fique por dentro:</label>
                         <div id="input-email-form">
-                            <input id="email-input" type="text" placeholder="example@gmail.com" name="email">
+                            {{ EMAILFORM.email }}
                             <input id="input-button" type="submit" value="Inscrever-se">
                         </div>
                     </form>
+
                     <p id="form-text">Inscreva-se para ser notificado sempre que uma newsletter for publicada.</p>
                 </div>
             </div>
