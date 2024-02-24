@@ -19,18 +19,18 @@
     <body id="body">
         <header id="navbar" class="">
             <a href="{% url 'base:home' %}" id="logo-nav-bar"><img src="{% static 'base/img/logo-red-2.jpg' %}" alt="Logotipo"></a>
-            <button class="toggle-button">
+            <button id="toggle-button">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
-            <div class="navbar-links">
-                <ul>
-                    <li><a href="{% url 'base:sobre' %}">Sobre</a></li>
-                    <li><a href="{% url 'newsletter:indice_newsletters' %}">Newsletter</a></li>
-                    <li><a href="">Artigos</a></li>
-                    <li><a href="">Vídeos</a></li>
+            <div id="navbar-links">
+                <ul id="navbar-links-list">
+                    <li class="navbar-li"><a class="navbar-link" href="{% url 'base:sobre' %}">Sobre</a></li>
+                    <li class="navbar-li"><a class="navbar-link" href="{% url 'newsletter:indice_newsletters' %}">Newsletter</a></li>
+                    <li class="navbar-li"><a class="navbar-link" href="">Artigos</a></li>
+                    <li class="navbar-li"><a class="navbar-link" href="">Vídeos</a></li>
                 </ul>
             </div>
         </header>
