@@ -32,12 +32,14 @@ def test_nav_bar_home_page(resp_home):
     """
     assert_contains(resp_home, f'<a href="{reverse("base:home")}" id="logo-nav-bar"><img '
                                f'src="/static/base/img/logo-red-2.jpg" alt="Logotipo"></a>')
-    assert_contains(resp_home, '<button class="toggle-button">')
-    assert_contains(resp_home, '<div class="navbar-links">')
-    assert_contains(resp_home, f'<li><a href="{reverse("base:sobre")}">Sobre</a></li>')
-    assert_contains(resp_home, f'<li><a href="{reverse("newsletter:indice_newsletters")}">Newsletter</a></li>')
-    assert_contains(resp_home, '<li><a href="">Artigos</a></li>')
-    assert_contains(resp_home, '<li><a href="">Vídeos</a></li>')
+    assert_contains(resp_home, '<button id="toggle-button">')
+    assert_contains(resp_home, '<div id="navbar-links">')
+    assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
+                               f'href="{reverse("base:sobre")}">Sobre</a></li>')
+    assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
+                               f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a></li>')
+    assert_contains(resp_home, '<li class="navbar-li"><a class="navbar-link" href="">Artigos</a></li>')
+    assert_contains(resp_home, '<li class="navbar-li"><a class="navbar-link" href="">Vídeos</a></li>')
 
 
 def test_top_image_div_home_page(resp_home):
