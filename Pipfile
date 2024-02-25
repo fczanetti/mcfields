@@ -15,6 +15,7 @@ django-s3-folder-storage = "*"
 collectfast = "*"
 sentry-sdk = {extras = ["django"], version = "*"}
 sendgrid = "*"
+django-ckeditor-5 = "*"
 
 [dev-packages]
 flake8 = "*"
