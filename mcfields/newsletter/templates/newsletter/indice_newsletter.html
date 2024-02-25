@@ -1,10 +1,48 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'newsletter/css/indice_newsletter.css' %}">
+{% endblock css %}
+
 {% block title %}
     <title>McField's - Newsletter</title>
 {% endblock title %}
 
 {% block maincontent %}
-
+    <div id="main-content-newsletter">
+        <a href="" class="newsletter-box-link">
+            <div class="newsletter-box">
+                <h4 class="newsletter-title">Título da newsletter</h4>
+                <p class="newsletter-comment">Comentário/introdução sobre a newsletter</p>
+                <div class="adit-info-newsletter">
+                    <div class="newsletter-author">Autor da Newsletter</div>
+                    <div class="newsletter-date">24/02/2024</div>
+                    <div class="newsletter-read-time">05 min</div>
+                </div>
+            </div>
+        </a>
+        <a href="" class="newsletter-box-link">
+            <div class="newsletter-box">
+                <h4 class="newsletter-title">Título da newsletter</h4>
+                <p class="newsletter-comment">Comentário/introdução sobre a newsletter</p>
+                <div class="adit-info-newsletter">
+                    <div class="newsletter-author">Autor da Newsletter</div>
+                    <div class="newsletter-date">24/02/2024</div>
+                    <div class="newsletter-read-time">05 min</div>
+                </div>
+            </div>
+        </a>
+        <a href="" class="newsletter-box-link">
+            <div class="newsletter-box">
+                <h4 class="newsletter-title">Título da newsletter</h4>
+                <p class="newsletter-comment">Comentário/introdução sobre a newsletter</p>
+                <div class="adit-info-newsletter">
+                    <div class="newsletter-author">Autor da Newsletter</div>
+                    <div class="newsletter-date">24/02/2024</div>
+                    <div class="newsletter-read-time">05 min</div>
+                </div>
+            </div>
+        </a>
+    </div>
 {% endblock maincontent %}
