@@ -39,7 +39,9 @@ def test_dados_newsletter_indice(resp_indice_newsletters, newsletters):
     """
     for newsletter in newsletters:
         pub_date = date.strftime(newsletter.pub_date, "%d/%m/%Y")
-        assert_contains(resp_indice_newsletters, newsletter.title)
-        assert_contains(resp_indice_newsletters, newsletter.intro)
-        assert_contains(resp_indice_newsletters, newsletter.author)
-        assert_contains(resp_indice_newsletters, pub_date)
+        assert_contains(resp_indice_newsletters, f'<h4 class="newsletter-title">{newsletter.title}</h4>')
+        assert_contains(resp_indice_newsletters, f'<p class="newsletter-comment">{newsletter.intro}</p>')
+        assert_contains(resp_indice_newsletters, f'<div class="newsletter-author">{newsletter.author}</div>')
+        assert_contains(resp_indice_newsletters, f'<div class="newsletter-date">{pub_date}</div>')
+        assert_contains(resp_indice_newsletters, f'<a href="{newsletter.get_absolute_url()}" '
+                                                 f'class="newsletter-box-link">')
