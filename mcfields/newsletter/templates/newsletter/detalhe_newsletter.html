@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'newsletter/css/detalhe_newsletter.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - {{ newsletter.title }}</title>
+{% endblock title %}
+
+{% block maincontent %}
+    <div id="main-content-newsletter-det">
+        <h1 id="newsletter-title">{{ newsletter.title }}</h1>
+        <h5 id="newsletter-intro">{{ newsletter.intro|linebreaks }}</h5>
+        <div id="news-adit-info">
+            <div id="newsletter-author">{{ newsletter.author }}</div>
+            <div id="news-pub-date">{{ newsletter.pub_date|date:"d/m/Y" }}</div>
+        </div>
+        <hr id="hr-main-content">
+        <div id="newsletter-content">{{ newsletter.content|safe|linebreaks }}</div>
+    </div>
+{% endblock maincontent %}

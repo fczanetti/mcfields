@@ -12,7 +12,7 @@
 {% block maincontent %}
     <div id="main-content-newsletter">
         {% for newsletter in newsletters %}
-            <a href="" class="newsletter-box-link">
+            <a href="{{ newsletter.get_absolute_url }}" class="newsletter-box-link">
                 <div class="newsletter-box">
                     <h4 class="newsletter-title">{{ newsletter.title }}</h4>
                     <p class="newsletter-comment">{{ newsletter.intro }}</p>

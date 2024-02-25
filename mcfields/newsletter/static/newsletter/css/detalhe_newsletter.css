@@ -1,0 +1,48 @@
+#main-content-newsletter-det {
+    padding: 5% 20%;
+}
+
+#newsletter-title {
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+#newsletter-intro {
+    margin-bottom: 2rem;
+    color: gray;
+}
+
+#news-adit-info {
+    display: flex;
+}
+
+#newsletter-author, #news-pub-date {
+    margin-right: 1rem;
+    color: gray;
+}
+
+#hr-main-content {
+    margin: 1rem 0 3rem 0;
+}
+
+#newsletter-content {
+    font-size: 1.1rem;
+}
+
+#newsletter-content figure {
+    width: 100%;
+    height: 30rem;
+    padding: 1rem;
+}
+
+#newsletter-content figure img {
+    max-width: -webkit-fill-available;
+    max-height: -webkit-fill-available;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 850px) {
+    #main-content-newsletter-det {
+        padding: 5%;
+    }
+}
