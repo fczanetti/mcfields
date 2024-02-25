@@ -119,22 +119,11 @@
 
 
 #top-image-div {
-    /*height: 35rem;*/
     height: 80vh;
-    width: 100vw;
-    /*background-image: url(../img/top_picture.jpg);*/
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 }
-
-/*#top-image {
-    width: 100%;
-    *//*height: 35rem;*//*
-    height: 80vh;
-    object-fit: cover;
-    position: fixed;
-}*/
 
 #top-message {
     width: 20rem;
@@ -186,7 +175,6 @@
 .slide {
     width: 100%;
     max-width: 100%;
-    /*height: 100%;*/
     position: absolute;
     transition: all 0.8s;
     display: flex;
@@ -293,7 +281,6 @@
 }
 
 #mais-infos {
-    /*height: 35rem;*/
     height: 80vh;
     background-repeat: no-repeat;
     background-position: center;
@@ -514,7 +501,7 @@
                     top: 20px;
                 }
 
-                #logo-nav-bar { /* Talvez comentar/trocar para ajuste de logo-nav-bar apenas */
+                #logo-nav-bar {
                     width: 6rem;
                 }
 
@@ -522,7 +509,7 @@
                     padding-bottom: 0;
                 }
 
-                #main-content, #footer { /* Talvez ajustar para nova altura da navbar */
+                #main-content, #footer {
                     top: 75.2px;
                 }
 
@@ -541,8 +528,6 @@
                 #navbar {
                     flex-direction: column;
                     align-items: flex-start;
-                    /*height: 76.8px;
-                    justify-content: center;*/
                 }
 
                 #navbar-links {
