@@ -1,0 +1,42 @@
+#main-content-newsletter {
+    padding: 5% 20%;
+}
+
+.newsletter-box-link {
+    text-decoration: none;
+    color: black;
+
+}
+
+.newsletter-box {
+    /*border: 1px solid lightgray;*/
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 6px 6px 15px 0px lightgray;
+    margin-bottom: 2rem;
+}
+
+.newsletter-box:hover {
+    box-shadow: none;
+}
+
+.adit-info-newsletter {
+    display: flex;
+}
+
+.newsletter-author,
+.newsletter-date,
+.newsletter-read-time {
+    margin-right: 1rem;
+    color: gray;
+}
+
+@media screen and (max-width: 850px) {
+    #main-content-newsletter {
+        padding: 5%;
+    }
+
+    .adit-info-newsletter {
+        flex-direction: column;
+    }
+}

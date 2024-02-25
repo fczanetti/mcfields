@@ -121,19 +121,20 @@
 #top-image-div {
     /*height: 35rem;*/
     height: 80vh;
+    width: 100vw;
     /*background-image: url(../img/top_picture.jpg);*/
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 }
 
-#top-image {
+/*#top-image {
     width: 100%;
-    /*height: 35rem;*/
+    *//*height: 35rem;*//*
     height: 80vh;
     object-fit: cover;
     position: fixed;
-}
+}*/
 
 #top-message {
     width: 20rem;
