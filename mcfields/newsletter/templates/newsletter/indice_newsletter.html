@@ -11,38 +11,19 @@
 
 {% block maincontent %}
     <div id="main-content-newsletter">
-        <a href="" class="newsletter-box-link">
-            <div class="newsletter-box">
-                <h4 class="newsletter-title">Título da newsletter</h4>
-                <p class="newsletter-comment">Comentário/introdução sobre a newsletter</p>
-                <div class="adit-info-newsletter">
-                    <div class="newsletter-author">Autor da Newsletter</div>
-                    <div class="newsletter-date">24/02/2024</div>
-                    <div class="newsletter-read-time">05 min</div>
+        {% for newsletter in newsletters %}
+            <a href="" class="newsletter-box-link">
+                <div class="newsletter-box">
+                    <h4 class="newsletter-title">{{ newsletter.title }}</h4>
+                    <p class="newsletter-comment">{{ newsletter.intro }}</p>
+                    <div class="adit-info-newsletter">
+                        <div class="newsletter-author">{{ newsletter.author }}</div>
+                        <div class="newsletter-date">{{ newsletter.pub_date|date:"d/m/Y" }}</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a href="" class="newsletter-box-link">
-            <div class="newsletter-box">
-                <h4 class="newsletter-title">Título da newsletter</h4>
-                <p class="newsletter-comment">Comentário/introdução sobre a newsletter</p>
-                <div class="adit-info-newsletter">
-                    <div class="newsletter-author">Autor da Newsletter</div>
-                    <div class="newsletter-date">24/02/2024</div>
-                    <div class="newsletter-read-time">05 min</div>
-                </div>
-            </div>
-        </a>
-        <a href="" class="newsletter-box-link">
-            <div class="newsletter-box">
-                <h4 class="newsletter-title">Título da newsletter</h4>
-                <p class="newsletter-comment">Comentário/introdução sobre a newsletter</p>
-                <div class="adit-info-newsletter">
-                    <div class="newsletter-author">Autor da Newsletter</div>
-                    <div class="newsletter-date">24/02/2024</div>
-                    <div class="newsletter-read-time">05 min</div>
-                </div>
-            </div>
-        </a>
+            </a>
+        {% empty %}
+            <p>Não há newsletters cadastradas.</p>
+        {% endfor %}
     </div>
 {% endblock maincontent %}
