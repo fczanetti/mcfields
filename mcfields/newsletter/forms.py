@@ -12,5 +12,5 @@ class NewsletterForm(ModelForm):
         model = Newsletter
         fields = ['title', 'intro', 'content', 'author', 'slug']
         widgets = {
-            'content': CKEditor5Widget(attrs={'class': 'django_ckeditor_5'}, config_name='extends')
+            'content': CKEditor5Widget(attrs={'class': 'django_ckeditor_5'})
         }
