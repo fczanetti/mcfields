@@ -1,0 +1,9 @@
+#main-cont-sucess {
+    padding: 5% 20%;
+}
+
+@media screen and (max-width: 850px) {
+    #main-cont-sucess {
+        padding: 5%;
+    }
+}
