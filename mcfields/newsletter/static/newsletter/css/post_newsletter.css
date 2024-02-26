@@ -1,0 +1,42 @@
+#main-content-post-newsletter {
+    padding: 5% 20%;
+}
+
+#news-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.news-form-field input,
+.news-form-field textarea {
+    border: 0.5px solid lightgrey;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+.news-form-field input {
+    height: 2rem;
+}
+
+#submit-news-button {
+    background-color: var(--light-green);
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 10rem;
+    align-self: end;
+    border: none;
+}
+
+@media screen and (max-width: 850px) {
+    #main-content-post-newsletter {
+        padding: 5%;
+    }
+}

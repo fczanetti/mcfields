@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'newsletter/css/post_newsletter.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Nova Newsletter</title>
+{% endblock title %}
+
+{% block maincontent %}
+    <div id="main-content-post-newsletter">
+        <form action="{% url 'newsletter:post' %}" method="POST" id="news-form">
+            {% csrf_token %}
+            {{ form.media }}
+            {% for field in form %}
+                <div class="news-form-field">
+                    {{ field.label_tag }} {{ field }}
+                    <p class="errornote">{{ field.errors }}</p>
+                </div>
+            {{ field.help_text }}
+            {% endfor %}
+            <button id="submit-news-button" type="submit">Publicar</button>
+        </form>
+    </div>
+{% endblock maincontent %}
+
