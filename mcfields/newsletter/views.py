@@ -20,8 +20,12 @@ def post_newsletter(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('newsletter:indice_newsletters'))
+            return redirect(reverse('newsletter:post_success'))
         else:
             return render(request, 'newsletter/post_newsletter.html', {'form': form})
     form = NewsletterForm()
     return render(request, 'newsletter/post_newsletter.html', {'form': form})
+
+
+def post_newsletter_sucess(request):
+    return render(request, 'newsletter/post_newsletter_success.html')
