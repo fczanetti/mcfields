@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'base/css/login.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Login</title>
+{% endblock title %}
+
+{% block maincontent %}
+    <div id="main-content-login">
+        {% if form.errors %}
+            <p>Confira seu usuário e senha e tente novamente, por favor.</p>
+        {% endif %}
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>
+                    Sua conta não tem acesso a esta página.
+                    Para prosseguir, por favor, faça login com uma conta autorizada.
+                </p>
+            {% else %}
+                <p>Por favor, faça login para acessar esta página.</p>
+            {% endif %}
+        {% endif %}
+        <form id="login-form" action="{% url 'base:login' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.label_tag }} {{ field }}
+                {{ field.errors }}
+            {% endfor %}
+            <input type="submit" value="Login" id="login-button">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+{% endblock maincontent %}
