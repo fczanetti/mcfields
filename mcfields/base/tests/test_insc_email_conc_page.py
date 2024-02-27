@@ -9,7 +9,7 @@ def resp_inscricao_email_concluida(client):
     """
     Realiza uma requisição post no formulário de email.
     """
-    resp = client.post(reverse('base:home'), {'email': 'teste@teste.com'})
+    resp = client.post(reverse('base:inscricao_email'), {'email': 'teste@teste.com'})
     return resp
 
 

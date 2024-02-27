@@ -80,7 +80,7 @@
                 </div>
                 <div id="form-footer">
 
-                    <form id="email-form" method="POST">
+                    <form id="email-form" method="POST" action="{% url 'base:inscricao_email' %}">
                         {% csrf_token %}
                         <label id="label-email-form" for="{{ EMAILFORM.email.id_for_label }}">Fique por dentro:</label>
                         <div id="input-email-form">
