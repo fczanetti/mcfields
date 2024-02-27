@@ -9,10 +9,10 @@
 
 #main-content-inscr-concluida {
     padding: 5% 20%;
-    text-align: center;
+    /*text-align: center;*/
 }
 
-h2, p {
+#main-msg, #main-msg-2 {
     margin-bottom: 10%;
 }
 
