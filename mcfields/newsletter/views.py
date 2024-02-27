@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
+# from django.urls import reverse
 
 from mcfields.newsletter.forms import NewsletterForm
 from mcfields.newsletter.models import Newsletter
@@ -20,12 +20,9 @@ def post_newsletter(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('newsletter:post_success'))
+            return render(request, 'newsletter/post_newsletter_success.html',
+                          {'titulo': request.POST['title']})
         else:
             return render(request, 'newsletter/post_newsletter.html', {'form': form})
     form = NewsletterForm()
     return render(request, 'newsletter/post_newsletter.html', {'form': form})
-
-
-def post_newsletter_sucess(request):
-    return render(request, 'newsletter/post_newsletter_success.html')
