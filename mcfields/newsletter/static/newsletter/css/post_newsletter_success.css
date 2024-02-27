@@ -2,8 +2,8 @@
     padding: 5% 20%;
 }
 
-#msg-success {
-    margin-bottom: 3rem;
+#success-msg, #redirect-msg {
+    margin-bottom: 10%;
 }
 
 @media screen and (max-width: 850px) {
