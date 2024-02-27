@@ -1,6 +1,6 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
 from mcfields import settings
 from mcfields.base.forms import EmailForm
 from sendgrid import SendGridAPIClient
@@ -25,3 +25,8 @@ def inscricao_email(request):
                 sg.client.marketing.contacts.put(request_body=data)
             return render(request, 'base/inscricao_concluida.html', {'email': email})
     return redirect(reverse('base:home'))
+
+
+class UserLogin(LoginView):
+    template_name = 'registration/user_login.html'
+    next_page = '/'

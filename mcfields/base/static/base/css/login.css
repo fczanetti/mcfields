@@ -1,0 +1,37 @@
+#main-content-login {
+    padding: 5% 20%;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#id_username, #id_password {
+    margin-bottom: 1rem;
+    border: 0.5px solid lightgrey;
+    border-radius: 5px;
+    padding: 0 5px;
+    height: 2rem;
+}
+
+#login-button {
+    background-color: var(--light-green);
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 10rem;
+    align-self: end;
+    border: none;
+}
+
+@media screen and (max-width: 850px) {
+        #main-content-login {
+            padding: 5%;
+        }
+
+        #login-form {
+            width: 100%;
+        }
+}
