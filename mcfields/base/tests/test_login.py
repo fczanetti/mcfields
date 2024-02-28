@@ -87,4 +87,5 @@ def test_logout_button_show_after_login(resp_usuario_logado, usuario_senha_plana
     """
     Certifica de que, para o usuário logado, o botão de logout está presente na tela.
     """
-    assert_contains(resp_usuario_logado, f'<a id="logout-button" href="">Olá, {usuario_senha_plana.first_name}</a>')
+    assert_contains(resp_usuario_logado, f'<button id="logout-button" type="submit">Olá, '
+                                         f'{ usuario_senha_plana.first_name }</button>')
