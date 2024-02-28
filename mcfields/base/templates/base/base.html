@@ -19,6 +19,9 @@
     <body id="body">
         <header id="navbar" class="">
             <a href="{% url 'base:home' %}" id="logo-nav-bar"><img src="{% static 'base/img/logo-red-2.jpg' %}" alt="Logotipo"></a>
+            {% if user.is_authenticated %}
+                <a id="logout-button" href="">Olá, {{ user.first_name }}</a>
+            {% endif %}
             <button id="toggle-button">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -97,5 +100,8 @@
 
         {% block scripts %}{% endblock scripts %}
         <script src="{% static 'base/js/navbar.js' %}" ></script>
+        {% if user.is_authenticated %}
+            <script src="{% static 'base/js/logout_button.js' %}" ></script>
+        {% endif %}
     </body>
 </html>

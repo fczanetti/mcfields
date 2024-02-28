@@ -37,6 +37,24 @@ def login(client, usuario_senha_plana):
     return response
 
 
+@pytest.fixture
+def client_usuario_logado(client, usuario_senha_plana):
+    """
+    Cria um usuário logado na plataforma.
+    """
+    client.force_login(usuario_senha_plana)
+    return client
+
+
+@pytest.fixture
+def resp_usuario_logado(client_usuario_logado):
+    """
+    Cria uma requisição na home page com um usuário logado.
+    """
+    resp = client_usuario_logado.get(reverse('base:home'))
+    return resp
+
+
 def test_status_code_login_page(resp_login_page):
     """
     Certifica que a página de login foi carregada com sucesso.
@@ -63,3 +81,10 @@ def test_login_redirect(login):
     """
     assert login.status_code == 302
     assert login.url == reverse('base:home')
+
+
+def test_logout_button_show_after_login(resp_usuario_logado, usuario_senha_plana):
+    """
+    Certifica de que, para o usuário logado, o botão de logout está presente na tela.
+    """
+    assert_contains(resp_usuario_logado, f'<a id="logout-button" href="">Olá, {usuario_senha_plana.first_name}</a>')
