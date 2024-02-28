@@ -19,12 +19,19 @@ def inscricao_email(request):
         emailform = EmailForm(request.POST)
         if emailform.is_valid():
             email = emailform.cleaned_data['email']
-            if not email == 'teste@teste.com':
-                sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-                data = {"contacts": [{"email": email}], 'list_ids': [settings.SENDGRID_NEWSLETTER_LIST_ID]}
-                sg.client.marketing.contacts.put(request_body=data)
+            cadastrar_email(
+                key=settings.SENDGRID_API_KEY,
+                user_email=email,
+                list_id=settings.SENDGRID_NEWSLETTER_LIST_ID
+            )
             return render(request, 'base/inscricao_concluida.html', {'email': email})
     return redirect(reverse('base:home'))
+
+
+def cadastrar_email(key, user_email, list_id):
+    sg = SendGridAPIClient(key)
+    data = {"contacts": [{"email": user_email}], 'list_ids': [list_id]}
+    return sg.client.marketing.contacts.put(request_body=data)
 
 
 class UserLogin(LoginView):
