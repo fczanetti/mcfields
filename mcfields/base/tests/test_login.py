@@ -1,7 +1,5 @@
 import pytest
-from django.contrib.auth import get_user_model
 from django.urls import reverse
-from model_bakery import baker
 from mcfields.django_assertions import assert_contains
 
 
@@ -15,19 +13,6 @@ def resp_login_page(client):
 
 
 @pytest.fixture
-def usuario_senha_plana(db):
-    """
-    Cria um usuário e define uma senha acessível para este.
-    """
-    user = baker.make(get_user_model())
-    senha = 'senha'
-    user.set_password(senha)
-    user.save()
-    user.senha_plana = senha
-    return user
-
-
-@pytest.fixture
 def login(client, usuario_senha_plana):
     """
     Realiza o login com o usuário criado.
@@ -35,15 +20,6 @@ def login(client, usuario_senha_plana):
     response = client.post(reverse('base:login'), {'username': usuario_senha_plana.get_username(),
                                                    'password': usuario_senha_plana.senha_plana})
     return response
-
-
-@pytest.fixture
-def client_usuario_logado(client, usuario_senha_plana):
-    """
-    Cria um usuário logado na plataforma.
-    """
-    client.force_login(usuario_senha_plana)
-    return client
 
 
 @pytest.fixture
@@ -89,3 +65,12 @@ def test_logout_button_show_after_login(resp_usuario_logado, usuario_senha_plana
     """
     assert_contains(resp_usuario_logado, f'<button id="logout-button" type="submit">Olá, '
                                          f'{ usuario_senha_plana.first_name }</button>')
+
+
+def test_logout_redirect(client_usuario_logado):
+    """
+    Certifica que o usuário é redirecionado para a home page após logout.
+    """
+    resp = client_usuario_logado.post(reverse('logout'))
+    assert resp.status_code == 302
+    assert resp.url == '/'

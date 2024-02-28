@@ -2,10 +2,19 @@
     padding: 5% 20%;
 }
 
+#link-nova-pub {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-green);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
 .newsletter-box-link {
     text-decoration: none;
     color: black;
-
 }
 
 .newsletter-box {
