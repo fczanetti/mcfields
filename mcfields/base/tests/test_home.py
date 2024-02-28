@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from mcfields.django_assertions import assert_contains
+from mcfields.django_assertions import assert_contains, assert_not_contains
 
 
 @pytest.fixture
@@ -113,3 +113,10 @@ def test_scripts_home_page(resp_home):
     Certifica de que os scripts necessários para algumas funcionalidades da home page estão presentes.
     """
     assert_contains(resp_home, '<script src="/static/base/js/navbar.js" ></script>')
+
+
+def test_botao_logout_indisponivel(resp_home):
+    """
+    Certifica que, sem usuário logado, o botão de logout não está disponível.
+    """
+    assert_not_contains(resp_home, '<button id="logout-button"')
