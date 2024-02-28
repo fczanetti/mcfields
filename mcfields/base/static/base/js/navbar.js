@@ -2,9 +2,11 @@
 
 const toggleButton = document.getElementById('toggle-button')
 const navbarLinks = document.getElementById('navbar-links')
+logoutButton = document.getElementById('logout-button')
 
 toggleButton.onclick = function() {
     navbarLinks.classList.toggle('active')
+    logoutButton.classList.toggle('inactive-button')
 };
 
 // ----------------------------------------------------------------

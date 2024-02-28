@@ -22,8 +22,27 @@
     background-color: var(--white-color);
 }
 
+#logout-button {
+    position: fixed;
+    right: 10px;
+    background-color: var(--light-green);
+    color: var(--white-color);
+    text-decoration: none;
+    width: 85px;
+    height: 35px;
+    border-radius: 5px;
+    top: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .active {
     display: flex;
+}
+
+.inactive-button {
+    display: none;
 }
 
 /* --------------- Configurações NAVBAR --------------- */
@@ -501,6 +520,10 @@
                     top: 20px;
                 }
 
+                #logout-button {
+                    top: 85px;
+                }
+
                 #logo-nav-bar {
                     width: 6rem;
                 }
@@ -550,6 +573,10 @@
 
                 #navbar-links.active {
                     display: flex;
+                }
+
+                #logout-button.inactive-button {
+                    display: none;
                 }
 
                 #top-message {
