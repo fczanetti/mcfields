@@ -20,7 +20,10 @@
         <header id="navbar" class="">
             <a href="{% url 'base:home' %}" id="logo-nav-bar"><img src="{% static 'base/img/logo-red-2.jpg' %}" alt="Logotipo"></a>
             {% if user.is_authenticated %}
-                <a id="logout-button" href="">Olá, {{ user.first_name }}</a>
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button id="logout-button" type="submit">Olá, {{ user.first_name }}</button>
+                </form>
             {% endif %}
             <button id="toggle-button">
                 <span class="bar"></span>
