@@ -32,3 +32,10 @@ def post_newsletter(request):
 @login_required
 def nao_permitido(request):
     return render(request, 'newsletter/nao_permitido_newsletter.html')
+
+
+@login_required
+@permission_required('newsletter.change_newsletter', login_url='/newsletter/nao_permitido/')
+def edicao_newsletter(request):
+    form = NewsletterForm()
+    return render(request, 'newsletter/post_newsletter.html', {'form': form})
