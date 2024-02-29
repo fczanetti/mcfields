@@ -16,28 +16,30 @@ def newsletter(db):
 
 
 @pytest.fixture
-def resp_post_news_repeated_slug(client, newsletter, db):
+def resp_post_news_repeated_slug(client_usuario_logado_com_perm_postagem, newsletter, db):
     """
     Tenta realizar uma postagem de newsletter com slug já existente no bando de dados.
     """
-    response = client.post(reverse('newsletter:post'), {'title': 'Titulo newsletter repetida',
-                                                        'intro': 'Introdução newsletter repetida',
-                                                        'content': 'Conteúdo newsletter repetida',
-                                                        'author': 'Autor newsletter repetida',
-                                                        'slug': 'teste-slug-repetida'})
+    response = client_usuario_logado_com_perm_postagem.post(reverse('newsletter:post'),
+                                                            {'title': 'Titulo newsletter repetida',
+                                                             'intro': 'Introdução newsletter repetida',
+                                                             'content': 'Conteúdo newsletter repetida',
+                                                             'author': 'Autor newsletter repetida',
+                                                             'slug': 'teste-slug-repetida'})
     return response
 
 
 @pytest.fixture
-def resp_post_news_success(client, db):
+def resp_post_news_success(client_usuario_logado_com_perm_postagem, db):
     """
     Realiza a postagem de uma nova newsletter.
     """
-    response = client.post(reverse('newsletter:post'), {'title': 'Titulo teste news',
-                                                        'intro': 'Introdução da newsletter',
-                                                        'content': 'Conteúdo da newsletter',
-                                                        'author': 'Autor da newsletter',
-                                                        'slug': 'titulo-teste-news'})
+    response = client_usuario_logado_com_perm_postagem.post(reverse('newsletter:post'),
+                                                            {'title': 'Titulo teste news',
+                                                             'intro': 'Introdução da newsletter',
+                                                             'content': 'Conteúdo da newsletter',
+                                                             'author': 'Autor da newsletter',
+                                                             'slug': 'titulo-teste-news'})
     return response
 
 
