@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'newsletter/css/nao_permitido_news.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Acesso não permitido</title>
+{% endblock title %}
+
+{% block maincontent %}
+    <div id="main-content-not-allowed-news">
+        <h4 id="not_allowed-msg">Desculpe, {{ user.first_name }}, mas você não tem acesso à este conteúdo.</h4>
+    </div>
+{% endblock maincontent %}

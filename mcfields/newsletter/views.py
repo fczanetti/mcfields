@@ -1,6 +1,5 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
-# from django.urls import reverse
-
 from mcfields.newsletter.forms import NewsletterForm
 from mcfields.newsletter.models import Newsletter
 
@@ -15,6 +14,8 @@ def detalhe_newsletter(request, slug):
     return render(request, 'newsletter/detalhe_newsletter.html', {'newsletter': newsletter})
 
 
+@login_required
+@permission_required('newsletter.add_newsletter', login_url='/newsletter/nao_permitido/')
 def post_newsletter(request):
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
@@ -26,3 +27,8 @@ def post_newsletter(request):
             return render(request, 'newsletter/post_newsletter.html', {'form': form})
     form = NewsletterForm()
     return render(request, 'newsletter/post_newsletter.html', {'form': form})
+
+
+@login_required
+def nao_permitido(request):
+    return render(request, 'newsletter/nao_permitido_newsletter.html')
