@@ -36,6 +36,13 @@ def nao_permitido(request):
 
 @login_required
 @permission_required('newsletter.change_newsletter', login_url='/newsletter/nao_permitido/')
-def edicao_newsletter(request):
-    form = NewsletterForm()
+def edicao_newsletter(request, id):
+    newsletter = Newsletter.objects.get(id=id)
+    if request.POST:
+        form = NewsletterForm(request.POST, instance=newsletter)
+        if form.is_valid():
+            form.save()
+            return render(request, 'newsletter/newsletter_editada.html',
+                          {'titulo': request.POST['title']})
+    form = NewsletterForm(instance=newsletter)
     return render(request, 'newsletter/post_newsletter.html', {'form': form})

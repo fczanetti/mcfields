@@ -11,7 +11,7 @@
 
 {% block maincontent %}
     <div id="main-content-post-newsletter">
-        <form action="{% url 'newsletter:post' %}" method="POST" id="news-form">
+        <form action="" method="POST" id="news-form">
             {% csrf_token %}
             {{ form.media }}
             {% for field in form %}
