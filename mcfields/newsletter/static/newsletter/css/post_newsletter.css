@@ -1,7 +1,3 @@
-#main-content-post-newsletter {
-    padding: 5% 20%;
-}
-
 #news-form {
     display: flex;
     flex-direction: column;
@@ -51,10 +47,4 @@
     align-self: end;
     border: none;
     margin-left: 1rem;
-}
-
-@media screen and (max-width: 850px) {
-    #main-content-post-newsletter {
-        padding: 5%;
-    }
 }

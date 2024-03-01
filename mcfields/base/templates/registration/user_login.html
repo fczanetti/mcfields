@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base_2.html' %}
 {% load static %}
 
 {% block css %}
@@ -9,7 +9,7 @@
     <title>McField's - Login</title>
 {% endblock title %}
 
-{% block maincontent %}
+{% block maincontent_2 %}
     <div id="main-content-login">
         {% if form.errors %}
             <p>Confira seu usuário e senha e tente novamente, por favor.</p>
@@ -34,4 +34,4 @@
             <input type="hidden" name="next" value="{{ next }}">
         </form>
     </div>
-{% endblock maincontent %}
+{% endblock maincontent_2 %}

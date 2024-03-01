@@ -1,13 +1,3 @@
-#main-content-not-allowed-news {
-    padding: 5% 20%;
-}
-
 #not_allowed-msg {
     margin-bottom: 10%;
-}
-
-@media screen and (max-width: 850px) {
-    #main-content-not-allowed-news {
-        padding: 5%;
-    }
 }
