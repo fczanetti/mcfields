@@ -25,14 +25,32 @@
     height: 2rem;
 }
 
+#form-buttons {
+    display: flex;
+    justify-content: end;
+}
+
+.botao-cancelar {
+    text-decoration: none;
+    text-align: center;
+    background-color: red;
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+}
+
 #submit-news-button {
     background-color: var(--light-green);
     color: var(--white-color);
     padding: 5px 0px;
     border-radius: 5px;
-    width: 10rem;
+    width: 6rem;
     align-self: end;
     border: none;
+    margin-left: 1rem;
 }
 
 @media screen and (max-width: 850px) {
