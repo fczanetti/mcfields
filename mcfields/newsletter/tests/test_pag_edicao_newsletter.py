@@ -61,6 +61,13 @@ def test_status_code_pag_edicao_newsletter(resp_pag_edicao_usuario_logado_com_pe
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_slug">Slug:</label>')
 
 
+def test_titulo_pag_edicao_newsletter(resp_pag_edicao_usuario_logado_com_perm):
+    """
+    Certifica de que o título da página de edição de newsletter está presente e correto.
+    """
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, "<title>McField's - Edição de Newsletter</title>")
+
+
 def test_infos_newsletter_pag_edicao(newsletter, resp_pag_edicao_usuario_logado_com_perm):
     """
     Certifica de que o conteúdo da newsletter está presente na página de edição.

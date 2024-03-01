@@ -6,7 +6,11 @@
 {% endblock css %}
 
 {% block title %}
-    <title>McField's - Nova Newsletter</title>
+    {% if newsletter.id %}
+        <title>McField's - Edição de Newsletter</title>
+    {% else %}
+        <title>McField's - Nova Newsletter</title>
+    {% endif %}
 {% endblock title %}
 
 {% block maincontent %}

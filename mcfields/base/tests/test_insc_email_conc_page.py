@@ -23,6 +23,13 @@ def test_status_code_insc_email_conc(resp_inscricao_email_concluida):
     assert resp_inscricao_email_concluida.status_code == 200
 
 
+def test_titulo_pagina_insc_email_conc(resp_inscricao_email_concluida):
+    """
+    Certifica de que o título da página de inscrição de email concluída está presente e correto.
+    """
+    assert_contains(resp_inscricao_email_concluida, "<title>McField's - Inscrição concluída</title>")
+
+
 def test_message_success_email_subscription(resp_inscricao_email_concluida):
     """
     Certifica de que a mensagem de email inscrito com sucesso é apresentada e contém o email cadastrado.

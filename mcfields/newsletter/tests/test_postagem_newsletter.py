@@ -50,6 +50,13 @@ def test_render_page_after_post(resp_post_news_success):
     assert resp_post_news_success.status_code == 200
 
 
+def test_titulo_pagina_postagem_concluida(resp_post_news_success):
+    """
+    Certifica de que o título da página de postagem de newsletter concluída está presente e correto.
+    """
+    assert_contains(resp_post_news_success, "<title>McField's - Postagem concluída</title>")
+
+
 def test_path_after_post_newsletter(resp_post_news_success):
     """
     Certifica de que o usuário é mantido na mesma url após a postagem da newsletter.
