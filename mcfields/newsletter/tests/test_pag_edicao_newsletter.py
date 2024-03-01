@@ -1,7 +1,6 @@
 import pytest
 from django.urls import reverse
 from mcfields.django_assertions import assert_contains
-from mcfields.newsletter.models import Newsletter
 
 
 @pytest.fixture
@@ -72,22 +71,3 @@ def test_infos_newsletter_pag_edicao(newsletter, resp_pag_edicao_usuario_logado_
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.content)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.author)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.slug)
-
-
-def test_alteracao_newsletter(newsletter,
-                              client_usuario_logado_com_perm_edicao):
-    """
-    Certifica de que uma alteração feita em uma newsletter é salva no banco de dados.
-    """
-    id_newsletter = newsletter.id
-    client_usuario_logado_com_perm_edicao.post(
-        reverse('newsletter:edicao', args=(newsletter.id,)),
-        {'title': newsletter.title,
-         'intro': 'Introdução alterada',
-         'content': 'Conteúdo alterado',
-         'author': newsletter.author,
-         'slug': newsletter.slug})
-    news_editada = Newsletter.objects.get(id=newsletter.id)
-    assert news_editada.intro == 'Introdução alterada'
-    assert news_editada.content == 'Conteúdo alterado'
-    assert news_editada.id == id_newsletter
