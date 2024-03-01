@@ -25,7 +25,10 @@
                 </div>
             {{ field.help_text }}
             {% endfor %}
-            <button id="submit-news-button" type="submit">Publicar</button>
+            <div id="form-buttons">
+                <a class="botao-cancelar" href="{% url 'newsletter:indice_newsletters' %}">Cancelar</a>
+                <button id="submit-news-button" type="submit">Publicar</button>
+            </div>
         </form>
     </div>
 {% endblock maincontent %}

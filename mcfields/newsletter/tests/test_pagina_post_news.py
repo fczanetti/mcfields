@@ -75,3 +75,10 @@ def test_titulo_pag_postagem_newsletter(resp_post_page_usuario_logado_com_permis
     Certifica de que o título da página de postagem de newsletter está presente e correto.
     """
     assert_contains(resp_post_page_usuario_logado_com_permissao, "<title>McField's - Nova Newsletter</title>")
+
+
+def test_botao_canc_postagem(resp_post_page_usuario_logado_com_permissao):
+    """
+    Certifica de que o botão de cancelar postagem está presente na página de postagem de newsletter.
+    """
+    assert_contains(resp_post_page_usuario_logado_com_permissao, 'Cancelar')

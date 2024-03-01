@@ -78,3 +78,10 @@ def test_infos_newsletter_pag_edicao(newsletter, resp_pag_edicao_usuario_logado_
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.content)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.author)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.slug)
+
+
+def test_botao_cancelar_edicao(resp_pag_edicao_usuario_logado_com_perm):
+    """
+    Certifica de que o botão de cancelamento de edição está presente na página de edição de newsletter.
+    """
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, 'Cancelar')
