@@ -11,6 +11,9 @@
 
 {% block maincontent %}
     <div id="main-content-newsletter-det">
+        {% if perms.newsletter.change_newsletter %}
+            <a id="link-edicao-news" href="{{ newsletter.get_edition_url }}">Editar newsletter</a>
+        {% endif %}
         <h1 id="newsletter-title">{{ newsletter.title }}</h1>
         <h5 id="newsletter-intro">{{ newsletter.intro|linebreaks }}</h5>
         <div id="news-adit-info">

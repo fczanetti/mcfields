@@ -17,3 +17,6 @@ class Newsletter(models.Model):
 
     def get_absolute_url(self):
         return reverse('newsletter:detalhe_newsletter', args=(self.slug,))
+
+    def get_edition_url(self):
+        return reverse('newsletter:edicao', args=(self.pk,))
