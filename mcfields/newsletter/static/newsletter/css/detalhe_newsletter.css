@@ -1,7 +1,3 @@
-#main-content-newsletter-det {
-    padding: 5% 20%;
-}
-
 #link-edicao-news {
     text-decoration: none;
     color: var(--white-color);
@@ -49,10 +45,4 @@
     max-width: -webkit-fill-available;
     max-height: -webkit-fill-available;
     object-fit: contain;
-}
-
-@media screen and (max-width: 850px) {
-    #main-content-newsletter-det {
-        padding: 5%;
-    }
 }

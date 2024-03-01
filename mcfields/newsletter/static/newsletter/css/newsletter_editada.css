@@ -1,13 +1,3 @@
-#main-cont-edicao-sucess {
-    padding: 5% 20%;
-}
-
 #msg-edicao-concluida {
     margin-bottom: 10%;
-}
-
-@media screen and (max-width: 850px) {
-    #main-cont-edicao-sucess {
-        padding: 5%;
-    }
 }
