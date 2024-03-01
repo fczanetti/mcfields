@@ -45,4 +45,5 @@ def edicao_newsletter(request, id):
             return render(request, 'newsletter/newsletter_editada.html',
                           {'titulo': request.POST['title']})
     form = NewsletterForm(instance=newsletter)
-    return render(request, 'newsletter/post_newsletter.html', {'form': form})
+    return render(request, 'newsletter/post_newsletter.html',
+                  {'form': form, 'newsletter': newsletter})

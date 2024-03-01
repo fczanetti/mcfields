@@ -20,6 +20,13 @@ def test_status_code_detalhe_newsletter(resp_detalhe_newsletter):
     assert resp_detalhe_newsletter.status_code == 200
 
 
+def test_titulo_pagina_detalhe_newsletter(resp_detalhe_newsletter, newsletter):
+    """
+    Certifica de que o título da página de detalhes da newsletter está presente e correto.
+    """
+    assert_contains(resp_detalhe_newsletter, f"<title>McField's - {newsletter.title}</title>")
+
+
 def test_newsletter_dados(resp_detalhe_newsletter, newsletter):
     """
     Certifica de que os dados da newsletter estão presentes na página de detalhe desta.

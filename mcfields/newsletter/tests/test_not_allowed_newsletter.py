@@ -38,6 +38,13 @@ def test_status_code_not_allowed_page(resp_not_allowed_news_page_usuario_logado)
     assert resp_not_allowed_news_page_usuario_logado.status_code == 200
 
 
+def test_titulo_pag_acesso_nao_permitido(resp_not_allowed_news_page_usuario_logado):
+    """
+    Certifica de que o título da página de acesso não permitido está presente e correto.
+    """
+    assert_contains(resp_not_allowed_news_page_usuario_logado, "<title>McField's - Acesso não permitido</title>")
+
+
 def test_nome_usuario_not_allowed_page(resp_not_allowed_news_page_usuario_logado, usuario_senha_plana):
     """
     Certifica de que o nome do usuário está presente na página de acesso não permitido

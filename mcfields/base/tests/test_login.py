@@ -38,6 +38,13 @@ def test_status_code_login_page(resp_login_page):
     assert resp_login_page.status_code == 200
 
 
+def test_titulo_pag_login(resp_login_page):
+    """
+    Certifica de que o título da página de login está presente e correto.
+    """
+    assert_contains(resp_login_page, "<title>McField's - Login</title>")
+
+
 def test_login_form(resp_login_page):
     """
     Certifica de que o formulário e seus componentes estão presentes na página de login.

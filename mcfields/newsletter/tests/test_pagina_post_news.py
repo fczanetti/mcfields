@@ -68,3 +68,10 @@ def test_form_fields_news_post_page(resp_post_page_usuario_logado_com_permissao)
     assert_contains(resp_post_page_usuario_logado_com_permissao, '<label for="id_slug">Slug:</label>')
     assert_contains(resp_post_page_usuario_logado_com_permissao, '<input type="text" name="slug" maxlength="50" '
                                                                  'required id="id_slug">')
+
+
+def test_titulo_pag_postagem_newsletter(resp_post_page_usuario_logado_com_permissao):
+    """
+    Certifica de que o título da página de postagem de newsletter está presente e correto.
+    """
+    assert_contains(resp_post_page_usuario_logado_com_permissao, "<title>McField's - Nova Newsletter</title>")

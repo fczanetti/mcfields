@@ -42,6 +42,13 @@ def test_status_code_indice_newsletter(resp_indice_newsletters):
     assert resp_indice_newsletters.status_code == 200
 
 
+def test_titulo_pag_indice_newsletter(resp_indice_newsletters):
+    """
+    Certifica de que o título da página de índice de newsletters está presente e correto.
+    """
+    assert_contains(resp_indice_newsletters, "<title>McField's - Newsletter</title>")
+
+
 def test_dados_newsletter_indice(resp_indice_newsletters, newsletters):
     """
     Certifica de que as informações de cada newsletter estão presentes na página de índice.
