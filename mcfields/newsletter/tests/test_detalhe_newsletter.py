@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 from datetime import date
-from mcfields.django_assertions import assert_contains
+from mcfields.django_assertions import assert_contains, assert_not_contains
 
 
 @pytest.fixture
@@ -11,6 +11,25 @@ def resp_detalhe_newsletter(client, newsletter):
     """
     response = client.get(reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
     return response
+
+
+@pytest.fixture
+def resp_detalhe_news_usuario_log_sem_perm_edicao(client_usuario_logado, newsletter):
+    """
+    Cria uma requisição na página de detalhes da newsletter com um usuário logado sem permissão de edição.
+    """
+    resp = client_usuario_logado.get(reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+    return resp
+
+
+@pytest.fixture
+def resp_detalhe_news_usuario_log_com_perm_edicao(client_usuario_logado_com_perm_edicao, newsletter):
+    """
+    Cria uma requisição na página de detalhes da newsletter com usuário logado e com permissão de edição.
+    """
+    resp = client_usuario_logado_com_perm_edicao.get(
+        reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+    return resp
 
 
 def test_status_code_detalhe_newsletter(resp_detalhe_newsletter):
@@ -37,3 +56,33 @@ def test_newsletter_dados(resp_detalhe_newsletter, newsletter):
     assert_contains(resp_detalhe_newsletter, newsletter.content)
     assert_contains(resp_detalhe_newsletter, f'<div id="news-pub-date">{pub_date}</div>')
     assert_contains(resp_detalhe_newsletter, f'<div id="newsletter-author">{newsletter.author}</div>')
+
+
+def test_link_edicao_usuario_nao_logado(resp_detalhe_newsletter, newsletter):
+    """
+    Certifica de que o link para edição da newsletter não está
+    presente na página de detalhes para usuários não logados.
+    """
+    assert_not_contains(resp_detalhe_newsletter,
+                        f'<a id="link-edicao-news" '
+                        f'href="{reverse("newsletter:edicao", args=(newsletter.id,))}">Editar newsletter</a>')
+
+
+def test_link_edicao_usuario_logado_sem_perm_edicao(resp_detalhe_news_usuario_log_sem_perm_edicao, newsletter):
+    """
+    Certifica de que, com um usuário logado mas sem permissão de edição,
+    o link não estará presente na página de detalhes da newsletter.
+    """
+    assert_not_contains(resp_detalhe_news_usuario_log_sem_perm_edicao,
+                        f'<a id="link-edicao-news" '
+                        f'href="{reverse("newsletter:edicao", args=(newsletter.id,))}">Editar newsletter</a>')
+
+
+def test_link_edicao_usuario_logado_com_perm_edicao(resp_detalhe_news_usuario_log_com_perm_edicao, newsletter):
+    """
+    Certifica de que o link de edição de newsletter aparece na página de detalhes desta para um usuário logado
+    e com permissão de edição.
+    """
+    assert_contains(resp_detalhe_news_usuario_log_com_perm_edicao,
+                    f'<a id="link-edicao-news" '
+                    f'href="{reverse("newsletter:edicao", args=(newsletter.id,))}">Editar newsletter</a>')
