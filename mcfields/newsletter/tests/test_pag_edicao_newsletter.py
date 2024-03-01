@@ -1,32 +1,33 @@
 import pytest
 from django.urls import reverse
 from mcfields.django_assertions import assert_contains
+from mcfields.newsletter.models import Newsletter
 
 
 @pytest.fixture
-def resp_pag_edicao_usuario_nao_logado(client):
+def resp_pag_edicao_usuario_nao_logado(client, newsletter):
     """
     Realiza uma requisição na página de edição de newsletter com usuário não logado.
     """
-    response = client.get(reverse('newsletter:edicao'))
+    response = client.get(reverse('newsletter:edicao', args=(newsletter.id,)))
     return response
 
 
 @pytest.fixture
-def resp_pag_edicao_usuario_logado_sem_perm(client_usuario_logado):
+def resp_pag_edicao_usuario_logado_sem_perm(client_usuario_logado, newsletter):
     """
     Realiza uma requisição na página de edição de newsletter com usuário logado e sem permissão de edição.
     """
-    response = client_usuario_logado.get(reverse('newsletter:edicao'))
+    response = client_usuario_logado.get(reverse('newsletter:edicao', args=(newsletter.id,)))
     return response
 
 
 @pytest.fixture
-def resp_pag_edicao_usuario_logado_com_perm(client_usuario_logado_com_perm_edicao):
+def resp_pag_edicao_usuario_logado_com_perm(client_usuario_logado_com_perm_edicao, newsletter):
     """
     Realiza uma requisição na página de edição de newsletter com usuário logado e com permissão de edição.
     """
-    response = client_usuario_logado_com_perm_edicao.get(reverse('newsletter:edicao'))
+    response = client_usuario_logado_com_perm_edicao.get(reverse('newsletter:edicao', args=(newsletter.id,)))
     return response
 
 
@@ -55,16 +56,38 @@ def test_status_code_pag_edicao_newsletter(resp_pag_edicao_usuario_logado_com_pe
     """
     assert resp_pag_edicao_usuario_logado_com_perm.status_code == 200
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_title">Título:</label>')
-    assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<input type="text" name="title" maxlength="64" '
-                                                             'required id="id_title">')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_intro">Introdução:</label>')
-    assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<textarea name="intro" cols="40" rows="10" '
-                                                             'maxlength="512" required id="id_intro">\n</textarea>')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_content">Conteúdo:</label>')
-    assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<div class="ck-editor-container">')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_author">Autor:</label>')
-    assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<input type="text" name="author" maxlength="32" '
-                                                             'required id="id_author">')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_slug">Slug:</label>')
-    assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<input type="text" name="slug" maxlength="50" '
-                                                             'required id="id_slug">')
+
+
+def test_infos_newsletter_pag_edicao(newsletter, resp_pag_edicao_usuario_logado_com_perm):
+    """
+    Certifica de que o conteúdo da newsletter está presente na página de edição.
+    :return:
+    """
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.title)
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.intro)
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.content)
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.author)
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.slug)
+
+
+def test_alteracao_newsletter(newsletter,
+                              client_usuario_logado_com_perm_edicao):
+    """
+    Certifica de que uma alteração feita em uma newsletter é salva no banco de dados.
+    """
+    id_newsletter = newsletter.id
+    client_usuario_logado_com_perm_edicao.post(
+        reverse('newsletter:edicao', args=(newsletter.id,)),
+        {'title': newsletter.title,
+         'intro': 'Introdução alterada',
+         'content': 'Conteúdo alterado',
+         'author': newsletter.author,
+         'slug': newsletter.slug})
+    news_editada = Newsletter.objects.get(id=newsletter.id)
+    assert news_editada.intro == 'Introdução alterada'
+    assert news_editada.content == 'Conteúdo alterado'
+    assert news_editada.id == id_newsletter

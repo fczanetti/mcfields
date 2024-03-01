@@ -1,18 +1,7 @@
 import pytest
 from django.urls import reverse
-from model_bakery import baker
 from datetime import date
 from mcfields.django_assertions import assert_contains
-from mcfields.newsletter.models import Newsletter
-
-
-@pytest.fixture
-def newsletter(db):
-    """
-    Cria uma newsletter para que sua página de detalhes seja acessada.
-    """
-    news = baker.make(Newsletter, content='Texto da newsletter')
-    return news
 
 
 @pytest.fixture
