@@ -1,0 +1,22 @@
+#botao-canc-remoc {
+    text-decoration: none;
+    text-align: center;
+    background-color: red;
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+}
+
+#botao-conf-remoc {
+    background-color: var(--light-green);
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+    margin-left: 1rem;
+}

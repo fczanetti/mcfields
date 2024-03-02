@@ -1,0 +1,20 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'newsletter/css/confirmacao_remocao.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Confirmar remoção</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-cont-remocao-news">
+        <h4 id="remocao-msg">Tem certeza que deseja remover a newsletter "<strong></strong>"?</h4>
+        <form action="" method="POST">
+            <a id="botao-canc-remoc" href="">Cancelar</a>
+            <button id="botao-conf-remoc" type="submit">Confirmar</button>
+        </form>
+    </div>
+{% endblock maincontent_2 %}
