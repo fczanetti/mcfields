@@ -53,7 +53,7 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     transition: all 0.5s ease;
 }
 
@@ -137,7 +137,8 @@
 
 
 #top-image-div {
-    height: 80vh;
+    /*height: 80vh;*/
+    height: 600px; /* Teste de sugestão do Roger para correção de problema em telas pequenas. */
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -299,7 +300,8 @@
 }
 
 #mais-infos {
-    height: 80vh;
+    /*height: 80vh;*/
+    height: 600px; /* Teste de sugestão do Roger para correção de problema em telas pequenas. */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

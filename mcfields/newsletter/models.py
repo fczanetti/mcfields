@@ -20,3 +20,6 @@ class Newsletter(models.Model):
 
     def get_edition_url(self):
         return reverse('newsletter:edicao', args=(self.pk,))
+
+    def get_removal_url(self):
+        return reverse('newsletter:remocao', args=(self.pk,))
