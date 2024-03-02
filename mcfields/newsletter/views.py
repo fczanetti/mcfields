@@ -47,3 +47,14 @@ def edicao_newsletter(request, id):
     form = NewsletterForm(instance=newsletter)
     return render(request, 'newsletter/post_newsletter.html',
                   {'form': form, 'newsletter': newsletter})
+
+
+@login_required
+@permission_required('newsletter.delete_newsletter', login_url='/newsletter/nao_permitido/')
+def remocao_newsletter(request, id):
+    newsletter = Newsletter.objects.get(id=id)
+    if request.method == 'POST':
+        titulo = newsletter.title
+        newsletter.delete()
+        return render(request, 'newsletter/remocao_concluida.html', {'titulo': titulo})
+    return render(request, 'newsletter/confirmacao_remocao.html', {'newsletter': newsletter})

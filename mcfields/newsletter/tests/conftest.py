@@ -54,3 +54,24 @@ def client_usuario_logado_com_perm_edicao(client, usuario_senha_plana_com_perm_e
     """
     client.force_login(usuario_senha_plana_com_perm_edicao)
     return client
+
+
+@pytest.fixture
+def usuario_senha_plana_com_perm_remocao(usuario_senha_plana):
+    """
+    Cria um usuário com permissão de remoção de newsletters a partir do usuario_senha_plana.
+    """
+    content_type = ContentType.objects.get_for_model(Newsletter)
+    permission = Permission.objects.get(codename='delete_newsletter', content_type=content_type)
+    usuario_senha_plana.user_permissions.add(permission)
+    usuario_com_perm_remocao = usuario_senha_plana
+    return usuario_com_perm_remocao
+
+
+@pytest.fixture
+def client_usuario_logado_com_perm_remocao(client, usuario_senha_plana_com_perm_remocao):
+    """
+    Cria um client com usuário logado e permissão de remoção de newsletter.
+    """
+    client.force_login(usuario_senha_plana_com_perm_remocao)
+    return client

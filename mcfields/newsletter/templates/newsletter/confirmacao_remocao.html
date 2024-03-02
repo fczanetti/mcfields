@@ -11,9 +11,10 @@
 
 {% block maincontent_2 %}
     <div id="main-cont-remocao-news">
-        <h4 id="remocao-msg">Tem certeza que deseja remover a newsletter "<strong></strong>"?</h4>
-        <form action="" method="POST">
-            <a id="botao-canc-remoc" href="">Cancelar</a>
+        <h4 id="remocao-msg">Tem certeza que deseja remover a newsletter "<strong>{{ newsletter.title }}</strong>"?</h4>
+        <form action="{% url 'newsletter:remocao' newsletter.id %}" method="POST">
+            {% csrf_token %}
+            <a id="botao-canc-remoc" href="{% url 'newsletter:detalhe_newsletter' newsletter.slug %}">Cancelar</a>
             <button id="botao-conf-remoc" type="submit">Confirmar</button>
         </form>
     </div>
