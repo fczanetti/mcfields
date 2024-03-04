@@ -1,10 +1,21 @@
 import pytest
 from django.urls import reverse
+from model_bakery import baker
 from mcfields.django_assertions import assert_contains, assert_not_contains
+from mcfields.servicos.models import Servico
 
 
 @pytest.fixture
-def resp_home(client):
+def servicos(db):
+    """
+    Cria e retorna alguns Serviços.
+    """
+    serv = baker.make(Servico, _quantity=3, content='Texto principal')
+    return serv
+
+
+@pytest.fixture
+def resp_home(client, servicos):
     """
     Cria uma requisição na home page.
     """
@@ -73,14 +84,6 @@ def test_our_services_home_page(resp_home):
     assert_contains(resp_home, '<p id="our-services-text">')
     assert_contains(resp_home, '<div id="slider">')
     assert_contains(resp_home, '<div class="slide">')
-    assert_contains(resp_home, '<img src="/static/base/img/abacate.jpg" alt="Foto relacionada ao serviço prestado">')
-    assert_contains(resp_home, '<img src="/static/base/img/colheita.jpg" alt="Foto relacionada ao serviço prestado">')
-    assert_contains(resp_home, '<img src="/static/base/img/exportacao.jpg" alt="Foto relacionada ao serviço prestado">')
-    assert_contains(resp_home, '<img src="/static/base/img/plantacao.jpg" alt="Foto relacionada ao serviço prestado">')
-    assert_contains(resp_home, '<h3 class="slide-title">Título do serviço</h3>')
-    assert_contains(resp_home, '<h3 class="slide-title">Título do serviço</h3>')
-    assert_contains(resp_home, '<h3 class="slide-title">Título do serviço</h3>')
-    assert_contains(resp_home, '<h3 class="slide-title">Título do serviço</h3>')
 
 
 def test_mais_infos_home_page(resp_home):
@@ -120,3 +123,15 @@ def test_botao_logout_indisponivel(resp_home):
     Certifica que, sem usuário logado, o botão de logout não está disponível.
     """
     assert_not_contains(resp_home, '<button id="logout-button"')
+
+
+def test_servicos_home_page(resp_home, servicos):
+    """
+    Certifica de que os serviços criados estão presentes na home page.
+    """
+    for servico in servicos:
+        assert_contains(resp_home, f'<img src="/media/{servico.home_picture}" '
+                                   f'alt="Foto relacionada ao serviço prestado">')
+        assert_contains(resp_home, servico.title)
+        assert_contains(resp_home, servico.intro)
+        assert_contains(resp_home, servico.get_absolute_url())

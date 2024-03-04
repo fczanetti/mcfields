@@ -4,5 +4,5 @@ from mcfields.servicos.models import Servico
 
 @admin.register(Servico)
 class ServicoAdmin(admin.ModelAdmin):
-    list_display = ['title', 'intro', 'slug', 'order']
+    list_display = ['title', 'slug', 'order']
     prepopulated_fields = {'slug': ['title']}

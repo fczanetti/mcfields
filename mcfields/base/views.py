@@ -4,10 +4,12 @@ from django.urls import reverse
 from mcfields import settings
 from mcfields.base.forms import EmailForm
 from sendgrid import SendGridAPIClient
+from mcfields.servicos.models import Servico
 
 
 def home(request):
-    return render(request, 'base/home.html')
+    servicos = Servico.objects.all()
+    return render(request, 'base/home.html', {'servicos': servicos})
 
 
 def sobre(request):
