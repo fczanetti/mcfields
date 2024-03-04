@@ -1,9 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django_ckeditor_5.fields import CKEditor5Field
+from ordered_model.models import OrderedModel
 
 
-class Newsletter(models.Model):
+class Newsletter(OrderedModel):
     title = models.CharField(max_length=64, verbose_name='Título')
     intro = models.TextField(max_length=512, verbose_name='Introdução')
     content = CKEditor5Field(verbose_name='Conteúdo')

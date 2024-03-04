@@ -3,12 +3,13 @@ from django.shortcuts import render
 from sendgrid import SendGridAPIClient
 
 from mcfields import settings
+from mcfields.newsletter import facade
 from mcfields.newsletter.forms import NewsletterForm
 from mcfields.newsletter.models import Newsletter
 
 
 def indice_newsletters(request):
-    newsletters = Newsletter.objects.all()
+    newsletters = facade.listar_newsletters_ordenadas()
     return render(request, 'newsletter/indice_newsletter.html', {'newsletters': newsletters})
 
 

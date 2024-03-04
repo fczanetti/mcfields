@@ -17,6 +17,16 @@ def newsletters(db):
     return news
 
 
+# @pytest.fixture
+# def unordered_newsletters(db):
+#     """
+#     Cria algumas newsletters não ordenadas.
+#     """
+#     news = [baker.make(Newsletter, content='Newsletter não ordenada', pub_date=pub_date)
+#             for pub_date in ['2024-03-01', '2024-03-05', '2024-02-22', '2024-03-02']]
+#     return news
+
+
 @pytest.fixture
 def resp_indice_newsletters(client, newsletters):
     """
@@ -77,3 +87,12 @@ def test_botao_nova_news_indisponivel(resp_indice_newsletters_usuario_logado):
     newsletter não é exibido se o usuário não tem permissão.
     """
     assert_not_contains(resp_indice_newsletters_usuario_logado, 'Nova publicação')
+
+
+# def test_list_ordered_newsletters(unordered_newsletters):
+#     """
+#     Certifica de que as newsletters estão sendo ordenadas por data de publicação (reversamente).
+#     """
+#     ordered_news = facade.listar_newsletters_ordenadas()
+#     ordered_news_2 = list(sorted(unordered_newsletters, key=lambda news: news.pub_date, reverse=True))
+#     assert (ordered_news == ordered_news_2)
