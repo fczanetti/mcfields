@@ -17,6 +17,12 @@
     padding: 0 5px;
 }
 
+#id_criar_rascunho_0,
+#id_criar_rascunho_1 {
+    height: auto;
+    margin-top: 1rem;
+}
+
 .news-form-field input {
     height: 2rem;
 }

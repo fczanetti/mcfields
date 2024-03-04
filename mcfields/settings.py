@@ -189,6 +189,9 @@ if SENTRY_DSN:
 # Configurações de cadastro de emails do Sendgrid
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 SENDGRID_NEWSLETTER_LIST_ID = config('SENDGRID_NEWSLETTER_LIST_ID')
+NEWSLETTER_SUPPRESSION_GROUP_ID = config('NEWSLETTER_SUPPRESSION_GROUP_ID', cast=int)
+SENDER_ID = config('SENDER_ID', cast=int)
+SENDGRID_NEWSLETTER_DESIGN_ID = config('SENDGRID_NEWSLETTER_DESIGN_ID')
 
 # Configurações django-ckeditor-5
 customColorPalette = [
