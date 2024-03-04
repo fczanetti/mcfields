@@ -16,6 +16,7 @@ collectfast = "*"
 sentry-sdk = {extras = ["django"], version = "*"}
 sendgrid = "*"
 django-ckeditor-5 = "*"
+django-ordered-model = "*"
 
 [dev-packages]
 flake8 = "*"

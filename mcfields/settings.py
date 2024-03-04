@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'mcfields.base',
     'mcfields.newsletter',
     'django_ckeditor_5',
+    'ordered_model',
 ]
 
 MIDDLEWARE = [
