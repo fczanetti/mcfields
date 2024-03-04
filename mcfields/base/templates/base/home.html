@@ -40,57 +40,14 @@
         </div>
 
         <div id="slider">
-            <div class="slide">
-                <img src="{% static 'base/img/abacate.jpg' %}" alt="Foto relacionada ao serviço prestado">
-                <h3 class="slide-title">Título do serviço</h3>
-                <p class="text-slide">
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                </p>
-            </div>
-
-            <div class="slide">
-                <img src="{% static 'base/img/colheita.jpg' %}" alt="Foto relacionada ao serviço prestado">
-                <h3 class="slide-title">Título do serviço</h3>
-                <p class="text-slide">
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                </p>
-            </div>
-
-            <div class="slide">
-                <img src="{% static 'base/img/exportacao.jpg' %}" alt="Foto relacionada ao serviço prestado">
-                <h3 class="slide-title">Título do serviço</h3>
-                <p class="text-slide">
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                </p>
-            </div>
-
-            <div class="slide">
-                <img src="{% static 'base/img/plantacao.jpg' %}" alt="Foto relacionada ao serviço prestado">
-                <h3 class="slide-title">Título do serviço</h3>
-                <p class="text-slide">
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                    Lorem ipsum dolor sit amet, consectetur.
-                    Aliquam amet autem commodi, corporis
-                    cupiditate eius eligendi exercitationem.
-                </p>
-            </div>
+            {% for servico in servicos %}
+                <div class="slide">
+                    <img src="{% get_media_prefix %}{{ servico.home_picture }}" alt="Foto relacionada ao serviço prestado">
+                    <h3 class="slide-title">{{ servico.title }}</h3>
+                    <p class="text-slide">{{ servico.intro }}</p>
+                    <a id="know-more-button" href="{{ servico.get_absolute_url }}">Saiba mais</a>
+                </div>
+            {% endfor %}
             <button class="btn btn-next"><i class="bi bi-chevron-compact-right"></i></button>
             <button class="btn btn-prev"><i class="bi bi-chevron-compact-left"></i></button>
         </div>
