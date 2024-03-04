@@ -1,5 +1,8 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
+from sendgrid import SendGridAPIClient
+
+from mcfields import settings
 from mcfields.newsletter.forms import NewsletterForm
 from mcfields.newsletter.models import Newsletter
 
@@ -21,12 +24,33 @@ def post_newsletter(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
+            if request.POST['criar_rascunho'] == 'YES':
+                criar_rascunho(
+                    key=settings.SENDGRID_API_KEY,
+                    titulo=request.POST['title'],
+                    list_id=settings.SENDGRID_NEWSLETTER_LIST_ID
+                )
             return render(request, 'newsletter/post_newsletter_success.html',
                           {'titulo': request.POST['title']})
         else:
             return render(request, 'newsletter/post_newsletter.html', {'form': form})
     form = NewsletterForm()
     return render(request, 'newsletter/post_newsletter.html', {'form': form})
+
+
+def criar_rascunho(key, titulo, list_id):
+    """
+    Cria um rascunho de email no Sendgrid.
+    """
+    sg = SendGridAPIClient(key)
+    data = {
+        'name': f'Nova publicação: {titulo}',
+        'send_to': {'list_ids': [list_id]},
+        'email_config': {'design_id': settings.SENDGRID_NEWSLETTER_DESIGN_ID,
+                         'suppression_group_id': settings.NEWSLETTER_SUPPRESSION_GROUP_ID,
+                         'sender_id': settings.SENDER_ID}
+    }
+    return sg.client.marketing.singlesends.post(request_body=data)
 
 
 @login_required

@@ -16,7 +16,8 @@ def resp_alteracao_newsletter(newsletter,
          'intro': 'Introdução alterada',
          'content': 'Conteúdo alterado',
          'author': newsletter.author,
-         'slug': newsletter.slug})
+         'slug': newsletter.slug,
+         'criar_rascunho': 'NO'})
     return resp
 
 
@@ -55,7 +56,8 @@ def test_alteracao_newsletter(newsletter,
          'intro': 'Introdução alterada',
          'content': 'Conteúdo alterado',
          'author': newsletter.author,
-         'slug': newsletter.slug})
+         'slug': newsletter.slug,
+         'criar_rascunho': 'NO'})
     news_editada = Newsletter.objects.get(id=newsletter.id)
     assert news_editada.intro == 'Introdução alterada'
     assert news_editada.content == 'Conteúdo alterado'
