@@ -32,10 +32,10 @@
     justify-content: end;
 }
 
-.botao-cancelar {
+.canc-button {
     text-decoration: none;
     text-align: center;
-    background-color: red;
+    background-color: #999;
     color: var(--white-color);
     padding: 5px 0px;
     border-radius: 5px;

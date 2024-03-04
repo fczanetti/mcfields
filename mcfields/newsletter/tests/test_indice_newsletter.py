@@ -68,7 +68,7 @@ def test_botao_nova_news_disponivel(client_usuario_logado_com_perm_postagem):
     Certifica de que, com o usuário logado e tendo permissão de postar, o botão de nova newsletter é exibido.
     """
     response = client_usuario_logado_com_perm_postagem.get(reverse('newsletter:indice_newsletters'))
-    assert_contains(response, f'<a id="link-nova-pub" href="{reverse("newsletter:post")}">Nova publicação</a>')
+    assert_contains(response, f'<a id="new-pub-link" href="{reverse("newsletter:post")}">Nova publicação</a>')
 
 
 def test_botao_nova_news_indisponivel(resp_indice_newsletters_usuario_logado):

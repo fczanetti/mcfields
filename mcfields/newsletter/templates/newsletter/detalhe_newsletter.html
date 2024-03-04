@@ -12,10 +12,10 @@
 {% block maincontent_2 %}
     <div id="main-content-newsletter-det">
         {% if perms.newsletter.change_newsletter %}
-            <a id="link-edicao-news" href="{{ newsletter.get_edition_url }}">Editar</a>
+            <a id="news-update-link" href="{{ newsletter.get_edition_url }}">Editar</a>
         {% endif %}
         {% if perms.newsletter.delete_newsletter %}
-            <a id="link-remocao-news" href="{{ newsletter.get_removal_url }}">Remover</a>
+            <a id="news-removal-link" href="{{ newsletter.get_removal_url }}">Remover</a>
         {% endif %}
         <h1 id="newsletter-title">{{ newsletter.title }}</h1>
         <h5 id="newsletter-intro">{{ newsletter.intro|linebreaks }}</h5>

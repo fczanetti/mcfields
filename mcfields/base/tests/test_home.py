@@ -30,7 +30,7 @@ def test_nav_bar_home_page(resp_home):
     """
     Certifica de que a navbar e seus componentes estão presentes na home page.
     """
-    assert_contains(resp_home, f'<a href="{reverse("base:home")}" id="logo-nav-bar"><img '
+    assert_contains(resp_home, f'<a href="{reverse("base:home")}" id="nav-bar-logo"><img '
                                f'src="/static/base/img/logo-red-2.jpg" alt="Logotipo"></a>')
     assert_contains(resp_home, '<button id="toggle-button">')
     assert_contains(resp_home, '<div id="navbar-links">')
@@ -87,9 +87,9 @@ def test_mais_infos_home_page(resp_home):
     """
     Certifica de que os componentes da div 'mais infos' estão presentes na home page.
     """
-    assert_contains(resp_home, '<div id="mais-infos" style="background-image: url(/static/base/img/background03.jpg)">')
-    assert_contains(resp_home, '<div id="mais-infos-bg">')
-    assert_contains(resp_home, '<div id="mais-infos-text">')
+    assert_contains(resp_home, '<div id="more-infos" style="background-image: url(/static/base/img/background03.jpg)">')
+    assert_contains(resp_home, '<div id="more-infos-bg">')
+    assert_contains(resp_home, '<div id="more-infos-text">')
 
 
 def test_footer_home_page(resp_home):
