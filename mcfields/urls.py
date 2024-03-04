@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mcfields.base.urls')),
     path('newsletter/', include('mcfields.newsletter.urls')),
+    path('servicos/', include('mcfields.servicos.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
     path("accounts/", include("django.contrib.auth.urls"))
 ]
