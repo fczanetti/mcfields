@@ -9,9 +9,3 @@
 #main-msg, #main-msg-2 {
     margin-bottom: 10%;
 }
-
-@media screen and (max-width: 850px) {
-    #link-pag-inicial {
-        width: 50%;
-    }
-}

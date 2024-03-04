@@ -1,4 +1,4 @@
-#link-edicao-news {
+#news-update-link {
     text-decoration: none;
     color: var(--white-color);
     background-color: var(--light-green);
@@ -10,7 +10,7 @@
     text-align: center;
 }
 
-#link-remocao-news {
+#news-removal-link {
     text-decoration: none;
     color: var(--white-color);
     background-color: red;
@@ -62,7 +62,7 @@
 }
 
 @media screen and (max-width: 750px) {
-    #link-edicao-news {
+    #news-update-link {
         display: block;
         margin-bottom: 10px;
     }

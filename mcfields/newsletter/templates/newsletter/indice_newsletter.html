@@ -12,7 +12,7 @@
 {% block maincontent_2 %}
     <div id="main-content-newsletter">
         {% if perms.newsletter.add_newsletter %}
-            <a id="link-nova-pub" href="{% url 'newsletter:post' %}">Nova publicação</a>
+            <a id="new-pub-link" href="{% url 'newsletter:post' %}">Nova publicação</a>
         {% endif %}
         {% for newsletter in newsletters %}
             <a href="{{ newsletter.get_absolute_url }}" class="newsletter-box-link">

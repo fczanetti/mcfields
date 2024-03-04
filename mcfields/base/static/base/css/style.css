@@ -61,7 +61,7 @@
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
 }
 
-#logo-nav-bar {
+#nav-bar-logo {
     text-decoration: none;
     font-size: 2rem;
     color: var(--dark-green);
@@ -70,7 +70,7 @@
     margin-left: 1.2rem;
 }
 
-#logo-nav-bar img {
+#nav-bar-logo img {
     max-width: -webkit-fill-available;
 }
 
@@ -273,33 +273,33 @@
     text-align: justify;
 }
 
-#beneficios {
+#benefits {
     padding: 5% 10%;
     display: flex;
     justify-content: space-evenly;
 }
 
-#benecifios-titulo {
+#benefits-title {
     width: 35%;
     font-weight: 600;
     color: var(--dark-green);
 }
 
-#lista-beneficios {
+#benefits-list {
     width: 45%;
 }
 
-.titulo-lista-beneficios {
+.benefits-list-title {
     color: var(--dark-green);
 }
 
-.texto-lista-beneficios {
+.benefits-list-text {
     color: var(--dark-green);
     margin-bottom: 1.5rem;
     text-align: justify;
 }
 
-#mais-infos {
+#more-infos {
     /*height: 80vh;*/
     height: 600px; /* Teste de sugestão do Roger para correção de problema em telas pequenas. */
     background-repeat: no-repeat;
@@ -308,13 +308,13 @@
     background-attachment: fixed;
 }
 
-#mais-infos-bg {
+#more-infos-bg {
     padding: 5% 10%;
     height: 100%;
     background-color: rgba(33, 100, 44, .3);
 }
 
-#mais-infos-text {
+#more-infos-text {
     width: 40%;
     color: var(--white-color);
 }
@@ -497,20 +497,20 @@
                 margin-top: 1rem;
             }
 
-            #beneficios {
+            #benefits {
                 flex-direction: column;
                 padding: 5%;
             }
 
-            #benecifios-titulo {
+            #benefits-title {
                 margin-bottom: 5%;
             }
 
-            #lista-beneficios {
+            #benefits-list {
                 width: 100%;
             }
 
-            #mais-infos-bg {
+            #more-infos-bg {
                 padding: 5%;
             }
 }
@@ -525,7 +525,7 @@
                     top: 85px;
                 }
 
-                #logo-nav-bar {
+                #nav-bar-logo {
                     width: 6rem;
                 }
 
@@ -537,7 +537,7 @@
                     top: 75.2px;
                 }
 
-                /*#top-image-div, #mais-infos {
+                /*#top-image-div, #more-infos {
                     background-attachment: unset;
                 }*/
 
@@ -587,7 +587,7 @@
                     transform: translateY(0);
                 }
 
-                #mais-infos-text {
+                #more-infos-text {
                     width: 55%;
                 }
 
@@ -604,7 +604,7 @@
                     width: 50%;
                 }
 
-                #servicos-footer {
+                #services-footer {
                     margin: 5% 0;
                 }
 
@@ -616,7 +616,7 @@
                     margin-bottom: 0.5rem;
                 }
 
-                #atalhos-footer {
+                #shortcuts-footer {
                     margin: 5% 0;
                 }
 

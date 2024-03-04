@@ -1,11 +1,11 @@
-#remocao-msg {
+#removal-msg {
     margin-bottom: 10%;
 }
 
-#botao-canc-remoc {
+#canc-removal-button {
     text-decoration: none;
     text-align: center;
-    background-color: red;
+    background-color: #999;
     color: var(--white-color);
     padding: 5px 0px;
     border-radius: 5px;
@@ -14,7 +14,7 @@
     border: none;
 }
 
-#botao-conf-remoc {
+#conf-removal-button {
     background-color: var(--light-green);
     color: var(--white-color);
     padding: 5px 0px;
