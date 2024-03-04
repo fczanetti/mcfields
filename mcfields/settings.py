@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mcfields.base',
     'mcfields.newsletter',
+    'mcfields.servicos',
     'django_ckeditor_5',
     'ordered_model',
 ]
