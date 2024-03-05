@@ -1,0 +1,50 @@
+#services-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.services-form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.services-form-field input,
+.services-form-field textarea {
+    border: 0.5px solid lightgrey;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+.services-form-field input {
+    height: 2rem;
+}
+
+#service-form-buttons {
+    display: flex;
+    justify-content: end;
+}
+
+.canc-button {
+    text-decoration: none;
+    text-align: center;
+    background-color: #999;
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+}
+
+#submit-service-button {
+    background-color: var(--light-green);
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+    margin-left: 1rem;
+}
