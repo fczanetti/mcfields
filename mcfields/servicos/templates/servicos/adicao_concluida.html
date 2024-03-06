@@ -1,0 +1,17 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'servicos/css/adicao_concluida.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Adição concluída</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-cont-adit-success">
+        <h4 id="adit-serv-success-msg">O serviço "<strong>{{ titulo }}</strong>" foi adicionado com sucesso.</h4>
+        <h5 id="adit-serv-redirect-msg">Acesse a home page para conferir.</h5>
+    </div>
+{% endblock maincontent_2 %}

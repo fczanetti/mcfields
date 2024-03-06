@@ -11,7 +11,7 @@
 
 {% block maincontent_2 %}
     <div id="main-content-service-adit">
-        <form id="services-form" action="" method="post">
+        <form id="services-form" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
             {% for field in form %}
@@ -20,7 +20,7 @@
                     <p class="errornote">{{ field.errors }}</p>
                 </div>
             {{ field.help_text }}
-        {% endfor %}
+            {% endfor %}
             <div id="service-form-buttons">
                 <a class="canc-button" href="{% url 'base:home' %}">Cancelar</a>
                 <button id="submit-service-button" type="submit">Publicar</button>
