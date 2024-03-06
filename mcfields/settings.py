@@ -211,7 +211,7 @@ CKEDITOR_5_CONFIGS = {
         'toolbar': ['heading', '|', 'fontSize', 'fontColor', 'bold', 'italic', 'underline', 'strikethrough',
                     'subscript', 'superscript', 'highlight', 'link', 'bulletedList', 'numberedList', 'blockQuote',
                     'indent', 'outdent', 'imageUpload', '|', 'imageStyle:alignLeft',
-                    'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side', 'imageTextAlternative',],
+                    'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side', 'imageTextAlternative'],
 
     },
     'extends': {

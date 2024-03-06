@@ -4,6 +4,10 @@ from mcfields.servicos.models import Servico
 
 
 class ServicoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["content"].required = False
+
     class Meta:
         model = Servico
         fields = '__all__'
