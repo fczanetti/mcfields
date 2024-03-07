@@ -147,7 +147,7 @@ if AWS_ACCESS_KEY_ID:
     COLLECTFAST_ENABLED = True
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 
-    CKEDITOR_5_FILE_STORAGE = config('CKEDITOR_5_FILE_STORAGE')
+    CKEDITOR_5_FILE_STORAGE = "mcfields.base.storages.PublicMediaStorage"
 
     # Static media folder
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
@@ -158,9 +158,11 @@ if AWS_ACCESS_KEY_ID:
 
     # Uploaded Media Folder
     DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-    DEFAULT_S3_PATH = 'media'
+    DEFAULT_S3_PATH = 'public'
+    # DEFAULT_S3_PATH = 'media'
     MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
-    MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
+    MEDIA_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.sa-east-1.amazonaws.com/{DEFAULT_S3_PATH}/'
+    # MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
 
     INSTALLED_APPS.append('s3_folder_storage')
 
