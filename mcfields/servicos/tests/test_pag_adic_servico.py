@@ -62,7 +62,7 @@ def test_title_pag_adic_servicos(resp_pag_adic_servico_usuario_logado_com_perm):
     Certifica de que o título da página de adição de serviços está presente e correto.
     """
     assert_contains(resp_pag_adic_servico_usuario_logado_com_perm,
-                    "<title>McField's - Adicionar serviço</title>")
+                    "<title>McField's - Novo serviço</title>")
 
 
 def test_form_adic_serv(resp_pag_adic_servico_usuario_logado_com_perm):

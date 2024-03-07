@@ -53,12 +53,12 @@ def test_alteracao_newsletter(newsletter,
     client_usuario_logado_com_perm_edicao.post(
         reverse('newsletter:edicao', args=(id_newsletter,)),
         {'title': newsletter.title,
-         'intro': 'Introdução alterada',
-         'content': 'Conteúdo alterado',
+         'intro': 'Introdução alterada novamente',
+         'content': 'Conteúdo alterado novamente',
          'author': newsletter.author,
          'slug': newsletter.slug,
          'criar_rascunho': 'NO'})
     news_editada = Newsletter.objects.get(id=newsletter.id)
-    assert news_editada.intro == 'Introdução alterada'
-    assert news_editada.content == 'Conteúdo alterado'
+    assert news_editada.intro == 'Introdução alterada novamente'
+    assert news_editada.content == 'Conteúdo alterado novamente'
     assert news_editada.id == id_newsletter

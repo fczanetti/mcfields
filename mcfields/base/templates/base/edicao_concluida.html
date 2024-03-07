@@ -12,7 +12,9 @@
 {% block maincontent_2 %}
     <div id="main-cont-update-sucess">
         {% if newsletter %}
-            <h4 id="success-update-msg">A newsletter "<strong>{{ newsletter.title }}</strong>" foi editada com sucesso.</h4>
+            <h4 class="success-update-msg">A newsletter "<strong>{{ newsletter.title }}</strong>" foi editada com sucesso.</h4>
+        {% elif servico %}
+            <h4 class="success-update-msg">O serviço "<strong>{{ servico.title }}</strong>" foi editado com sucesso.</h4>
         {% endif %}
     </div>
 {% endblock maincontent_2 %}
