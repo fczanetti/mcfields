@@ -7,4 +7,5 @@ urlpatterns = [
     path('sobre', views.sobre, name='sobre'),
     path('inscricao_concluida', views.inscricao_email, name='inscricao_email'),
     path('accounts/login/', views.UserLogin.as_view(), name='login'),
+    path('nao_permitido/', views.nao_permitido, name='nao_permitido'),
 ]
