@@ -60,7 +60,7 @@ def test_titulo_pagina_postagem_concluida(resp_post_news_success):
     """
     Certifica de que o título da página de postagem de newsletter concluída está presente e correto.
     """
-    assert_contains(resp_post_news_success, "<title>McField's - Postagem concluída</title>")
+    assert_contains(resp_post_news_success, "<title>McField's - Publicação concluída</title>")
 
 
 def test_path_after_post_newsletter(resp_post_news_success):

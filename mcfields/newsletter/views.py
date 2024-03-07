@@ -25,14 +25,15 @@ def post_newsletter(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
+            path = request.path
             if request.POST['criar_rascunho'] == 'YES':
                 criar_rascunho(
                     key=settings.SENDGRID_API_KEY,
                     titulo=request.POST['title'],
                     list_id=settings.SENDGRID_NEWSLETTER_LIST_ID
                 )
-            return render(request, 'newsletter/post_newsletter_success.html',
-                          {'titulo': request.POST['title']})
+            return render(request, 'base/post_success.html',
+                          {'titulo': request.POST['title'], 'path': path})
         else:
             return render(request, 'newsletter/post_newsletter.html', {'form': form})
     form = NewsletterForm()

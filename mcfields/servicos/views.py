@@ -17,8 +17,9 @@ def adicionar_servico(request):
         form = ServicoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return render(request, 'servicos/adicao_concluida.html',
-                          {'titulo': request.POST['title']})
+            path = request.path
+            return render(request, 'base/post_success.html',
+                          {'titulo': request.POST['title'], 'path': path})
         else:
             return render(request, 'servicos/adicao_servico.html', {'form': form})
     form = ServicoForm()
