@@ -93,5 +93,6 @@ def test_adic_servico_concluida(resp_adicao_novo_servico):
     """
     Certifica de que, após adicionar novo serviço, a página com a mensagem de adição com sucesso é renderizada.
     """
+    assert_contains(resp_adicao_novo_servico, "<title>McField's - Publicação concluída</title>")
     assert_contains(resp_adicao_novo_servico, 'O serviço "<strong>Título do serviço</strong>" '
                                               'foi adicionado com sucesso.')
