@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'newsletter/css/remocao_concluida.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/remocao_concluida.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -11,6 +11,8 @@
 
 {% block maincontent_2 %}
     <div id="main-cont-success-removal">
-        <h4 id="success-removal-msg">A newsletter "<strong>{{ titulo }}</strong>" foi removida com sucesso.</h4>
+        {% if '/newsletter/adm/remocao' in path %}
+            <h4 id="success-removal-msg">A newsletter "<strong>{{ titulo }}</strong>" foi removida com sucesso.</h4>
+        {% endif %}
     </div>
 {% endblock maincontent_2 %}

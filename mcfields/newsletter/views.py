@@ -77,5 +77,6 @@ def remocao_newsletter(request, id):
     if request.method == 'POST':
         titulo = newsletter.title
         newsletter.delete()
-        return render(request, 'newsletter/remocao_concluida.html', {'titulo': titulo})
+        path = request.path
+        return render(request, 'base/remocao_concluida.html', {'titulo': titulo, 'path': path})
     return render(request, 'newsletter/confirmacao_remocao.html', {'newsletter': newsletter})
