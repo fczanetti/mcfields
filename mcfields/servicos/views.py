@@ -24,3 +24,16 @@ def adicionar_servico(request):
             return render(request, 'servicos/adicao_servico.html', {'form': form})
     form = ServicoForm()
     return render(request, 'servicos/adicao_servico.html', {'form': form})
+
+
+@login_required
+@permission_required('servicos.change_servico', login_url='/nao_permitido/')
+def editar_servico(request, id):
+    servico = Servico.objects.get(id=id)
+    if request.POST:
+        form = ServicoForm(request.POST, request.FILES, instance=servico)
+        if form.is_valid():
+            form.save()
+            return render(request, 'base/edicao_concluida.html', {'servico': servico})
+    form = ServicoForm(instance=servico)
+    return render(request, 'servicos/adicao_servico.html', {'form': form, 'servico': servico})

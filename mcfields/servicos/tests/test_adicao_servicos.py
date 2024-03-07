@@ -1,28 +1,8 @@
-import io
 import pytest
-from django.core.files.base import ContentFile
 from django.urls import reverse
 from model_bakery import baker
 from mcfields.django_assertions import assert_true, assert_contains, assert_false
 from mcfields.servicos.models import Servico
-from PIL import Image
-
-
-@pytest.fixture
-def imagem(settings):
-    """
-    Cria uma imagem para ser usada na postagem de um novo serviço. A configuração STORAGES deve ser sobrescrita
-    utilizando InMemoryStorage, caso contrário a imagem será persistida/salva na pasta mediafiles.
-    """
-    settings.STORAGES = {
-        "default": {
-            "BACKEND": "django.core.files.storage.InMemoryStorage",
-        }
-    }
-    stream = io.BytesIO()
-    image = Image.new('RGB', (200, 200), color='white')
-    image.save(stream, 'PNG')
-    return ContentFile(stream.getvalue(), name='test.png')
 
 
 @pytest.fixture

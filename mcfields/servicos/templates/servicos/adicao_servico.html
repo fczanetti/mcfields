@@ -6,7 +6,11 @@
 {% endblock css %}
 
 {% block title %}
-    <title>McField's - Adicionar serviço</title>
+    {% if servico %}
+        <title>McField's - Edição de serviço</title>
+    {% else %}
+        <title>McField's - Novo serviço</title>
+    {% endif %}
 {% endblock title %}
 
 {% block maincontent_2 %}
