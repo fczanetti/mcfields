@@ -11,6 +11,12 @@
 
 {% block maincontent_2 %}
     <div id="main-content-service-det">
+        {% if perms.servicos.add_servico %}
+            <a id="service-adit-link" href="{% url 'servicos:adicionar' %}">Novo serviço</a>
+        {% endif %}
+        {% if perms.servicos.change_servico %}
+            <a id="service-update-link" href="{{ servico.get_edition_url }}">Editar</a>
+        {% endif %}
         <h1 id="service-title">{{ servico.title }}</h1>
         <div id="service-content">{{ servico.content|safe|linebreaks }}</div>
     </div>

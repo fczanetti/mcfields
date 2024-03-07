@@ -26,3 +26,6 @@ class Servico(OrderedModel):
 
     def get_absolute_url(self):
         return reverse('servicos:detalhe_servico', args=(self.slug,))
+
+    def get_edition_url(self):
+        return reverse('servicos:edicao', args=(self.pk,))
