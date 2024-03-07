@@ -45,7 +45,7 @@ def test_redirect_usuario_logado_sem_permissao(resp_news_post_page_usuario_logad
     ao tentar acessar a página de postagem de newsletter.
     """
     assert resp_news_post_page_usuario_logado.status_code == 302
-    assert resp_news_post_page_usuario_logado.url.startswith('/newsletter/nao_permitido')
+    assert resp_news_post_page_usuario_logado.url.startswith('/nao_permitido')
 
 
 def test_form_fields_news_post_page(resp_post_page_usuario_logado_com_permissao):

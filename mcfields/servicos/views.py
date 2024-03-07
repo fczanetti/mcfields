@@ -11,7 +11,7 @@ def detalhe_servico(request, slug):
 
 
 @login_required
-@permission_required('servicos.add_servico', login_url='/servicos/nao_permitido/')
+@permission_required('servicos.add_servico', login_url='/nao_permitido/')
 def adicionar_servico(request):
     if request.POST:
         form = ServicoForm(request.POST, request.FILES)

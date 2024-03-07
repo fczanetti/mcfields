@@ -45,7 +45,7 @@ def test_redirect_pag_edicao_usuario_sem_permissao(resp_pag_edicao_usuario_logad
     o mesmo é redirecionado para a página de acesso não permitido.
     """
     assert resp_pag_edicao_usuario_logado_sem_perm.status_code == 302
-    assert resp_pag_edicao_usuario_logado_sem_perm.url.startswith('/newsletter/nao_permitido/')
+    assert resp_pag_edicao_usuario_logado_sem_perm.url.startswith('/nao_permitido/')
 
 
 def test_status_code_pag_edicao_newsletter(resp_pag_edicao_usuario_logado_com_perm):

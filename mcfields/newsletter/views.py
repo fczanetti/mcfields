@@ -19,7 +19,7 @@ def detalhe_newsletter(request, slug):
 
 
 @login_required
-@permission_required('newsletter.add_newsletter', login_url='/newsletter/nao_permitido/')
+@permission_required('newsletter.add_newsletter', login_url='/nao_permitido/')
 def post_newsletter(request):
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
@@ -55,12 +55,7 @@ def criar_rascunho(key, titulo, list_id):
 
 
 @login_required
-def nao_permitido(request):
-    return render(request, 'newsletter/nao_permitido_newsletter.html')
-
-
-@login_required
-@permission_required('newsletter.change_newsletter', login_url='/newsletter/nao_permitido/')
+@permission_required('newsletter.change_newsletter', login_url='/nao_permitido/')
 def edicao_newsletter(request, id):
     newsletter = Newsletter.objects.get(id=id)
     if request.POST:
@@ -75,7 +70,7 @@ def edicao_newsletter(request, id):
 
 
 @login_required
-@permission_required('newsletter.delete_newsletter', login_url='/newsletter/nao_permitido/')
+@permission_required('newsletter.delete_newsletter', login_url='/nao_permitido/')
 def remocao_newsletter(request, id):
     newsletter = Newsletter.objects.get(id=id)
     if request.method == 'POST':

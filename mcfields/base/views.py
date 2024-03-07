@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -34,6 +35,11 @@ def cadastrar_email(key, user_email, list_id):
     sg = SendGridAPIClient(key)
     data = {"contacts": [{"email": user_email}], 'list_ids': [list_id]}
     return sg.client.marketing.contacts.put(request_body=data)
+
+
+@login_required
+def nao_permitido(request):
+    return render(request, 'base/nao_permitido.html')
 
 
 class UserLogin(LoginView):
