@@ -11,9 +11,6 @@ AWS_ACCESS_KEY_ID =
 AWS_SECRET_ACCESS_KEY =
 AWS_STORAGE_BUCKET_NAME =
 
-# Armazenamento de mediafiles customizado (público) no AWS
-CKEDITOR_5_FILE_STORAGE = mcfields.base.storages.PublicMediaStorage
-
 # Configurações SENDGRID. Manter algum valor numérico nas variáveis NEWSLETTER_SUPPRESSION_GROUP_ID e SENDER_ID,
 # caso contrário testes automáticos no GitHub Actions podem falhar.
 SENDGRID_API_KEY =
