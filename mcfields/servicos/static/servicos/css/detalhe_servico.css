@@ -1,3 +1,27 @@
+#service-adit-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-green);
+    padding: 5px 0;
+    border-radius: 5px;
+    width: 7rem;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#service-update-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-blue);
+    padding: 5px 0;
+    border-radius: 5px;
+    width: 7rem;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 #service-title {
     margin-bottom: 2rem;
     font-weight: 600;
@@ -17,4 +41,11 @@
     max-width: -webkit-fill-available;
     max-height: -webkit-fill-available;
     object-fit: contain;
+}
+
+@media screen and (max-width: 750px) {
+    #service-adit-link {
+        display: block;
+        margin-bottom: 10px;
+    }
 }
