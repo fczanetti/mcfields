@@ -1,7 +1,25 @@
 import pytest
 from django.urls import reverse
-
 from mcfields.django_assertions import assert_contains
+
+
+@pytest.fixture
+def resp_pag_adic_serv_usuario_nao_logado(client):
+    """
+    Realiza uma requisição na página de adição de serviços com usuário não logado.
+    """
+    resp = client.get(reverse('servicos:adicionar'))
+    return resp
+
+
+@pytest.fixture
+def resp_pag_adic_serv_usuario_logado_sem_perm(client_usuario_logado):
+    """
+    Realiza uma requisição na página de adição de serviços com usuário logado
+    e sem permissão de adição.
+    """
+    resp = client_usuario_logado.get(reverse('servicos:adicionar'))
+    return resp
 
 
 @pytest.fixture
@@ -11,6 +29,24 @@ def resp_pag_adic_servico_usuario_logado_com_perm(client_usuario_log_com_perm_ad
     """
     resp = client_usuario_log_com_perm_adic_serv.get(reverse('servicos:adicionar'))
     return resp
+
+
+def test_redirect_usuario_nao_logado(resp_pag_adic_serv_usuario_nao_logado):
+    """
+    Certifica de que, ao tentar acessar página de adição de serviços com usuário não logado,
+    o mesmo é redirecionado para a página de login.
+    """
+    assert resp_pag_adic_serv_usuario_nao_logado.status_code == 302
+    assert resp_pag_adic_serv_usuario_nao_logado.url.startswith('/accounts/login/')
+
+
+def test_redirect_usuario_logado_sem_perm_adicao_serv(resp_pag_adic_serv_usuario_logado_sem_perm):
+    """
+    Certifica de que, ao tentar acessar a página de adição de serviços com usuário logado e sem
+    permissão de adição, o mesmo é redirecionado para a página de acesso não permitido.
+    """
+    assert resp_pag_adic_serv_usuario_logado_sem_perm.url.startswith('/nao_permitido/')
+    assert resp_pag_adic_serv_usuario_logado_sem_perm.status_code == 302
 
 
 def test_status_code_pag_adic_serv_usuario_nao_logado(resp_pag_adic_servico_usuario_logado_com_perm):
