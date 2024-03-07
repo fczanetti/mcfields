@@ -9,5 +9,4 @@ urlpatterns = [
     path('adm/post', views.post_newsletter, name='post'),
     path('adm/edicao/<int:id>/', views.edicao_newsletter, name='edicao'),
     path('adm/remocao/<int:id>/', views.remocao_newsletter, name='remocao'),
-    # path('nao_permitido/', views.nao_permitido, name='nao_permitido'),
 ]

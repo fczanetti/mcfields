@@ -62,8 +62,8 @@ def edicao_newsletter(request, id):
         form = NewsletterForm(request.POST, instance=newsletter)
         if form.is_valid():
             form.save()
-            return render(request, 'newsletter/newsletter_editada.html',
-                          {'titulo': request.POST['title']})
+            return render(request, 'base/edicao_concluida.html',
+                          {'newsletter': newsletter})
     form = NewsletterForm(instance=newsletter)
     return render(request, 'newsletter/post_newsletter.html',
                   {'form': form, 'newsletter': newsletter})
