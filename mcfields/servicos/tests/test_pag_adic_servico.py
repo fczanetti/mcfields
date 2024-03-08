@@ -85,3 +85,12 @@ def test_form_adic_serv(resp_pag_adic_servico_usuario_logado_com_perm):
     assert_contains(resp_pag_adic_servico_usuario_logado_com_perm, '<label for="id_slug">Slug:</label>')
     assert_contains(resp_pag_adic_servico_usuario_logado_com_perm, '<input type="text" name="slug" maxlength="64" '
                                                                    'required id="id_slug">')
+
+
+def test_direcionamento_botao_cancelar(resp_pag_adic_servico_usuario_logado_com_perm):
+    """
+    Certifica de que o botão cancelar, no momento da adição de um novo serviço, tem a função
+    de direcionar o usuário para a home page.
+    """
+    assert_contains(resp_pag_adic_servico_usuario_logado_com_perm, f'<a class="canc-button" '
+                                                                   f'href="{reverse("base:home")}">Cancelar</a>')

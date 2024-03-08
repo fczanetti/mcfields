@@ -75,3 +75,13 @@ def test_infos_servico_pag_edicao(resp_pag_edicao_serv_usuario_logado_com_perm, 
     assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.home_picture)
     assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.content)
     assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.slug)
+
+
+def test_direcionamento_botao_cancelar(resp_pag_edicao_serv_usuario_logado_com_perm, servico):
+    """
+    Certifica de que o botão cancelar, no momento da edição de um serviço, tem a função
+    de direcionar o usuário para a página de detalhes do serviço que estava editando.
+    """
+    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm,
+                    f'<a class="canc-button" '
+                    f'href="{reverse("servicos:detalhe_servico", args=(servico.slug,))}">Cancelar</a>')
