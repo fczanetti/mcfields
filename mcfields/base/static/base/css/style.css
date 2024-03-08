@@ -188,7 +188,17 @@
     max-width: 45%;
     position: relative;
     overflow: hidden;
+    text-align: center;
+}
 
+#service-adit-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-green);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 20px;
 }
 
 .slide {

@@ -47,6 +47,11 @@
                     <p class="text-slide">{{ servico.intro }}</p>
                     <a id="know-more-button" href="{{ servico.get_absolute_url }}">Saiba mais</a>
                 </div>
+            {% empty %}
+                <p>Não há serviços adicionados.</p>
+                {% if perms.servicos.add_servico %}
+                    <a id="service-adit-link" href="{% url 'servicos:adicionar' %}">Adicione o primeiro</a>
+                {% endif %}
             {% endfor %}
             <button class="btn btn-next"><i class="bi bi-chevron-compact-right"></i></button>
             <button class="btn btn-prev"><i class="bi bi-chevron-compact-left"></i></button>

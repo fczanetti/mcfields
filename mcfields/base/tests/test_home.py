@@ -22,6 +22,35 @@ def resp_home(client, servicos):
     return client.get(reverse('base:home'))
 
 
+@pytest.fixture
+def resp_home_sem_servicos(client, db):
+    """
+    Cria uma requisição na home page sem serviços cadastrados.
+    """
+    resp = client.get(reverse('base:home'))
+    return resp
+
+
+@pytest.fixture
+def resp_home_sem_servicos_usuario_log_sem_perm_adic_serv(client_usuario_logado, db):
+    """
+    Cria uma requisição na home page sem serviços cadastrados e com usuário
+    sem permissão de adição de serviços.
+    """
+    resp = client_usuario_logado.get(reverse('base:home'))
+    return resp
+
+
+@pytest.fixture
+def resp_home_sem_serv_usuario_log_com_perm_adic_serv(client_usuario_log_com_perm_adic_serv):
+    """
+    Realiza uma requisição na home page com usuário
+    logado e com permissão de adição de serviços.
+    """
+    resp = client_usuario_log_com_perm_adic_serv.get(reverse('base:home'))
+    return resp
+
+
 def test_status_code_home(resp_home):
     """
     Certifica de que a home page foi carregada com sucesso.
@@ -135,3 +164,27 @@ def test_servicos_home_page(resp_home, servicos):
         assert_contains(resp_home, servico.title)
         assert_contains(resp_home, servico.intro)
         assert_contains(resp_home, servico.get_absolute_url())
+
+
+def test_botao_adic_servicos_home(resp_home_sem_serv_usuario_log_com_perm_adic_serv):
+    """
+    Certifica de que o botão de adicionar serviços está presente
+    na home page caso nenhum tenha sido adicionado.
+    """
+    assert_contains(resp_home_sem_serv_usuario_log_com_perm_adic_serv, 'Adicione o primeiro')
+
+
+def test_botao_adic_serv_indisp_usuario_log_sem_perm(resp_home_sem_servicos_usuario_log_sem_perm_adic_serv):
+    """
+    Certifica de que, para o usuário logado sem permissão de adição
+    de serviços, o botão de adição não aparece na home page.
+    """
+    assert_not_contains(resp_home_sem_servicos_usuario_log_sem_perm_adic_serv, 'Adicione o primeiro')
+
+
+def test_botao_adic_servicos_indisp_home(resp_home):
+    """
+    Certifica de que o botão de adicionar serviços não está presente
+    na home page caso algum serviço já tenha sido adicionado.
+    """
+    assert_not_contains(resp_home, 'Adicione o primeiro')
