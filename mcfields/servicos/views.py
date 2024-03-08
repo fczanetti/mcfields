@@ -37,3 +37,15 @@ def editar_servico(request, id):
             return render(request, 'base/edicao_concluida.html', {'servico': servico})
     form = ServicoForm(instance=servico)
     return render(request, 'servicos/adicao_servico.html', {'form': form, 'servico': servico})
+
+
+@login_required
+@permission_required('servicos.delete_servico', login_url='/nao_permitido/')
+def remocao_servico(request, id):
+    servico = Servico.objects.get(id=id)
+    if request.method == 'POST':
+        titulo = servico.title
+        path = request.path
+        servico.delete()
+        return render(request, 'base/remocao_concluida.html', {'titulo': titulo, 'path': path})
+    return render(request, 'servicos/confirmacao_remocao.html', {'servico': servico})
