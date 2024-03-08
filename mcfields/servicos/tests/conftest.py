@@ -74,3 +74,24 @@ def client_usuario_log_com_perm_edic_serv(usuario_senha_plana_com_perm_edic_serv
     """
     client.force_login(usuario_senha_plana_com_perm_edic_serv)
     return client
+
+
+@pytest.fixture
+def usuario_senha_plana_com_perm_remocao_serv(usuario_senha_plana):
+    """
+    Cria um usuário com permissão de remoção de serviços.
+    """
+    content_type = ContentType.objects.get_for_model(Servico)
+    permission = Permission.objects.get(codename='delete_servico', content_type=content_type)
+    usuario_senha_plana.user_permissions.add(permission)
+    usuario_com_perm_remoca = usuario_senha_plana
+    return usuario_com_perm_remoca
+
+
+@pytest.fixture
+def client_usuario_log_com_perm_remocao_serv(client, usuario_senha_plana_com_perm_remocao_serv):
+    """
+    Cria um cliente com usuário logado e permissão de remoção de serviços.
+    """
+    client.force_login(usuario_senha_plana_com_perm_remocao_serv)
+    return client

@@ -12,7 +12,9 @@
 {% block maincontent_2 %}
     <div id="main-cont-success-removal">
         {% if '/newsletter/adm/remocao' in path %}
-            <h4 id="success-removal-msg">A newsletter "<strong>{{ titulo }}</strong>" foi removida com sucesso.</h4>
+            <h4 class="success-removal-msg">A newsletter "<strong>{{ titulo }}</strong>" foi removida com sucesso.</h4>
+        {% elif '/servicos/adm/remocao' in path %}
+            <h4 class="success-removal-msg">O serviço "<strong>{{ titulo }}</strong>" foi removido com sucesso.</h4>
         {% endif %}
     </div>
 {% endblock maincontent_2 %}
