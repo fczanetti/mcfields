@@ -29,3 +29,6 @@ class Servico(OrderedModel):
 
     def get_edition_url(self):
         return reverse('servicos:edicao', args=(self.pk,))
+
+    def get_removal_url(self):
+        return reverse('servicos:remocao', args=(self.pk,))
