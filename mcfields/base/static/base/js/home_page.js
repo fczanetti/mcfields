@@ -62,5 +62,7 @@ slides.forEach((slide) => {
         biggestSlideHeight = slide.style.height;
    }
 });
-slider = document.getElementById('slider').style.height = `${biggestSlideHeight}px`
+if (biggestSlideHeight != 0) {
+    slider = document.getElementById('slider').style.height = `${biggestSlideHeight}px`
+}
 
