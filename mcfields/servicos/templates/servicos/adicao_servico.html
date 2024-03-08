@@ -26,7 +26,11 @@
             {{ field.help_text }}
             {% endfor %}
             <div id="service-form-buttons">
-                <a class="canc-button" href="{% url 'base:home' %}">Cancelar</a>
+                {% if servico %}
+                    <a class="canc-button" href="{% url 'servicos:detalhe_servico' servico.slug %}">Cancelar</a>
+                {% else %}
+                    <a class="canc-button" href="{% url 'base:home' %}">Cancelar</a>
+                {% endif %}
                 <button id="submit-service-button" type="submit">Publicar</button>
             </div>
         </form>
