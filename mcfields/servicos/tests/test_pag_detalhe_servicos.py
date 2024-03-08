@@ -54,6 +54,17 @@ def resp_pag_det_serv_usuario_log_com_perm_edic(client_usuario_log_com_perm_edic
     return resp
 
 
+@pytest.fixture
+def resp_pag_det_serv_usuario_log_com_perm_remocao_serv(client_usuario_log_com_perm_remocao_serv, servico):
+    """
+    Cria uma requisição na página de detalhes de serviço com usuário
+    logado e com permissão de remoção de serviço.
+    """
+    resp = client_usuario_log_com_perm_remocao_serv.get(
+        reverse('servicos:detalhe_servico', args=(servico.slug,)))
+    return resp
+
+
 def test_status_code_detalhe_servico(resp_pagina_detalhe_servico):
     """
     Certifica de que a página de detalhes de serviço carrega com sucesso.
@@ -114,3 +125,27 @@ def test_botao_edic_usuario_logado_com_perm_edic(resp_pag_det_serv_usuario_log_c
     """
     assert_contains(resp_pag_det_serv_usuario_log_com_perm_edic, f'<a id="service-update-link" '
                                                                  f'href="{servico.get_edition_url()}">Editar</a>')
+
+
+def test_botao_remocao_indisp_usuario_nao_logado(resp_pagina_detalhe_servico):
+    """
+    Certifica de que o botão de remoção de serviço não está disponível
+    na página de detalhes para o usuário que não está logado.
+    """
+    assert_not_contains(resp_pagina_detalhe_servico, 'Remover')
+
+
+def test_botao_remoc_indisp_usuario_log_sem_perm_remoc_serv(resp_pag_det_servico_usuario_logado_sem_perm):
+    """
+    Certifica de que o botão de remoção de serviço não está disponível
+    para o usuário logado sem permissão de remoção.
+    """
+    assert_not_contains(resp_pag_det_servico_usuario_logado_sem_perm, 'Remover')
+
+
+def test_botao_remoc_disp_usuario_log_com_perm_remoc_serv(resp_pag_det_serv_usuario_log_com_perm_remocao_serv):
+    """
+    Certifica de que o botão de remoção de serviço está disponível
+    para o usuário logado e com permissão de remoção.
+    """
+    assert_contains(resp_pag_det_serv_usuario_log_com_perm_remocao_serv, 'Remover')
