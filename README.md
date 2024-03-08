@@ -9,7 +9,7 @@
 Este projeto foi desenvolvido no sistema operacional Linux, através do Windows Subsystem for Linux (WSL).
 
 
-Instalação
+## Instalação
 
 O gerenciamento das dependências foi feito através do PIPENV. Para instalar as dependências necessárias devem ser
 utilizados os seguintes comandos no terminal:
@@ -27,9 +27,9 @@ executado o seguinte comando no terminal para que o banco de dados seja criado e
   - docker compose up -d
 
 Para que o Django reconheça e se conecte com o banco de dados criado devemos criar um arquivo chamado .env e inserir
-a variável de ambiente DATABASE_URL no formato mostrado a seguir. Note que os valores POSTGRES_USER, POSTGRES_PASSWORD e
-POSTGRES_DB devem ser substituídos com os valores definidos no arquivo docker-compose.yml para que a conexão com o
-banco aconteça com sucesso.
+a variável de ambiente DATABASE_URL no formato mostrado a seguir. Note que os valores POSTGRES_USER, POSTGRES_PASSWORD,
+PORT e POSTGRES_DB devem ser substituídos com os valores definidos no arquivo docker-compose.yml para que a conexão com
+o banco aconteça com sucesso.
   - DATABASE_URL = postgres://POSTGRES_USER:POSTGRES_PASSWORD@localhost:PORT/POSTGRES_DB
 
 Atentar que no arquivo 'env-sample' que se encontra dentro da pasta 'contrib' existe também uma variável de ambiente
@@ -41,11 +41,17 @@ Devem ser definidas as seguintes variáveis de ambiente no arquivo .env:
   - SECRET_KEY=secret
   - CSRF_TRUSTED_ORIGINS= (esta não precisa ter um valor)
 
+
+## Monitoramento de erros com Sentry SDK
+
 Para funcionamento do monitoramento de erros através da plataforma Sentry SDK uma conta deve ser criada na plataforma.
 Após a criação deve ser criado um projeto Django nesta conta, e a variável de nome 'dsn' fornecida no momento da criação
 do projeto deve ser inserida no arquivo .env da seguinte forma:
 
   - SENTRY_DSN = valor-da-variavel-dsn
+
+
+## Configurações arquivos estáticos
 
 Este projeto foi pré configurado para enviar os arquivos estáticos e arquivos de mídia para um Bucket S3 da AWS. Para
 utilizar este recurso os seguintes passos devem ser seguidos:
@@ -62,6 +68,9 @@ Após executadas as etapas listadas, podemos definir as variáveis de ambiente n
 Feitas as configurações, ao rodar o comando 'python manage.py collectstatic', os arquivos estáticos serão enviados para
 o bucket criado na AWS. Caso os valores das variáveis da AWS não sejam preenchidos, os arquivos estáticos serão copiados
 para uma pasta chamada 'staticfiles' na pasta principal do projeto (configuração STATIC_ROOT no arquivo settings.py).
+
+
+## Integração com SendGrid
 
 Foi criada neste projeto uma integração com a plataforma de envio de emails SendGrid. Este recurso permite que emails
 sejam enviados a pessoas cadastradas sempre que postarmos algum conteúdo (Single Sends). Para seu correto funcionamento
