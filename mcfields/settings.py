@@ -135,36 +135,37 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 # Configurações de envio de estáticos para o S3 ------------------
 
 if AWS_ACCESS_KEY_ID:
-    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
-    AWS_PRELOAD_METADATA = True
-    AWS_AUTO_CREATE_BUCKET = False
-    AWS_QUERYSTRING_AUTH = True
-    AWS_S3_CUSTOM_DOMAIN = None
-    AWS_DEFAULT_ACL = 'private'
 
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    CKEDITOR_5_FILE_STORAGE = 'mcfields.base.storages.PublicMediaStorage'
     COLLECTFAST_ENABLED = True
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+    AWS_STORAGE_BUCKET_NAME_MEDIA = config('AWS_STORAGE_BUCKET_NAME_MEDIA')
+    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 
-    CKEDITOR_5_FILE_STORAGE = "mcfields.base.storages.PublicMediaStorage"
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                'bucket_name': AWS_STORAGE_BUCKET_NAME_MEDIA,
+                'object_parameters': {'CacheControl': 'max-age=86400', },
+                'querystring_auth': False,
+                'file_overwrite': False,
+            },
+        },
+        "staticfiles": {
+            'BACKEND': "storages.backends.s3.S3Storage",
+            'OPTIONS': {
+                'bucket_name': AWS_STORAGE_BUCKET_NAME,
+                'object_parameters': {'CacheControl': 'max-age=86400', },
+                'querystring_auth': True,
+                'file_overwrite': False,
+            }
+        }
+    }
 
-    # Static media folder
-    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-    STATIC_S3_PATH = 'static'
-    STATIC_ROOT = f'/{STATIC_S3_PATH}/'
-    STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
-    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+    MEDIA_URL = f'https://{STORAGES["default"]["OPTIONS"]["bucket_name"]}.s3.sa-east-1.amazonaws.com/'
 
-    # Uploaded Media Folder
-    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-    DEFAULT_S3_PATH = 'public'
-    # DEFAULT_S3_PATH = 'media'
-    MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
-    MEDIA_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.sa-east-1.amazonaws.com/{DEFAULT_S3_PATH}/'
-    # MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
-
-    INSTALLED_APPS.append('s3_folder_storage')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

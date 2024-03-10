@@ -11,12 +11,12 @@ python-decouple = "*"
 dj-database-url = "*"
 django-debug-toolbar = "*"
 gunicorn = "*"
-django-s3-folder-storage = "*"
 collectfast = "*"
 sentry-sdk = {extras = ["django"], version = "*"}
 sendgrid = "*"
 django-ckeditor-5 = "*"
 django-ordered-model = "*"
+django-storages = {extras = ["s3"], version = "*"}
 
 [dev-packages]
 flake8 = "*"
