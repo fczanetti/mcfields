@@ -53,17 +53,22 @@ do projeto deve ser inserida no arquivo .env da seguinte forma:
 
 ## Configurações arquivos estáticos
 
-Este projeto foi pré configurado para enviar os arquivos estáticos e arquivos de mídia para um Bucket S3 da AWS. Para
+Este projeto foi pré configurado para enviar os arquivos estáticos e arquivos de mídia para Buckets S3 da AWS. Para
 utilizar este recurso os seguintes passos devem ser seguidos:
 - criar um usuário IAM na plataforma AWS e anexar a este uma política de permissão chamada AmazonS3FullAccess;
 - criar uma secret key para este usuário. A secret key terá um ID e seu real valor, ambos serão utilizados;
-- criar um bucket S3 e anexar uma política de permissão que atenda as necessidades. Esta política deve vincular o
-usuário IAM criado ao bucket;
+- criar um bucket S3 para arquivos estáticos e anexar uma política de permissão que permita ao usuário IAM a ação
+'PutObject' no bucket e em todas as suas pastas;
+- criar outro bucket S3, agora para arquívos de mídia. Este ter a configuração 'Block all public access' desativada,
+já que armazenará arquivos que deverão ser visíveis a quem acessar o site. Além desta configuração, a política de
+acesso deverá permitir ao usuário IAM a ação 'PutObject' no bucket (e mais alguma outra se necessário), além de
+conceder a todos (*) a ação 'GetObject' para o bucket e todas as suas pastas.
 Após executadas as etapas listadas, podemos definir as variáveis de ambiente no arquivo .env da seguinte forma:
 
   - AWS_ACCESS_KEY_ID = valor-do-id-da-secret-key
   - AWS_SECRET_ACCESS_KEY = valor-da-secret-key (atentar que só pode ser visualizado uma vez pela plataforma AWS)
   - AWS_STORAGE_BUCKET_NAME = nome-do-bucket-S3-criado
+  - AWS_STORAGE_BUCKET_NAME_MEDIA = nome-do-bucket-de-arquivos-de-midia
 
 Feitas as configurações, ao rodar o comando 'python manage.py collectstatic', os arquivos estáticos serão enviados para
 o bucket criado na AWS. Caso os valores das variáveis da AWS não sejam preenchidos, os arquivos estáticos serão copiados
