@@ -79,7 +79,8 @@ def test_nav_bar_home_page(resp_home):
     assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
                                f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a></li>')
     assert_contains(resp_home, '<li class="navbar-li"><a class="navbar-link" href="">Artigos</a></li>')
-    assert_contains(resp_home, '<li class="navbar-li"><a class="navbar-link" href="">Vídeos</a></li>')
+    assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
+                               f'href="{reverse("videos:indice")}">Vídeos</a></li>')
 
 
 def test_top_image_div_home_page(resp_home):
@@ -134,6 +135,8 @@ def test_footer_home_page(resp_home):
     assert_contains(resp_home, f'<a class="link-div-footer" href="{reverse("base:sobre")}">Sobre</a>')
     assert_contains(resp_home, f'<a class="link-div-footer" '
                                f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a>')
+    assert_contains(resp_home, f'<a class="link-div-footer" '
+                               f'href="{reverse("videos:indice")}">Vídeos</a>')
     assert_contains(resp_home, '<label id="label-email-form" for="id_email">Fique por dentro:</label>')
     assert_contains(resp_home, '<input type="email" name="email" placeholder="example@gmail.com" '
                                'maxlength="128" required id="id_email">')
