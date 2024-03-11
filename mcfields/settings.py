@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'mcfields.newsletter',
     'mcfields.servicos',
     'django_ckeditor_5',
+    'mcfields.videos',
     'ordered_model',
 ]
 
