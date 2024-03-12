@@ -11,6 +11,7 @@
 
 {% block maincontent_2 %}
     <div id="main-content-newsletter">
+        <h1>Newsletter</h1>
         {% if perms.newsletter.add_newsletter %}
             <a id="new-pub-link" href="{% url 'newsletter:post' %}">Nova publicação</a>
         {% endif %}

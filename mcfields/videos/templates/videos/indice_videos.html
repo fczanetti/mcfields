@@ -14,17 +14,17 @@
         <h1>Vídeos</h1>
         {% for assunto in assuntos %}
             <div class="subject-div">
+                <div class="cover unclicked"></div>
                 <div class="subject-div-text">
                     <h4>{{ assunto.title }}</h4>
                     <p class="subject-description">{{ assunto.description }}</p>
                 </div>
-                <i class="bi bi-caret-down-fill"></i>
+                <i class="bi bi-caret-down-fill light-green"></i>
             </div>
-            <ol class="videos-list">
+            <ol class="videos-list hidden-videos">
                 {% for video in assunto.videos %}
                     <li class="video-list-item">
                         <a class="video-link" href="">{{ video.title }}<i class="bi bi-play-circle"></i></a>
-
                     </li>
                 {% empty %}
                     <li>Não há vídeos cadastrados.</li>
@@ -35,3 +35,7 @@
         {% endfor %}
     </div>
 {% endblock maincontent_2 %}
+
+{% block scripts %}
+    <script src="{% static 'videos/js/indice_videos.js' %}"></script>
+{% endblock scripts %}
