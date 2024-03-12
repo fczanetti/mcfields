@@ -135,8 +135,7 @@
 
 
 #top-image-div {
-    /*height: 80vh;*/
-    height: 600px; /* Teste de sugestão do Roger para correção de problema em telas pequenas. */
+    height: 80vh;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -316,8 +315,7 @@
 }
 
 #more-infos {
-    /*height: 80vh;*/
-    height: 600px; /* Teste de sugestão do Roger para correção de problema em telas pequenas. */
+    height: 80vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -554,9 +552,9 @@
                     top: 75.2px;
                 }
 
-                /*#top-image-div, #more-infos {
+                #top-image-div, #more-infos {
                     background-attachment: unset;
-                }*/
+                }
 
                 #top-message h2 {
                     font-size: 1.4rem;

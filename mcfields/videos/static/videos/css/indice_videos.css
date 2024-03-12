@@ -1,12 +1,34 @@
+.hidden-videos {
+    display: none;
+}
+
+.unclicked {
+    background-color: rgba(33, 100, 44, 0.05);
+}
+
+.cover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+}
+
+.lightgray {
+    color: lightgray;
+}
+
+.light-green {
+    color: var(--light-green);
+}
+
 h1 {
     font-weight: 600;
     margin-bottom: 2rem;
 }
 
 .subject-div {
-    padding: 1rem;
+    position: relative;
     margin-bottom: 1rem;
-    background-color: rgba(33, 100, 44, 0.1);
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
@@ -14,27 +36,30 @@ h1 {
     border-right: 5px solid var(--light-green);
 }
 
+.subject-div-text {
+    margin: 1rem;
+}
+
 .subject-description {
     margin-bottom: 0;
 }
 
 .bi-caret-down-fill {
+    margin: 1rem;
     align-self: center;
     font-size: 2rem;
-    color: var(--light-green);
 }
 
 .videos-list {
     list-style-type: none;
     margin-bottom: 2rem;
     padding: 0;
-
 }
 
 .video-list-item {
     padding: 5px 1rem;
     margin: 10px 0;
-    background-color: rgba(33, 100, 44, 0.05);
+    background-color: var(--white-color);
     border-radius: 5px;
     border-right: 3px solid green;
     border-bottom: 3px solid green;
@@ -45,10 +70,9 @@ h1 {
     color: var(--light-green);
 }
 
-.video-list-item:hover {
-    border-right: 3px solid var(--white-color);
-    border-bottom: 3px solid var(--white-color);
-    background-color: var(--white-color);
+.video-list-item:hover, .subject-div:hover {
+    background-color: rgba(33, 100, 44, 0.1);
+    cursor: pointer;
 }
 
 .video-link {
