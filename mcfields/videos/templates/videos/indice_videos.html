@@ -24,7 +24,7 @@
             <ol class="videos-list hidden-videos">
                 {% for video in assunto.videos %}
                     <li class="video-list-item">
-                        <a class="video-link" href="">{{ video.title }}<i class="bi bi-play-circle"></i></a>
+                        <a class="video-link" href="{{ video.get_absolute_url }}">{{ video.title }}<i class="bi bi-play-circle"></i></a>
                     </li>
                 {% empty %}
                     <li>Não há vídeos cadastrados.</li>

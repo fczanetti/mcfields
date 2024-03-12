@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from ordered_model.models import OrderedModel
 from mcfields.base.models import Assunto
 
@@ -14,3 +15,6 @@ class Video(OrderedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('videos:detalhe_video', kwargs={'slug': self.slug, 'assunto_slug': self.assunto.slug})
