@@ -63,3 +63,11 @@ def test_titulo_videos_indice_videos(criar_videos, resp_indice_videos_usuario_na
     """
     for video in criar_videos:
         assert_contains(resp_indice_videos_usuario_nao_logado, video.title)
+
+
+def test_links_videos_indice_videos(criar_videos, resp_indice_videos_usuario_nao_logado):
+    """
+    Certifica de que os links dos vídeos estão presentes na página de índices.
+    """
+    for video in criar_videos:
+        assert_contains(resp_indice_videos_usuario_nao_logado, video.get_absolute_url())

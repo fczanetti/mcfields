@@ -1,0 +1,31 @@
+#main-content-video-det {
+    width: 90%;
+    margin: auto;
+}
+
+iframe {
+    border-radius: 15px;
+    aspect-ratio: 1.77;
+    width: 100%;
+}
+
+#video-title {
+    margin: 2% 0;
+    font-weight: 600;
+}
+
+#video-post-date {
+    font-weight: bold;
+}
+
+#video-description {
+    background-color: rgba(33, 100, 44, 0.07);
+    padding: 0.8rem;
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 750px) {
+    #main-content-video-det {
+        width: 100%;
+    }
+}
