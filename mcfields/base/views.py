@@ -25,7 +25,7 @@ def inscricao_email(request):
             cadastrar_email(
                 key=settings.SENDGRID_API_KEY,
                 user_email=email,
-                list_id=settings.SENDGRID_NEWSLETTER_LIST_ID
+                list_id=settings.SENDGRID_LIST_ID
             )
             return render(request, 'base/inscricao_concluida.html', {'email': email})
     return redirect(reverse('base:home'))

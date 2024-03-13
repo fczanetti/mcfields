@@ -3,6 +3,8 @@ from unittest.mock import Mock
 import pytest
 from django.urls import reverse
 from model_bakery import baker
+
+from mcfields import settings
 from mcfields.django_assertions import assert_contains, assert_true, assert_false
 from mcfields.newsletter import views
 from mcfields.newsletter.models import Newsletter
@@ -125,7 +127,10 @@ def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_post
                                                   'author': 'Autor da newsletter 2',
                                                   'slug': 'titulo-teste-news-2',
                                                   'criar_rascunho': 'YES'})
-    views.criar_rascunho.assert_called_once()
+    views.criar_rascunho.assert_called_once_with(key=settings.SENDGRID_API_KEY,
+                                                 titulo='Titulo teste news 2',
+                                                 list_id=settings.SENDGRID_LIST_ID,
+                                                 design_id=settings.SENDGRID_NEWSLETTER_DESIGN_ID)
 
 
 def test_nao_criacao_rascunho_sendgrid(client_usuario_logado_com_perm_postagem):
