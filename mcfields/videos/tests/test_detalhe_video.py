@@ -20,7 +20,7 @@ def resp_pag_det_video_usuario_nao_logado(client, video):
     Realiza uma requisição na página de detalhes de vídeo com usuário não logado.
     """
     resp = client.get(reverse('videos:detalhe_video',
-                              kwargs={'slug': video.slug, 'assunto_slug': video.assunto.slug}))
+                              kwargs={'slug': video.slug, 'subject_slug': video.subject.slug}))
     return resp
 
 
@@ -46,5 +46,5 @@ def test_infos_video_pag_detalhe_video(resp_pag_det_video_usuario_nao_logado, vi
     assert_contains(resp_pag_det_video_usuario_nao_logado, video.platform_id)
     assert_contains(resp_pag_det_video_usuario_nao_logado, f'<p>{video.description}</p>')
     assert_contains(resp_pag_det_video_usuario_nao_logado, f'<h4 id="video-title">{video.title}</h4>')
-    assert_contains(resp_pag_det_video_usuario_nao_logado, f'<p id="video-subject">{video.assunto}</p>')
+    assert_contains(resp_pag_det_video_usuario_nao_logado, f'<p id="video-subject">{video.subject}</p>')
     assert_contains(resp_pag_det_video_usuario_nao_logado, '<h6 id="video-post-date">12 de Março de 2024</h6>')

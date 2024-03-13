@@ -4,5 +4,5 @@ from mcfields.videos import views
 app_name = 'videos'
 urlpatterns = [
     path('', views.indice_videos, name='indice'),
-    path('<slug:assunto_slug>/<slug:slug>', views.detalhe_video, name='detalhe_video'),
+    path('<slug:subject_slug>/<slug:slug>', views.detalhe_video, name='detalhe_video'),
 ]
