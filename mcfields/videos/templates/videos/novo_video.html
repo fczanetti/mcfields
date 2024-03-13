@@ -1,0 +1,34 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'videos/css/post_video.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Novo Vídeo</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-content-post-video">
+        <form id="video_form" action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="video-form-field">
+                    {{ field.label_tag }} {{ field }}
+                    <p class="errornote">{{ field.errors }}</p>
+                </div>
+                {{ field.help_text }}
+            {% endfor %}
+            <div id="form-buttons">
+                <a class="canc-button" href="{% url 'videos:indice' %}">Cancelar</a>
+                <button id="submit-video-button" type="submit">Publicar</button>
+            </div>
+        </form>
+    </div>
+{% endblock maincontent_2 %}
+
+{% block scripts %}
+    <script src="{% static 'videos/js/novo_video.js' %}" ></script>
+{% endblock scripts %}
+

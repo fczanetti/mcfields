@@ -1,0 +1,58 @@
+#video_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.video-form-field input,
+.video-form-field textarea,
+.video-form-field select {
+    border: 0.5px solid lightgrey;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+#id_criar_rascunho_0,
+#id_criar_rascunho_1 {
+    height: auto;
+    margin-top: 1rem;
+}
+
+.video-form-field input,
+.video-form-field select {
+    height: 2rem;
+}
+
+#form-buttons {
+    display: flex;
+    justify-content: end;
+}
+
+.canc-button {
+    text-decoration: none;
+    text-align: center;
+    background-color: #999;
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+}
+
+#submit-video-button {
+    background-color: var(--light-green);
+    color: var(--white-color);
+    padding: 5px 0px;
+    border-radius: 5px;
+    width: 6rem;
+    align-self: end;
+    border: none;
+    margin-left: 1rem;
+}
