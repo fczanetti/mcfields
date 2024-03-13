@@ -22,7 +22,7 @@ def criar_videos(criar_assuntos, db):
     """
     videos = []
     for assunto in criar_assuntos:
-        videos.extend(baker.make(Video, _quantity=2, assunto=assunto))
+        videos.extend(baker.make(Video, _quantity=2, subject=assunto))
     return videos
 
 
