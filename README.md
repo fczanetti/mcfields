@@ -90,15 +90,17 @@ nosso grupo criado, e devemos salvar seu ID que estará a mostra.
 - na plataforma SendGrid devemos fazer a verificação e autenticação do email utilizado como emissor. Após feita esta
 verificação, consultar Settings > Sender Authentication > clicar no domínio de email verificado e clicar em editar. Na
 URL aparecerá o ID deste emissor (Sender), devemos salvar este valor;
-- Por último, ainda na plataforma SendGrid, devemos criar um 'Email Design' na seção 'Design Library'. Este design criado
-também possuirá um ID listado em sua URL que devemos salvar;
+- Ainda na plataforma SendGrid, devemos criar dois 'Email Design' na seção 'Design Library'. Estes designs criados também
+possuirão ID's listado em suas URL's que devemos salvar. Um design será para publicações de newsletters, e o outro para
+publicações de vídeos;
 - Após concluídas estas etapas devemos definir as seguintes variáveis de ambiente no arquivo .env:
 
   - SENDGRID_API_KEY = chave-api-criada-na-plataforma
-  - SENDGRID_NEWSLETTER_LIST_ID = id-da-lista-de-email-criada
-  - NEWSLETTER_SUPPRESSION_GROUP_ID = id-do-grupo-de-subscricao-criado (Unsubscribe Groups)
+  - SENDGRID_LIST_ID = id-da-lista-de-email-criada
+  - SUPPRESSION_GROUP_ID = id-do-grupo-de-subscricao-criado (Unsubscribe Groups)
   - SENDER_ID = id-do-email-emissor-verificado
-  - SENDGRID_NEWSLETTER_DESIGN_ID = id-do-design-de-email-criado
+  - SENDGRID_NEWSLETTER_DESIGN_ID = id-do-design-de-email-criado-para-newsletters
+  - SENDGRID_VIDEO_DESIGN_ID = id-do-design-de-email-criado-para-videos
 
 As variáveis listadas acima deverão ser cadastradas apenas em caso de uso do sistema de email. Porém, caso não seja
 utilizado, no momento da publicação de algum conteúdo, sempre que tiver a opção 'Criar rascunho de email', esta deve ser
