@@ -75,4 +75,9 @@ def edicao_video(request, id):
 @permission_required('videos.delete_video', login_url='/nao_permitido/')
 def remocao_video(request, id):
     video = Video.objects.get(id=id)
+    if request.method == 'POST':
+        titulo = video.title
+        video.delete()
+        path = request.path
+        return render(request, 'base/remocao_concluida.html', {'titulo': titulo, 'path': path})
     return render(request, 'videos/confirmacao_remocao.html', {'video': video})

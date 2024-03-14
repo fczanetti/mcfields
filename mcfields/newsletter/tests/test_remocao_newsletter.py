@@ -30,7 +30,7 @@ def test_remocao_newsletter(client_usuario_logado_com_perm_remocao, newsletter):
     """
     client_usuario_logado_com_perm_remocao.post(
         reverse('newsletter:remocao', args=(newsletter.id,)))
-    if Newsletter.objects.exists():
+    if Newsletter.objects.filter(id=newsletter.pk):
         exists = True
     else:
         exists = False
