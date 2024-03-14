@@ -2,15 +2,15 @@ import pytest
 from django.urls import reverse
 from model_bakery import baker
 from mcfields.django_assertions import assert_true, assert_contains, assert_false
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 
 
 @pytest.fixture
-def servico(db):
+def service(db):
     """
     Cria um serviço e salva no banco de dados.
     """
-    servico = baker.make(Servico, content='Conteúdo serviço', slug='teste-slug-repetida')
+    servico = baker.make(Service, content='Conteúdo serviço', slug='teste-slug-repetida')
     return servico
 
 
@@ -47,24 +47,24 @@ def test_adicao_servico(resp_adicao_novo_servico):
     Certifica de que o serviço foi de fato adicionado ao banco de dados.
     """
     saved_service = False
-    if Servico.objects.get(slug='titulo-do-servico'):
+    if Service.objects.get(slug='titulo-do-servico'):
         saved_service = True
     assert_true(saved_service)
 
 
-def test_msg_servico_slug_repetida(servico, resp_post_serv_slug_repetida):
+def test_msg_servico_slug_repetida(service, resp_post_serv_slug_repetida):
     """
     Certifica de que a mensagem de slug repetida é exibida para o usuário.
     """
-    assert_contains(resp_post_serv_slug_repetida, 'Servico com este Slug já existe.')
+    assert_contains(resp_post_serv_slug_repetida, 'Service com este Slug já existe.')
 
 
-def test_servico_slug_repetida_nao_salvo(servico, resp_post_serv_slug_repetida):
+def test_servico_slug_repetida_nao_salvo(service, resp_post_serv_slug_repetida):
     """
     Certifica de que o serviço com slug repetida não foi salvo no banco de dados.
     """
     saved = False
-    if Servico.objects.filter(title='Título slug repetida'):
+    if Service.objects.filter(title='Título slug repetida'):
         saved = True
     assert_false(saved)
 

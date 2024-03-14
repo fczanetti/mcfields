@@ -1,15 +1,15 @@
 from django.forms import ModelForm
 from django_ckeditor_5.widgets import CKEditor5Widget
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 
 
-class ServicoForm(ModelForm):
+class ServiceForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["content"].required = False
 
     class Meta:
-        model = Servico
+        model = Service
         fields = '__all__'
         widgets = {
             'content': CKEditor5Widget(attrs={'class': 'django_ckeditor_5'})

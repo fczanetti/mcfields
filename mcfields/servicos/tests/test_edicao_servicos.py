@@ -1,15 +1,15 @@
 import pytest
 from django.urls import reverse
 from mcfields.django_assertions import assert_contains
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 
 
 @pytest.fixture
-def resp_edicao_servico(servico, imagem, client_usuario_log_com_perm_edic_serv):
+def resp_edicao_servico(service, imagem, client_usuario_log_com_perm_edic_serv):
     """
     Realiza uma alteração em um serviço existente.
     """
-    resp = client_usuario_log_com_perm_edic_serv.post(reverse('servicos:edicao', args=(servico.pk,)),
+    resp = client_usuario_log_com_perm_edic_serv.post(reverse('servicos:edicao', args=(service.pk,)),
                                                       {'title': 'Título alterado',
                                                        'intro': 'Introdução alterada',
                                                        'home_picture': imagem,
@@ -18,13 +18,13 @@ def resp_edicao_servico(servico, imagem, client_usuario_log_com_perm_edic_serv):
     return resp
 
 
-def test_redirect_edicao_servico(resp_edicao_servico, servico):
+def test_redirect_edicao_servico(resp_edicao_servico, service):
     """
     Certifica de que, após a edição feita, o usuário é
     direcionado para a página de edição concluída.
     """
     assert resp_edicao_servico.status_code == 200
-    assert resp_edicao_servico.wsgi_request.path == f'/servicos/adm/edicao/{servico.pk}'
+    assert resp_edicao_servico.wsgi_request.path == f'/servicos/adm/edicao/{service.pk}'
 
 
 def test_pag_edicao_servico_sucesso(resp_edicao_servico):
@@ -36,11 +36,11 @@ def test_pag_edicao_servico_sucesso(resp_edicao_servico):
     assert_contains(resp_edicao_servico, 'O serviço "<strong>Título alterado</strong>" foi editado com sucesso.')
 
 
-def test_alteracoes_servico_editado(resp_edicao_servico, servico):
+def test_alteracoes_servico_editado(resp_edicao_servico, service):
     """
     Certifica de que a alteração feita foi salva no banco de dados.
     """
-    serv = Servico.objects.get(id=servico.pk)
+    serv = Service.objects.get(id=service.pk)
     assert serv.title == 'Título alterado'
     assert serv.intro == 'Introdução alterada'
     assert serv.content == 'Conteúdo alterado'

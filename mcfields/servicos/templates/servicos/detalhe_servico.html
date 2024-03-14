@@ -11,13 +11,13 @@
 
 {% block maincontent_2 %}
     <div id="main-content-service-det">
-        {% if perms.servicos.add_servico %}
+        {% if perms.servicos.add_service %}
             <a id="service-adit-link" href="{% url 'servicos:adicionar' %}">Novo serviço</a>
         {% endif %}
-        {% if perms.servicos.change_servico %}
+        {% if perms.servicos.change_service %}
             <a id="service-update-link" href="{{ servico.get_edition_url }}">Editar</a>
         {% endif %}
-        {% if perms.servicos.delete_servico %}
+        {% if perms.servicos.delete_service %}
             <a id="service-removal-link" href="{{ servico.get_removal_url }}">Remover</a>
         {% endif %}
         <h1 id="service-title">{{ servico.title }}</h1>

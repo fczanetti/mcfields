@@ -5,12 +5,12 @@ from django.urls import reverse
 from mcfields import settings
 from mcfields.base.forms import EmailForm
 from sendgrid import SendGridAPIClient
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 
 
 def home(request):
-    servicos = Servico.objects.all()
-    return render(request, 'base/home.html', {'servicos': servicos})
+    services = Service.objects.all()
+    return render(request, 'base/home.html', {'servicos': services})
 
 
 def sobre(request):

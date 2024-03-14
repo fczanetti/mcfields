@@ -2,20 +2,20 @@ import pytest
 from django.urls import reverse
 from model_bakery import baker
 from mcfields.django_assertions import assert_contains, assert_not_contains
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 
 
 @pytest.fixture
-def servicos(db):
+def services(db):
     """
     Cria e retorna alguns Serviços.
     """
-    serv = baker.make(Servico, _quantity=3, content='Texto principal')
+    serv = baker.make(Service, _quantity=3, content='Texto principal')
     return serv
 
 
 @pytest.fixture
-def resp_home(client, servicos):
+def resp_home(client, services):
     """
     Cria uma requisição na home page.
     """
@@ -157,16 +157,16 @@ def test_botao_logout_indisponivel(resp_home):
     assert_not_contains(resp_home, '<button id="logout-button"')
 
 
-def test_servicos_home_page(resp_home, servicos):
+def test_servicos_home_page(resp_home, services):
     """
     Certifica de que os serviços criados estão presentes na home page.
     """
-    for servico in servicos:
-        assert_contains(resp_home, f'<img src="/media/{servico.home_picture}" '
+    for service in services:
+        assert_contains(resp_home, f'<img src="/media/{service.home_picture}" '
                                    f'alt="Foto relacionada ao serviço prestado">')
-        assert_contains(resp_home, servico.title)
-        assert_contains(resp_home, servico.intro)
-        assert_contains(resp_home, servico.get_absolute_url())
+        assert_contains(resp_home, service.title)
+        assert_contains(resp_home, service.intro)
+        assert_contains(resp_home, service.get_absolute_url())
 
 
 def test_botao_adic_servicos_home(resp_home_sem_serv_usuario_log_com_perm_adic_serv):

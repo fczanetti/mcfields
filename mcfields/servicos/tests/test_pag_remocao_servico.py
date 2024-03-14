@@ -4,32 +4,32 @@ from mcfields.django_assertions import assert_contains
 
 
 @pytest.fixture
-def resp_confirm_remocao_serv_usuario_nao_logado(client, servico):
+def resp_confirm_remocao_serv_usuario_nao_logado(client, service):
     """
     Cria uma requisição na página de remoção de serviço com um
     usuário não logado.
     """
-    resp = client.get(reverse('servicos:remocao', args=(servico.pk,)))
+    resp = client.get(reverse('servicos:remocao', args=(service.pk,)))
     return resp
 
 
 @pytest.fixture
-def resp_conf_remoc_serv_usuario_log_sem_perm_remocao(client_usuario_logado, servico):
+def resp_conf_remoc_serv_usuario_log_sem_perm_remocao(client_usuario_logado, service):
     """
     Cria uma requisição na página de remoção de serviço com um
     usuário logado sem permissão de remoção.
     """
-    resp = client_usuario_logado.get(reverse('servicos:remocao', args=(servico.pk,)))
+    resp = client_usuario_logado.get(reverse('servicos:remocao', args=(service.pk,)))
     return resp
 
 
 @pytest.fixture
-def resp_conf_remoc_serv_usuario_log_com_perm_remocao(client_usuario_log_com_perm_remocao_serv, servico):
+def resp_conf_remoc_serv_usuario_log_com_perm_remocao(client_usuario_log_com_perm_remocao_serv, service):
     """
     Cria uma requisição na página de confirmação de remoção de serviços
     com usuário logado e com permissão de remoção.
     """
-    resp = client_usuario_log_com_perm_remocao_serv.get(reverse('servicos:remocao', args=(servico.pk,)))
+    resp = client_usuario_log_com_perm_remocao_serv.get(reverse('servicos:remocao', args=(service.pk,)))
     return resp
 
 
@@ -67,27 +67,27 @@ def test_titulo_pag_confirm_remocao(resp_conf_remoc_serv_usuario_log_com_perm_re
     assert_contains(resp_conf_remoc_serv_usuario_log_com_perm_remocao, "<title>McField's - Confirmar remoção</title>")
 
 
-def test_titulo_serv_pag_conf_remocao(resp_conf_remoc_serv_usuario_log_com_perm_remocao, servico):
+def test_titulo_serv_pag_conf_remocao(resp_conf_remoc_serv_usuario_log_com_perm_remocao, service):
     """
     Certifica de que o título do serviço a ser removido está presente na página
     de confirmação de remoção deste.
     """
-    assert_contains(resp_conf_remoc_serv_usuario_log_com_perm_remocao, servico.title)
+    assert_contains(resp_conf_remoc_serv_usuario_log_com_perm_remocao, service.title)
 
 
-def test_botao_cancelar_pag_conf_remocao_serv(resp_conf_remoc_serv_usuario_log_com_perm_remocao, servico):
+def test_botao_cancelar_pag_conf_remocao_serv(resp_conf_remoc_serv_usuario_log_com_perm_remocao, service):
     """
     Certifica de que o botão de cancelar remoção está presente e direcionando para
     a página de detalhes do serviço que será removido.
     """
     assert_contains(resp_conf_remoc_serv_usuario_log_com_perm_remocao,
-                    f'<a id="canc-removal-button" href="{servico.get_absolute_url()}">Cancelar</a>')
+                    f'<a id="canc-removal-button" href="{service.get_absolute_url()}">Cancelar</a>')
 
 
-def test_action_form_remocao_servico(resp_conf_remoc_serv_usuario_log_com_perm_remocao, servico):
+def test_action_form_remocao_servico(resp_conf_remoc_serv_usuario_log_com_perm_remocao, service):
     """
     Certifica de que a action do formulário de remoção do serviço está direcionando a submissão
     para a própria página de remoção.
     """
     assert_contains(resp_conf_remoc_serv_usuario_log_com_perm_remocao,
-                    f'<form action="{reverse("servicos:remocao", args=(servico.pk,))}" method="POST">')
+                    f'<form action="{reverse("servicos:remocao", args=(service.pk,))}" method="POST">')

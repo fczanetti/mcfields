@@ -1,8 +1,8 @@
 from django.contrib import admin
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 
 
-@admin.register(Servico)
+@admin.register(Service)
 class ServicoAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'order']
     prepopulated_fields = {'slug': ['title']}
