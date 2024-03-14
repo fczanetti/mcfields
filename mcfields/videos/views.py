@@ -69,3 +69,10 @@ def edicao_video(request, id):
             return render(request, 'videos/novo_video.html', {'form': form, 'video': video})
     form = VideoForm(instance=video)
     return render(request, 'videos/novo_video.html', {'form': form, 'video': video})
+
+
+@login_required
+@permission_required('videos.delete_video', login_url='/nao_permitido/')
+def remocao_video(request, id):
+    video = Video.objects.get(id=id)
+    return render(request, 'videos/confirmacao_remocao.html', {'video': video})

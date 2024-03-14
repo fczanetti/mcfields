@@ -54,3 +54,24 @@ def client_usuario_log_com_perm_edic_video(usuario_senha_plana_com_perm_edic_vid
     """
     client.force_login(usuario_senha_plana_com_perm_edic_video)
     return client
+
+
+@pytest.fixture
+def usuario_senha_plana_com_perm_remoc_video(usuario_senha_plana):
+    """
+    Cria um usuário com permissão de remoção de vídeos.
+    """
+    content_type = ContentType.objects.get_for_model(Video)
+    permission = Permission.objects.get(codename='delete_video', content_type=content_type)
+    usuario_senha_plana.user_permissions.add(permission)
+    usuario_com_perm_remocao = usuario_senha_plana
+    return usuario_com_perm_remocao
+
+
+@pytest.fixture
+def client_usuario_log_com_perm_remoc_video(usuario_senha_plana_com_perm_remoc_video, client):
+    """
+    Cria um client com usuário logado e permissão de remoção de videos.
+    """
+    client.force_login(usuario_senha_plana_com_perm_remoc_video)
+    return client
