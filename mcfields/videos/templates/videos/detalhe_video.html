@@ -11,6 +11,9 @@
 
 {% block maincontent_2 %}
     <div id="main-content-video-det">
+        {% if perms.videos.change_video %}
+            <a id="video-update-link" href="{{ video.get_edition_url }}">Editar</a>
+        {% endif %}
         <iframe src="https://www.youtube.com/embed/{{ video.platform_id }}?rel=0"
                 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
                 encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
