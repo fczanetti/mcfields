@@ -21,3 +21,6 @@ class Video(OrderedModel):
 
     def get_edition_url(self):
         return reverse('videos:edicao', args=(self.pk,))
+
+    def get_removal_url(self):
+        return reverse('videos:remocao', args=(self.pk,))
