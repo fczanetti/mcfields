@@ -47,6 +47,29 @@ def resp_pag_det_video_usuario_log_com_perm_edic(client_usuario_log_com_perm_edi
     return resp
 
 
+@pytest.fixture
+def resp_pag_det_video_usuario_log_sem_perm_remocao(client_usuario_logado, video):
+    """
+    Realiza uma requisição na página de detalhes de vídeo com
+    usuário logado sem permissão de remoção.
+    """
+    resp = client_usuario_logado.get(reverse('videos:detalhe_video',
+                                             kwargs={'slug': video.slug, 'subject_slug': video.subject.slug}))
+    return resp
+
+
+@pytest.fixture
+def resp_pag_det_video_usuario_log_com_perm_remocao(client_usuario_log_com_perm_remoc_video, video):
+    """
+    Realiza uma requisição na página de detalhes de vídeo com
+    usuário logado com permissão de edição.
+    """
+    resp = client_usuario_log_com_perm_remoc_video.get(reverse('videos:detalhe_video',
+                                                               kwargs={'slug': video.slug,
+                                                                       'subject_slug': video.subject.slug}))
+    return resp
+
+
 def test_status_code_det_video_usuario_nao_logado(resp_pag_det_video_usuario_nao_logado):
     """
     Certifica de que a página de detalhes de vídeo é carregada com sucesso.
@@ -95,3 +118,30 @@ def test_bot_edicao_disp_usuario_logado_com_perm(resp_pag_det_video_usuario_log_
     presente na página para o usuário logado com permissão.
     """
     assert_contains(resp_pag_det_video_usuario_log_com_perm_edic, 'Editar')
+
+
+def test_botao_remocao_indisp_usuario_nao_logado(resp_pag_det_video_usuario_nao_logado, video):
+    """
+    Certifica de que o botão de remoção de vídeos não está
+    disponível para o usuário não logado.
+    """
+    assert_not_contains(resp_pag_det_video_usuario_nao_logado, f'<a id="video-removal-link" '
+                                                               f'href="{video.get_removal_url()}">Remover</a>')
+
+
+def test_botao_remocao_indisp_usuario_logado_sem_perm(resp_pag_det_video_usuario_log_sem_perm_remocao, video):
+    """
+    Certifica de que o botão de remoção de vídeos não está
+    disponível para o usuário logado sem permissão de remoção.
+    """
+    assert_not_contains(resp_pag_det_video_usuario_log_sem_perm_remocao,
+                        f'<a id="video-removal-link" href="{video.get_removal_url()}">Remover</a>')
+
+
+def test_botao_remocao_disp_usuario_logado_com_perm(resp_pag_det_video_usuario_log_com_perm_remocao, video):
+    """
+    Certifica de que o botão de remoção de vídeos está
+    disponível para o usuário logado com permissão de remoção.
+    """
+    assert_contains(resp_pag_det_video_usuario_log_com_perm_remocao,
+                    f'<a id="video-removal-link" href="{video.get_removal_url()}">Remover</a>')
