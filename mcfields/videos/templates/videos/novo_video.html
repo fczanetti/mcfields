@@ -6,7 +6,11 @@
 {% endblock css %}
 
 {% block title %}
-    <title>McField's - Novo Vídeo</title>
+    {% if video %}
+        <title>McField's - Edição de vídeo</title>
+    {% else %}
+        <title>McField's - Novo Vídeo</title>
+    {% endif %}
 {% endblock title %}
 
 {% block maincontent_2 %}
