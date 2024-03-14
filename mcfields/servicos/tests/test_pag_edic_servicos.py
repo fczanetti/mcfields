@@ -4,31 +4,31 @@ from mcfields.django_assertions import assert_contains
 
 
 @pytest.fixture
-def resp_pag_edicao_serv_usuario_nao_logado(client, servico):
+def resp_pag_edicao_serv_usuario_nao_logado(client, service):
     """
     Realiza uma requisição na página de edição de serviços com usuário não logado.
     """
-    resp = client.get(reverse('servicos:edicao', args=(servico.pk,)))
+    resp = client.get(reverse('servicos:edicao', args=(service.pk,)))
     return resp
 
 
 @pytest.fixture
-def resp_pag_edicao_serv_usuario_logado_sem_perm(client_usuario_logado, servico):
+def resp_pag_edicao_serv_usuario_logado_sem_perm(client_usuario_logado, service):
     """
     Realiza uma requisição na página de edição de serviços com usuário
     logado e sem permissão de edição.
     """
-    resp = client_usuario_logado.get(reverse('servicos:edicao', args=(servico.pk,)))
+    resp = client_usuario_logado.get(reverse('servicos:edicao', args=(service.pk,)))
     return resp
 
 
 @pytest.fixture
-def resp_pag_edicao_serv_usuario_logado_com_perm(client_usuario_log_com_perm_edic_serv, servico):
+def resp_pag_edicao_serv_usuario_logado_com_perm(client_usuario_log_com_perm_edic_serv, service):
     """
     Realiza uma requisição na página de edição de serviços com
     usuário logado e com permissão de edição.
     """
-    resp = client_usuario_log_com_perm_edic_serv.get(reverse('servicos:edicao', args=(servico.pk,)))
+    resp = client_usuario_log_com_perm_edic_serv.get(reverse('servicos:edicao', args=(service.pk,)))
     return resp
 
 
@@ -65,23 +65,23 @@ def test_titulo_pag_edicao_serv(resp_pag_edicao_serv_usuario_logado_com_perm):
     assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, "<title>McField's - Edição de serviço</title>")
 
 
-def test_infos_servico_pag_edicao(resp_pag_edicao_serv_usuario_logado_com_perm, servico):
+def test_infos_servico_pag_edicao(resp_pag_edicao_serv_usuario_logado_com_perm, service):
     """
     Certifica de que as informações do serviço a ser editado estão presentes
     na página de edição.
     """
-    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.title)
-    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.intro)
-    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.home_picture)
-    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.content)
-    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, servico.slug)
+    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, service.title)
+    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, service.intro)
+    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, service.home_picture)
+    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, service.content)
+    assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm, service.slug)
 
 
-def test_direcionamento_botao_cancelar(resp_pag_edicao_serv_usuario_logado_com_perm, servico):
+def test_direcionamento_botao_cancelar(resp_pag_edicao_serv_usuario_logado_com_perm, service):
     """
     Certifica de que o botão cancelar, no momento da edição de um serviço, tem a função
     de direcionar o usuário para a página de detalhes do serviço que estava editando.
     """
     assert_contains(resp_pag_edicao_serv_usuario_logado_com_perm,
                     f'<a class="canc-button" '
-                    f'href="{reverse("servicos:detalhe_servico", args=(servico.slug,))}">Cancelar</a>')
+                    f'href="{reverse("servicos:detalhe_servico", args=(service.slug,))}">Cancelar</a>')

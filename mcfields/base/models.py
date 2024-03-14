@@ -128,7 +128,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
-class Assunto(OrderedModel):
+class Subject(OrderedModel):
     title = models.CharField(max_length=64, verbose_name='Título')
     description = models.TextField(max_length=256, verbose_name='Descrição')
     slug = models.SlugField(max_length=64, unique=True, verbose_name='Slug')

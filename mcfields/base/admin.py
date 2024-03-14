@@ -21,7 +21,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from mcfields.base.models import User
-from mcfields.base.models import Assunto
+from mcfields.base.models import Subject
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
@@ -218,7 +218,7 @@ class UserAdmin(admin.ModelAdmin):
         return super().response_add(request, obj, post_url_continue)
 
 
-@admin.register(Assunto)
+@admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug']
     prepopulated_fields = {'slug': ['title']}

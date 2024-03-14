@@ -49,7 +49,7 @@
                 </div>
             {% empty %}
                 <p>Não há serviços adicionados.</p>
-                {% if perms.servicos.add_servico %}
+                {% if perms.servicos.add_service %}
                     <a id="service-adit-link" href="{% url 'servicos:adicionar' %}">Adicione o primeiro</a>
                 {% endif %}
             {% endfor %}

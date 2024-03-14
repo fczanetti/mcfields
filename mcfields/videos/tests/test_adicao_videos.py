@@ -5,23 +5,23 @@ from django.urls import reverse
 from model_bakery import baker
 
 from mcfields import settings
-from mcfields.base.models import Assunto
+from mcfields.base.models import Subject
 from mcfields.django_assertions import assert_contains, assert_false, assert_true
 from mcfields.videos import views
 from mcfields.videos.models import Video
 
 
 @pytest.fixture
-def assunto(db):
+def subject(db):
     """
     Cria um assunto para ser utilizado na criação de vídeos.
     """
-    subject = baker.make(Assunto, title='assunto titulo', slug='assunto-titulo')
-    return subject
+    sub = baker.make(Subject, title='assunto titulo', slug='assunto-titulo')
+    return sub
 
 
 @pytest.fixture
-def resp_adicao_video(client_usuario_log_com_perm_adic_video, assunto):
+def resp_adicao_video(client_usuario_log_com_perm_adic_video, subject):
     """
     Adiciona um vídeo novo na plataforma.
     """
@@ -29,7 +29,7 @@ def resp_adicao_video(client_usuario_log_com_perm_adic_video, assunto):
     resp = client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                        {'title': 'Título do vídeo',
                                                         'description': 'Descrição do vídeo',
-                                                        'subject': assunto.pk,
+                                                        'subject': subject.pk,
                                                         'platform_id': 'abcde',
                                                         'slug': 'titulo-do-video',
                                                         'criar_rascunho': 'YES'})
@@ -37,16 +37,16 @@ def resp_adicao_video(client_usuario_log_com_perm_adic_video, assunto):
 
 
 @pytest.fixture
-def resp_adicao_video_slug_repetida(client_usuario_log_com_perm_adic_video, assunto):
+def resp_adicao_video_slug_repetida(client_usuario_log_com_perm_adic_video, subject):
     """
     Adiciona um vídeo novo na plataforma.
     """
     views.criar_rascunho = Mock()
-    baker.make(Video, subject=assunto, slug='teste-slug-repetida')
+    baker.make(Video, subject=subject, slug='teste-slug-repetida')
     resp = client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                        {'title': 'Título slug repetida',
                                                         'description': 'Descrição slug repetida',
-                                                        'subject': assunto.pk,
+                                                        'subject': subject.pk,
                                                         'platform_id': 'abcde',
                                                         'slug': 'teste-slug-repetida',
                                                         'criar_rascunho': 'YES'})
@@ -90,7 +90,7 @@ def test_video_slug_repetida_nao_salvo(resp_adicao_video_slug_repetida):
     assert_false(saved)
 
 
-def test_funcao_enviar_rascunho_email_chamada(client_usuario_log_com_perm_adic_video, assunto):
+def test_funcao_enviar_rascunho_email_chamada(client_usuario_log_com_perm_adic_video, subject):
     """
     Certifica de que a função de envio de rascunho de emails foi chamada ao salvar o vídeo.
     """
@@ -98,7 +98,7 @@ def test_funcao_enviar_rascunho_email_chamada(client_usuario_log_com_perm_adic_v
     client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                 {'title': 'Criar email',
                                                  'description': 'Descrição do vídeo',
-                                                 'subject': assunto.pk,
+                                                 'subject': subject.pk,
                                                  'platform_id': 'abcde',
                                                  'slug': 'criar-email',
                                                  'criar_rascunho': 'YES'})
@@ -108,7 +108,7 @@ def test_funcao_enviar_rascunho_email_chamada(client_usuario_log_com_perm_adic_v
                                                  design_id=settings.SENDGRID_VIDEO_DESIGN_ID)
 
 
-def test_funcao_enviar_rascunho_email_nao_chamada(client_usuario_log_com_perm_adic_video, assunto):
+def test_funcao_enviar_rascunho_email_nao_chamada(client_usuario_log_com_perm_adic_video, subject):
     """
     Certifica de que a função de envio de rascunho de emails não foi chamada ao salvar o vídeo.
     """
@@ -116,7 +116,7 @@ def test_funcao_enviar_rascunho_email_nao_chamada(client_usuario_log_com_perm_ad
     client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                 {'title': 'Não criar email',
                                                  'description': 'Descrição do vídeo',
-                                                 'subject': assunto.pk,
+                                                 'subject': subject.pk,
                                                  'platform_id': 'abcde',
                                                  'slug': 'nao-criar-email',
                                                  'criar_rascunho': 'NO'})

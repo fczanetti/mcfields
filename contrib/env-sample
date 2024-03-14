@@ -12,7 +12,7 @@ AWS_SECRET_ACCESS_KEY =
 AWS_STORAGE_BUCKET_NAME =
 AWS_STORAGE_BUCKET_NAME_MEDIA =
 
-# Configurações SENDGRID. Manter algum valor numérico nas variáveis NEWSLETTER_SUPPRESSION_GROUP_ID e SENDER_ID,
+# Configurações SENDGRID. Manter algum valor numérico nas variáveis SUPPRESSION_GROUP_ID e SENDER_ID,
 # caso contrário testes automáticos no GitHub Actions podem falhar.
 SENDGRID_API_KEY =
 SENDGRID_LIST_ID =

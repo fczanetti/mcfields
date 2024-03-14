@@ -4,7 +4,7 @@ from PIL import Image
 import pytest
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from mcfields.servicos.models import Servico
+from mcfields.servicos.models import Service
 from model_bakery import baker
 
 
@@ -26,11 +26,11 @@ def imagem(settings):
 
 
 @pytest.fixture
-def servico(db):
+def service(db):
     """
     Cria e retorna um serviço.
     """
-    serv = baker.make(Servico, content='Conteúdo do serviço teste')
+    serv = baker.make(Service, content='Conteúdo do serviço teste')
     return serv
 
 
@@ -39,8 +39,8 @@ def usuario_senha_plana_com_perm_edic_serv(usuario_senha_plana):
     """
     Cria um usuário com permissão de edição de serviços.
     """
-    content_type = ContentType.objects.get_for_model(Servico)
-    permission = Permission.objects.get(codename='change_servico', content_type=content_type)
+    content_type = ContentType.objects.get_for_model(Service)
+    permission = Permission.objects.get(codename='change_service', content_type=content_type)
     usuario_senha_plana.user_permissions.add(permission)
     usuario_com_perm_edicao = usuario_senha_plana
     return usuario_com_perm_edicao
@@ -60,8 +60,8 @@ def usuario_senha_plana_com_perm_remocao_serv(usuario_senha_plana):
     """
     Cria um usuário com permissão de remoção de serviços.
     """
-    content_type = ContentType.objects.get_for_model(Servico)
-    permission = Permission.objects.get(codename='delete_servico', content_type=content_type)
+    content_type = ContentType.objects.get_for_model(Service)
+    permission = Permission.objects.get(codename='delete_service', content_type=content_type)
     usuario_senha_plana.user_permissions.add(permission)
     usuario_com_perm_remoca = usuario_senha_plana
     return usuario_com_perm_remoca

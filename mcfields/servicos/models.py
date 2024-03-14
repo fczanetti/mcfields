@@ -4,7 +4,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 from ordered_model.models import OrderedModel
 
 
-class Servico(OrderedModel):
+class Service(OrderedModel):
     title = models.CharField(max_length=64, verbose_name='Título')
     intro = models.TextField(max_length=512, verbose_name='Introdução')
     home_picture = models.ImageField(verbose_name='Foto da home page', upload_to='service_photos')

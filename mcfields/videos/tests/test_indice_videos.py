@@ -1,28 +1,28 @@
 import pytest
 from django.urls import reverse
 from model_bakery import baker
-from mcfields.base.models import Assunto
+from mcfields.base.models import Subject
 from mcfields.django_assertions import assert_contains
 from mcfields.videos.models import Video
 
 
 @pytest.fixture
-def criar_assuntos(db):
+def criar_subjects(db):
     """
     Cria alguns assuntos para que vídeos sejam vinculados posteriormente.
     """
-    assuntos = baker.make(Assunto, _quantity=2)
-    return assuntos
+    subjects = baker.make(Subject, _quantity=2)
+    return subjects
 
 
 @pytest.fixture
-def criar_videos(criar_assuntos, db):
+def criar_videos(criar_subjects, db):
     """
     Cria alguns vídeos e os vincula aos assuntos criados anteriormente.
     """
     videos = []
-    for assunto in criar_assuntos:
-        videos.extend(baker.make(Video, _quantity=2, subject=assunto))
+    for subject in criar_subjects:
+        videos.extend(baker.make(Video, _quantity=2, subject=subject))
     return videos
 
 
@@ -49,12 +49,12 @@ def test_titulo_pag_indice_videos(resp_indice_videos_usuario_nao_logado):
     assert_contains(resp_indice_videos_usuario_nao_logado, "<title>McField's - Vídeos</title>")
 
 
-def test_titulo_assunto_indice_videos(criar_assuntos, resp_indice_videos_usuario_nao_logado):
+def test_titulo_assunto_indice_videos(criar_subjects, resp_indice_videos_usuario_nao_logado):
     """
     Certifica de que o título do assunto está presente na página de índice de vídeos.
     """
-    for assunto in criar_assuntos:
-        assert_contains(resp_indice_videos_usuario_nao_logado, assunto.title)
+    for subject in criar_subjects:
+        assert_contains(resp_indice_videos_usuario_nao_logado, subject.title)
 
 
 def test_titulo_videos_indice_videos(criar_videos, resp_indice_videos_usuario_nao_logado):

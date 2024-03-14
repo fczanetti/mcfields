@@ -1,13 +1,13 @@
 from django.db import models
 from django.urls import reverse
 from ordered_model.models import OrderedModel
-from mcfields.base.models import Assunto
+from mcfields.base.models import Subject
 
 
 class Video(OrderedModel):
     title = models.CharField(max_length=64, verbose_name='Título')
     description = models.TextField(verbose_name='Descrição')
-    subject = models.ForeignKey(Assunto, on_delete=models.PROTECT, verbose_name='Assunto')
+    subject = models.ForeignKey(Subject, on_delete=models.PROTECT, verbose_name='Assunto')
     platform_id = models.CharField(max_length=48, verbose_name='ID da plataforma')
     slug = models.SlugField(max_length=64, unique=True, verbose_name='Slug')
     post_date = models.DateField(auto_now_add=True, verbose_name='Data de postagem')
