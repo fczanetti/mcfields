@@ -12,6 +12,9 @@
 {% block maincontent_2 %}
     <div id="main-content-videos">
         <h1>Vídeos</h1>
+        {% if perms.videos.add_video %}
+            <a id="video-pub-link" href="{% url 'videos:post' %}">Novo vídeo</a>
+        {% endif %}
         {% for assunto in assuntos %}
             <div class="subject-div">
                 <div class="cover unclicked"></div>

@@ -26,6 +26,16 @@ h1 {
     margin-bottom: 2rem;
 }
 
+#video-pub-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-green);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
 .subject-div {
     position: relative;
     margin-bottom: 1rem;
