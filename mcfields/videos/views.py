@@ -54,3 +54,18 @@ def criar_rascunho(key, titulo, list_id, design_id):
                          'sender_id': settings.SENDER_ID}
     }
     return sg.client.marketing.singlesends.post(request_body=data)
+
+
+@login_required
+@permission_required('videos.change_video', login_url='/nao_permitido/')
+def edicao_video(request, id):
+    video = Video.objects.get(id=id)
+    if request.method == 'POST':
+        form = VideoForm(request.POST, instance=video)
+        if form.is_valid():
+            form.save()
+            return render(request, 'base/edicao_concluida.html', {'video': video})
+        else:
+            return render(request, 'videos/novo_video.html', {'form': form, 'video': video})
+    form = VideoForm(instance=video)
+    return render(request, 'videos/novo_video.html', {'form': form, 'video': video})

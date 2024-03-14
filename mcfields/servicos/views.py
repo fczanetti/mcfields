@@ -35,6 +35,9 @@ def editar_servico(request, id):
         if form.is_valid():
             form.save()
             return render(request, 'base/edicao_concluida.html', {'servico': service})
+        else:
+            return render(request, 'servicos/adicao_servico.html',
+                          {'form': form, 'servico': service})
     form = ServiceForm(instance=service)
     return render(request, 'servicos/adicao_servico.html', {'form': form, 'servico': service})
 

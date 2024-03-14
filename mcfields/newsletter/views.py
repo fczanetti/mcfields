@@ -65,6 +65,9 @@ def edicao_newsletter(request, id):
             form.save()
             return render(request, 'base/edicao_concluida.html',
                           {'newsletter': newsletter})
+        else:
+            return render(request, 'newsletter/post_newsletter.html',
+                          {'form': form, 'newsletter': newsletter})
     form = NewsletterForm(instance=newsletter)
     return render(request, 'newsletter/post_newsletter.html',
                   {'form': form, 'newsletter': newsletter})
