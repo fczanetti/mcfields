@@ -3,6 +3,18 @@
     margin: auto;
 }
 
+#video-update-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-blue);
+    padding: 5px 0;
+    border-radius: 5px;
+    width: 7rem;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 iframe {
     border-radius: 15px;
     aspect-ratio: 1.77;

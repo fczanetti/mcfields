@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 from model_bakery import baker
-from mcfields.django_assertions import assert_contains
+from mcfields.django_assertions import assert_contains, assert_not_contains
 from mcfields.videos.models import Video
 
 
@@ -21,6 +21,29 @@ def resp_pag_det_video_usuario_nao_logado(client, video):
     """
     resp = client.get(reverse('videos:detalhe_video',
                               kwargs={'slug': video.slug, 'subject_slug': video.subject.slug}))
+    return resp
+
+
+@pytest.fixture
+def resp_pag_det_video_usuario_log_sem_perm_edic(client_usuario_logado, video):
+    """
+    Realiza uma requisição na página de detalhes de vídeo com
+    usuário logado sem permissão de edição.
+    """
+    resp = client_usuario_logado.get(reverse('videos:detalhe_video',
+                                             kwargs={'slug': video.slug, 'subject_slug': video.subject.slug}))
+    return resp
+
+
+@pytest.fixture
+def resp_pag_det_video_usuario_log_com_perm_edic(client_usuario_log_com_perm_edic_video, video):
+    """
+    Realiza uma requisição na página de detalhes de vídeo com
+    usuário logado com permissão de edição.
+    """
+    resp = client_usuario_log_com_perm_edic_video.get(reverse('videos:detalhe_video',
+                                                              kwargs={'slug': video.slug,
+                                                                      'subject_slug': video.subject.slug}))
     return resp
 
 
@@ -48,3 +71,27 @@ def test_infos_video_pag_detalhe_video(resp_pag_det_video_usuario_nao_logado, vi
     assert_contains(resp_pag_det_video_usuario_nao_logado, f'<h4 id="video-title">{video.title}</h4>')
     assert_contains(resp_pag_det_video_usuario_nao_logado, f'<p id="video-subject">{video.subject}</p>')
     assert_contains(resp_pag_det_video_usuario_nao_logado, '<h6 id="video-post-date">12 de Março de 2024</h6>')
+
+
+def test_bot_edicao_nao_disp_usuario_nao_logado(resp_pag_det_video_usuario_nao_logado):
+    """
+    Certifica de que o botão de edição de vídeo não está
+    presente na página para o usuário não logado.
+    """
+    assert_not_contains(resp_pag_det_video_usuario_nao_logado, 'Editar')
+
+
+def test_bot_edicao_nao_disp_usuario_log_sem_perm(resp_pag_det_video_usuario_log_sem_perm_edic):
+    """
+    Certifica de que o botão de edição de vídeo não está
+    presente na página para o usuário logado sem permissão.
+    """
+    assert_not_contains(resp_pag_det_video_usuario_log_sem_perm_edic, 'Editar')
+
+
+def test_bot_edicao_disp_usuario_logado_com_perm(resp_pag_det_video_usuario_log_com_perm_edic):
+    """
+    Certifica de que o botão de edição de vídeo está
+    presente na página para o usuário logado com permissão.
+    """
+    assert_contains(resp_pag_det_video_usuario_log_com_perm_edic, 'Editar')

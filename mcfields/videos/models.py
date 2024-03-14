@@ -18,3 +18,6 @@ class Video(OrderedModel):
 
     def get_absolute_url(self):
         return reverse('videos:detalhe_video', kwargs={'slug': self.slug, 'subject_slug': self.subject.slug})
+
+    def get_edition_url(self):
+        return reverse('videos:edicao', args=(self.pk,))
