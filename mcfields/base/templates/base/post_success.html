@@ -6,7 +6,7 @@
 {% endblock css %}
 
 {% block title %}
-    {% if path == '/assuntos/adm/adic' %}
+    {% if path == '/assuntos/adm/adicao' %}
         <title>McField's - Adição concluída</title>
     {% else %}
         <title>McField's - Publicação concluída</title>
@@ -24,7 +24,7 @@
         {% elif path == '/videos/adm/post' %}
             <h4 class="success-msg">O vídeo "<strong>{{ titulo }}</strong>" foi adicionado com sucesso.</h4>
             <h5 class="redirect-msg">Acesse a página de vídeos para conferir.</h5>
-        {% elif path == '/assuntos/adm/adic' %}
+        {% elif path == '/assuntos/adm/adicao' %}
             <h4 class="success-msg">O assunto "<strong>{{ titulo }}</strong>" foi adicionado com sucesso.</h4>
             <h5 class="redirect-msg">Acesse a página de assuntos para conferir.</h5>
         {% endif %}
