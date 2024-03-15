@@ -3,6 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from mcfields import settings
+from mcfields.base import facade
 from mcfields.base.forms import EmailForm, SubjectForm
 from sendgrid import SendGridAPIClient
 from mcfields.servicos.models import Service
@@ -61,3 +62,10 @@ def adic_subject(request):
             return render(request, 'base/adic_subject.html', {'form': form})
     form = SubjectForm()
     return render(request, 'base/adic_subject.html', {'form': form})
+
+
+@login_required
+@permission_required('base.view_subject', login_url='/nao_permitido/')
+def subjects(request):
+    subs = facade.buscar_subjects_com_conteudos()
+    return render(request, 'base/assuntos.html', {'subjects': subs})

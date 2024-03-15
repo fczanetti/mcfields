@@ -1,0 +1,22 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'newsletter/css/indice_newsletter.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Assuntos</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-content-newsletter">
+        <h1>Assuntos</h1>
+        {% for sub in subjects %}
+            {{ sub.title }}
+            {% for video in sub.videos %}
+                {{ video.title }}
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock maincontent_2 %}
