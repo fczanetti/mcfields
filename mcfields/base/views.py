@@ -1,9 +1,9 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from mcfields import settings
-from mcfields.base.forms import EmailForm
+from mcfields.base.forms import EmailForm, SubjectForm
 from sendgrid import SendGridAPIClient
 from mcfields.servicos.models import Service
 
@@ -45,3 +45,10 @@ def nao_permitido(request):
 class UserLogin(LoginView):
     template_name = 'registration/user_login.html'
     next_page = '/'
+
+
+@login_required
+@permission_required('base.add_subject', login_url='/nao_permitido/')
+def adic_subject(request):
+    form = SubjectForm()
+    return render(request, 'base/adic_subject.html', {'form': form})
