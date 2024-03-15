@@ -15,6 +15,16 @@ h1 {
     margin-bottom: 3rem;
 }
 
+#subject-add-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-green);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
 h4 {
     margin: 0;
     padding: 1rem 0.5rem;
@@ -34,7 +44,7 @@ h4 {
 
 .subject-div {
     position: relative;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;

@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from model_bakery import baker
 from mcfields.base.models import Subject
-from mcfields.django_assertions import assert_contains
+from mcfields.django_assertions import assert_contains, assert_not_contains
 from mcfields.videos.models import Video
 
 
@@ -57,6 +57,26 @@ def resp_indice_subject_usuario_log_com_perm_view(client_usuario_logado_com_perm
     return resp
 
 
+@pytest.fixture
+def resp_indice_subject_usuario_log_sem_perm_adic(client_usuario_logado_com_perm_view_subject):
+    """
+    Realiza uma requisição na página de índice de assuntos
+    com usuário logado, com permissão de visualização e sem permissão de adição de assuntos.
+    """
+    resp = client_usuario_logado_com_perm_view_subject.get(reverse('base:subjects'))
+    return resp
+
+
+@pytest.fixture
+def resp_indice_subject_usuario_log_com_perm_adic_e_view(client_usuario_logado_com_perm_view_e_add_subject):
+    """
+    Realiza uma requisição na página de índice de assuntos
+    com usuário logado com permissão de visualização e adição de assuntos.
+    """
+    resp = client_usuario_logado_com_perm_view_e_add_subject.get(reverse('base:subjects'))
+    return resp
+
+
 def test_redirect_indice_subjects_usuario_nao_log(resp_indice_subject_usuario_nao_logado):
     """
     Certifica de que, ao tentar acessar a página de índice de assuntos com
@@ -105,3 +125,19 @@ def test_videos_presentes_no_indice_de_assuntos(resp_indice_subject_usuario_log_
     """
     for video in videos:
         assert_contains(resp_indice_subject_usuario_log_com_perm_view, video.title)
+
+
+def test_botao_adic_subj_indisp_usuario_log_sem_perm_adic(resp_indice_subject_usuario_log_sem_perm_adic):
+    """
+    Certifica de que o botão de adição de subjects não está disponível para
+    o usuário logado, com permissão de visualização e sem permissão de adição.
+    """
+    assert_not_contains(resp_indice_subject_usuario_log_sem_perm_adic, 'Novo Assunto')
+
+
+def test_botao_adic_subj_disp_usuario_log_com_perm_adic_e_view(resp_indice_subject_usuario_log_com_perm_adic_e_view):
+    """
+    Certifica que o botão de adição de assuntos está disponível para o
+    usuário com permissão de visualização e adição.
+    """
+    assert_contains(resp_indice_subject_usuario_log_com_perm_adic_e_view, 'Novo Assunto')
