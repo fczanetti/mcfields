@@ -12,6 +12,9 @@
 {% block maincontent_2 %}
     <div id="main-content-newsletter">
         <h1>Assuntos (Admin)</h1>
+        {% if perms.base.add_subject %}
+            <a id="subject-add-link" href="{% url 'base:adic_subject' %}">Novo Assunto</a>
+        {% endif %}
         {% for sub in subjects %}
             <div class="subject-div">
                 <div class="cover"></div>

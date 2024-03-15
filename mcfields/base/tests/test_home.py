@@ -51,6 +51,26 @@ def resp_home_sem_serv_usuario_log_com_perm_adic_serv(client_usuario_log_com_per
     return resp
 
 
+@pytest.fixture
+def resp_home_usuario_log_sem_perm_view_subjects(client_usuario_logado):
+    """
+    Realiza uma requisição na home page com usuário logado sem permissão
+    de visualização de subjects (assuntos).
+    """
+    resp = client_usuario_logado.get(reverse('base:home'))
+    return resp
+
+
+@pytest.fixture
+def resp_home_usuario_log_com_perm_view_subjects(client_usuario_logado_com_perm_view_subject):
+    """
+    Realiza uma requisição na home page com usuário logado com permissão
+    de visualização de subjects (assuntos).
+    """
+    resp = client_usuario_logado_com_perm_view_subject.get(reverse('base:home'))
+    return resp
+
+
 def test_status_code_home(resp_home):
     """
     Certifica de que a home page foi carregada com sucesso.
@@ -191,3 +211,32 @@ def test_botao_adic_servicos_indisp_home(resp_home):
     na home page caso algum serviço já tenha sido adicionado.
     """
     assert_not_contains(resp_home, 'Adicione o primeiro')
+
+
+def test_link_indice_subjects_indisp_usuario_nao_log(resp_home):
+    """
+    Certifica de que o link de índice de assuntos não está disponível
+    para o usuário não logado.
+    """
+    assert_not_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
+                                   f'href="{reverse("base:subjects")}">Assuntos</a></li>')
+
+
+def test_link_indice_subj_indisp_usuario_log_sem_perm_view(resp_home_usuario_log_sem_perm_view_subjects):
+    """
+    Certifica de que o link de índice de assuntos não está disponível
+    para o usuário logado sem permissão de visualização de subjects.
+    """
+    assert_not_contains(resp_home_usuario_log_sem_perm_view_subjects, f'<li class="navbar-li"><a class="navbar-link" '
+                                                                      f'href="{reverse("base:subjects")}">'
+                                                                      f'Assuntos</a></li>')
+
+
+def test_link_indice_subj_indisp_usuario_log_com_perm_view(resp_home_usuario_log_com_perm_view_subjects):
+    """
+    Certifica de que o link de índice de assuntos está disponível
+    para o usuário logado com permissão de visualização de subjects.
+    """
+    assert_contains(resp_home_usuario_log_com_perm_view_subjects, f'<li class="navbar-li"><a class="navbar-link" '
+                                                                  f'href="{reverse("base:subjects")}">'
+                                                                  f'Assuntos</a></li>')

@@ -75,3 +75,24 @@ def client_usuario_logado_com_perm_view_subject(client, usuario_senha_plana_com_
     """
     client.force_login(usuario_senha_plana_com_perm_view_subject)
     return client
+
+
+@pytest.fixture
+def usuario_senha_plana_com_perm_view_e_adic_subject(usuario_senha_plana_com_perm_view_subject):
+    """
+    Cria um usuário com permissão de visualização de subjects (assuntos) a partir do usuário_senha_plana.
+    """
+    content_type = ContentType.objects.get_for_model(Subject)
+    permission = Permission.objects.get(codename='add_subject', content_type=content_type)
+    usuario_senha_plana_com_perm_view_subject.user_permissions.add(permission)
+    usuario_com_perm_view_e_add_subject = usuario_senha_plana_com_perm_view_subject
+    return usuario_com_perm_view_e_add_subject
+
+
+@pytest.fixture
+def client_usuario_logado_com_perm_view_e_add_subject(client, usuario_senha_plana_com_perm_view_e_adic_subject):
+    """
+    Cria um cliente com usuário logado e com permissão de visualização e adição de subjects (assuntos).
+    """
+    client.force_login(usuario_senha_plana_com_perm_view_e_adic_subject)
+    return client

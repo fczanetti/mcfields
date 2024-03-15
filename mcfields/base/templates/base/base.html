@@ -34,6 +34,9 @@
             </button>
             <div id="navbar-links">
                 <ul id="navbar-links-list">
+                    {% if perms.base.view_subject %}
+                        <li class="navbar-li"><a class="navbar-link" href="{% url 'base:subjects' %}">Assuntos</a></li>
+                    {% endif %}
                     <li class="navbar-li"><a class="navbar-link" href="{% url 'base:sobre' %}">Sobre</a></li>
                     <li class="navbar-li"><a class="navbar-link" href="{% url 'newsletter:indice_newsletters' %}">Newsletter</a></li>
                     <li class="navbar-li"><a class="navbar-link" href="{% url 'videos:indice' %}">Vídeos</a></li>

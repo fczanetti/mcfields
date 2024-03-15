@@ -25,7 +25,7 @@
                 {{ field.help_text }}
             {% endfor %}
             <div id="form-buttons">
-                <a class="canc-button" href="">Cancelar</a>
+                <a class="canc-button" href="{% url 'base:subjects' %}">Cancelar</a>
                 <button id="submit-subject-button" type="submit">Publicar</button>
             </div>
         </form>
