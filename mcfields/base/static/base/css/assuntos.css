@@ -27,7 +27,7 @@ h1 {
 
 h4 {
     margin: 0;
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0 2.5rem 0.5rem;
 }
 
 .cover {
@@ -48,6 +48,23 @@ h4 {
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
+}
+
+.subject-update-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: var(--light-blue);
+    padding: 0 0.8rem;
+    border-radius: 5px;
+    text-align: center;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    position: absolute;
+    z-index: 2;
+}
+
+.subject-update-link:hover {
+    background-color: blue;
 }
 
 .bi-caret-down-fill {

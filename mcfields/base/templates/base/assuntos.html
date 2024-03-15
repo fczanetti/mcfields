@@ -10,13 +10,16 @@
 {% endblock title %}
 
 {% block maincontent_2 %}
-    <div id="main-content-newsletter">
+    <div id="main-content-subjects">
         <h1>Assuntos (Admin)</h1>
         {% if perms.base.add_subject %}
             <a id="subject-add-link" href="{% url 'base:adic_subject' %}">Novo Assunto</a>
         {% endif %}
         {% for sub in subjects %}
             <div class="subject-div">
+                {% if perms.base.change_subject %}
+                    <a class="subject-update-link" href="{{ sub.get_edition_url }}">Editar</a>
+                {% endif %}
                 <div class="cover"></div>
                 <h4>{{ sub.title }}</h4>
                 <i class="bi bi-caret-down-fill light-green"></i>
