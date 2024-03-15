@@ -58,7 +58,7 @@ def resp_indice_subject_usuario_log_com_perm_view(client_usuario_logado_com_perm
 
 
 @pytest.fixture
-def resp_indice_subject_usuario_log_sem_perm_adic(client_usuario_logado_com_perm_view_subject):
+def resp_indice_subject_usuario_log_sem_perm_adic(client_usuario_logado_com_perm_view_subject, videos):
     """
     Realiza uma requisição na página de índice de assuntos
     com usuário logado, com permissão de visualização e sem permissão de adição de assuntos.
@@ -74,6 +74,17 @@ def resp_indice_subject_usuario_log_com_perm_adic_e_view(client_usuario_logado_c
     com usuário logado com permissão de visualização e adição de assuntos.
     """
     resp = client_usuario_logado_com_perm_view_e_add_subject.get(reverse('base:subjects'))
+    return resp
+
+
+@pytest.fixture
+def resp_indice_subject_usuario_log_com_perm_edic_e_view(
+        client_usuario_logado_com_perm_view_e_edic_subject, videos):
+    """
+    Realiza uma requisição na página de índice de assuntos
+    com usuário logado com permissão de visualização e edição de assuntos.
+    """
+    resp = client_usuario_logado_com_perm_view_e_edic_subject.get(reverse('base:subjects'))
     return resp
 
 
@@ -132,7 +143,9 @@ def test_botao_adic_subj_indisp_usuario_log_sem_perm_adic(resp_indice_subject_us
     Certifica de que o botão de adição de subjects não está disponível para
     o usuário logado, com permissão de visualização e sem permissão de adição.
     """
-    assert_not_contains(resp_indice_subject_usuario_log_sem_perm_adic, 'Novo Assunto')
+    assert_not_contains(resp_indice_subject_usuario_log_sem_perm_adic, f'<a id="subject-add-link" '
+                                                                       f'href="{reverse("base:adic_subject")}">'
+                                                                       f'Novo Assunto</a>')
 
 
 def test_botao_adic_subj_disp_usuario_log_com_perm_adic_e_view(resp_indice_subject_usuario_log_com_perm_adic_e_view):
@@ -140,4 +153,30 @@ def test_botao_adic_subj_disp_usuario_log_com_perm_adic_e_view(resp_indice_subje
     Certifica que o botão de adição de assuntos está disponível para o
     usuário com permissão de visualização e adição.
     """
-    assert_contains(resp_indice_subject_usuario_log_com_perm_adic_e_view, 'Novo Assunto')
+    assert_contains(resp_indice_subject_usuario_log_com_perm_adic_e_view, f'<a id="subject-add-link" '
+                                                                          f'href="{reverse("base:adic_subject")}">'
+                                                                          f'Novo Assunto</a>')
+
+
+def test_botao_edic_subj_indisp_usuario_log_sem_perm_edic(
+        resp_indice_subject_usuario_log_sem_perm_adic, subjects):
+    """
+    Certifica de que o botão de edição de subjects não está disponível para
+    o usuário logado, com permissão de visualização e sem permissão de edição.
+    """
+    for sub in subjects:
+        assert_not_contains(resp_indice_subject_usuario_log_sem_perm_adic, f'<a class="subject-update-link" '
+                                                                           f'href="{sub.get_edition_url()}">'
+                                                                           f'Editar</a>')
+
+
+def test_botao_edic_subj_disp_usuario_log_com_perm_edic_e_view(
+        resp_indice_subject_usuario_log_com_perm_edic_e_view, subjects):
+    """
+    Certifica de que o botão de edição está disponível para o usuário logado e
+    com permissão de visualização e de edição.
+    """
+    for sub in subjects:
+        assert_contains(resp_indice_subject_usuario_log_com_perm_edic_e_view, f'<a class="subject-update-link" '
+                                                                              f'href="{sub.get_edition_url()}">'
+                                                                              f'Editar</a>')
