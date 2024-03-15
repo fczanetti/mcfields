@@ -6,7 +6,11 @@
 {% endblock css %}
 
 {% block title %}
-    <title>McField's - Novo Assunto</title>
+    {% if subject %}
+        <title>McField's - Edição de Assunto</title>
+    {% else %}
+        <title>McField's - Novo Assunto</title>
+    {% endif %}
 {% endblock title %}
 
 {% block maincontent_2 %}
