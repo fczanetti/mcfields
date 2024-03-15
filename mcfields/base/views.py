@@ -5,7 +5,7 @@ from django.urls import reverse
 from mcfields import settings
 from mcfields.base.forms import EmailForm, SubjectForm
 from sendgrid import SendGridAPIClient
-
+from mcfields.base import facade
 from mcfields.base.models import Subject
 from mcfields.servicos.models import Service
 
@@ -78,3 +78,10 @@ def edic_subject(request, id):
             return render(request, 'base/adic_subject.html', {'form': form, 'subject': subject})
     form = SubjectForm(instance=subject)
     return render(request, 'base/adic_subject.html', {'form': form, 'subject': subject})
+
+
+@login_required
+@permission_required('base.view_subject', login_url='/nao_permitido/')
+def subjects(request):
+    subs = facade.buscar_subjects_com_conteudos()
+    return render(request, 'base/assuntos.html', {'subjects': subs})

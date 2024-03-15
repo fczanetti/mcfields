@@ -5,6 +5,7 @@ app_name = 'base'
 urlpatterns = [
     path('', views.home, name='home'),
     path('sobre', views.sobre, name='sobre'),
+    path('assuntos', views.subjects, name='subjects'),
     path('assuntos/adm/adicao', views.adic_subject, name='adic_subject'),
     path('assuntos/adm/edicao/<int:id>', views.edic_subject, name='edic_subject'),
     path('inscricao_concluida', views.inscricao_email, name='inscricao_email'),
