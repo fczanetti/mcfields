@@ -50,5 +50,14 @@ class UserLogin(LoginView):
 @login_required
 @permission_required('base.add_subject', login_url='/nao_permitido/')
 def adic_subject(request):
+    if request.method == 'POST':
+        form = SubjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            titulo = request.POST['title']
+            path = request.path
+            return render(request, 'base/post_success.html', {'titulo': titulo, 'path': path})
+        else:
+            return render(request, 'base/adic_subject.html', {'form': form})
     form = SubjectForm()
     return render(request, 'base/adic_subject.html', {'form': form})
