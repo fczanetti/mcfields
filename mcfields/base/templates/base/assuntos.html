@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'newsletter/css/indice_newsletter.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/assuntos.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -11,12 +11,29 @@
 
 {% block maincontent_2 %}
     <div id="main-content-newsletter">
-        <h1>Assuntos</h1>
+        <h1>Assuntos (Admin)</h1>
         {% for sub in subjects %}
-            {{ sub.title }}
-            {% for video in sub.videos %}
-                {{ video.title }}
-            {% endfor %}
+            <div class="subject-div">
+                <div class="cover"></div>
+                <h4>{{ sub.title }}</h4>
+                <i class="bi bi-caret-down-fill light-green"></i>
+            </div>
+            <ol class="content-list hidden-videos">
+                {% for video in sub.videos %}
+                    <li class="list-item">
+                        <a class="content-link" href="{{ video.get_absolute_url }}">
+                            <i class="bi bi-film"></i>
+                            {{ video.title }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="list-item">Não há vídeos relacionados à este assunto.</li>
+                {% endfor %}
+            </ol>
         {% endfor %}
     </div>
 {% endblock maincontent_2 %}
+
+{% block scripts %}
+    <script src="{% static 'base/js/indice_assuntos.js' %}"></script>
+{% endblock scripts %}
