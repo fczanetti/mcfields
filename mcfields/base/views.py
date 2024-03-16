@@ -90,5 +90,17 @@ def subjects(request):
 @login_required
 @permission_required('base.delete_subject', login_url='/nao_permitido/')
 def remoc_subject(request, id):
+    """
+    Acessa a página de remoção e remove assuntos. A página de remoção só será acessada se o assunto a ser
+    removido não possuir nenhum outro conteúdo relacionado, caso contrário o usuário será direcionado para
+    a página de remoção não permitida.
+    """
     sub = Subject.objects.get(id=id)
+    titulo = sub.title
+    if sub.video_set.exists():
+        return render(request, 'base/remocao_nao_permitida.html', {'titulo': titulo})
+    if request.method == 'POST':
+        path = request.path
+        sub.delete()
+        return render(request, 'base/remocao_concluida.html', {'titulo': titulo, 'path': path})
     return render(request, 'base/conf_remoc_subject.html', {'subject': sub})
