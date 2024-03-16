@@ -17,6 +17,8 @@
             <h4 class="success-removal-msg">O serviço "<strong>{{ titulo }}</strong>" foi removido com sucesso.</h4>
         {% elif '/videos/adm/remocao' in path %}
             <h4 class="success-removal-msg">O vídeo "<strong>{{ titulo }}</strong>" foi removido com sucesso.</h4>
+        {% elif '/assuntos/adm/remocao' in path %}
+            <h4 class="success-removal-msg">O assunto "<strong>{{ titulo }}</strong>" foi removido com sucesso.</h4>
         {% endif %}
     </div>
 {% endblock maincontent_2 %}

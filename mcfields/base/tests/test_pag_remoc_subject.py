@@ -1,7 +1,28 @@
 import pytest
 from django.urls import reverse
+from model_bakery import baker
 
+from mcfields.base.models import Subject
 from mcfields.django_assertions import assert_contains
+from mcfields.videos.models import Video
+
+
+@pytest.fixture
+def subject_para_remocao(db):
+    """
+    Cria um subject para tentativa de remoção.
+    """
+    sub = baker.make(Subject)
+    return sub
+
+
+@pytest.fixture
+def video_para_remocao(subject_para_remocao):
+    """
+    Cria um vídeo relacionado com o subject para tentativa remoção.
+    """
+    video = baker.make(Video, subject=subject_para_remocao)
+    return video
 
 
 @pytest.fixture
@@ -75,3 +96,17 @@ def test_bot_cancelar_pag_remocao_subject(resp_pag_remoc_subj_usuario_log_com_pe
     """
     assert_contains(resp_pag_remoc_subj_usuario_log_com_perm_rem, f'<a id="canc-removal-button" '
                                                                   f'href="{reverse("base:subjects")}">Cancelar</a>')
+
+
+def test_tentativa_remocao_subject_com_conteudo_relacionado(
+        video_para_remocao, client_usuario_logado_com_perm_remoc_subject):
+    """
+    Tenta acessar a página de remoção de algum assunto que possui algum conteúdo relacionado
+    e certifica de que é direcionado para a página de remoção não permitida. Este teste também
+    certifica de que o título da página e o título do assunto que seria removido estão presentes
+    na página de remoção não permitida.
+    """
+    subject = video_para_remocao.subject
+    resp = client_usuario_logado_com_perm_remoc_subject.get(reverse('base:remoc_subject', args=(subject.pk,)))
+    assert_contains(resp, "<title>McField's - Remoção não permitida</title>")
+    assert_contains(resp, f'O assunto "<strong>{subject.title}</strong>" não pode ser removido')
