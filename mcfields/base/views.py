@@ -85,3 +85,10 @@ def edic_subject(request, id):
 def subjects(request):
     subs = facade.buscar_subjects_com_conteudos()
     return render(request, 'base/assuntos.html', {'subjects': subs})
+
+
+@login_required
+@permission_required('base.delete_subject', login_url='/nao_permitido/')
+def remoc_subject(request, id):
+    sub = Subject.objects.get(id=id)
+    return render(request, 'base/conf_remoc_subject.html', {'subject': sub})
