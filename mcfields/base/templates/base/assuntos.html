@@ -20,6 +20,9 @@
                 {% if perms.base.change_subject %}
                     <a class="subject-update-link" href="{{ sub.get_edition_url }}">Editar</a>
                 {% endif %}
+                {% if perms.base.delete_subject %}
+                    <a class="subject-removal-link" href="{{ sub.get_removal_url }}">Remover</a>
+                {% endif %}
                 <div class="cover"></div>
                 <h4>{{ sub.title }}</h4>
                 <i class="bi bi-caret-down-fill light-green"></i>

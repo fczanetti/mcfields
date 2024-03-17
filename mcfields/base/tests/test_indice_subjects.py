@@ -88,6 +88,17 @@ def resp_indice_subject_usuario_log_com_perm_edic_e_view(
     return resp
 
 
+@pytest.fixture
+def resp_indice_subject_usuario_log_com_perm_remoc_e_view(
+        client_usuario_logado_com_perm_view_e_remoc_subject, videos):
+    """
+    Realiza uma requisição na página de índice de assuntos
+    com usuário logado com permissão de visualização e remoção de assuntos.
+    """
+    resp = client_usuario_logado_com_perm_view_e_remoc_subject.get(reverse('base:subjects'))
+    return resp
+
+
 def test_redirect_indice_subjects_usuario_nao_log(resp_indice_subject_usuario_nao_logado):
     """
     Certifica de que, ao tentar acessar a página de índice de assuntos com
@@ -180,3 +191,20 @@ def test_botao_edic_subj_disp_usuario_log_com_perm_edic_e_view(
         assert_contains(resp_indice_subject_usuario_log_com_perm_edic_e_view, f'<a class="subject-update-link" '
                                                                               f'href="{sub.get_edition_url()}">'
                                                                               f'Editar</a>')
+
+
+def test_botao_remoc_subj_indisp_usuario_log_sem_perm_remoc(resp_indice_subject_usuario_log_sem_perm_adic):
+    """
+    Certifica de que, para o usuário logado, com permissão de visualização e sem
+    permissão de remoção, o botão de remoção de assuntos não está disponível.
+    """
+    assert_not_contains(resp_indice_subject_usuario_log_sem_perm_adic, 'Remover')
+
+
+def test_botao_remoc_subj_disp_usuario_log_com_perm_remoc(
+        resp_indice_subject_usuario_log_com_perm_remoc_e_view):
+    """
+    Certifica de que o botão de remoção de assuntos está disponível para o usuário
+    logado e com permissão de visualização e remoção.
+    """
+    assert_contains(resp_indice_subject_usuario_log_com_perm_remoc_e_view, 'Remover')

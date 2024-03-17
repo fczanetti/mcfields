@@ -139,3 +139,6 @@ class Subject(OrderedModel):
 
     def get_edition_url(self):
         return reverse('base:edic_subject', args=(self.pk,))
+
+    def get_removal_url(self):
+        return reverse('base:remoc_subject', args=(self.pk,))
