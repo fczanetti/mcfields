@@ -56,7 +56,6 @@ h4 {
     background-color: var(--light-blue);
     padding: 0 0.8rem;
     border-radius: 5px;
-    text-align: center;
     bottom: 0.5rem;
     left: 0.5rem;
     position: absolute;
@@ -67,6 +66,22 @@ h4 {
     background-color: blue;
 }
 
+.subject-removal-link {
+    text-decoration: none;
+    color: var(--white-color);
+    background-color: #f34747;
+    padding: 0 0.8rem;
+    border-radius: 5px;
+    bottom: 0.5rem;
+    left: 5.5rem;
+    position: absolute;
+    z-index: 2;
+}
+
+.subject-removal-link:hover {
+    background-color: red;
+}
+
 .bi-caret-down-fill {
     margin: 0 1rem;
     align-self: center;
@@ -75,6 +90,7 @@ h4 {
 
 ol {
     padding: 0;
+    margin-bottom: 2rem;
 }
 
 .list-item {
