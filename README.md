@@ -59,7 +59,7 @@ utilizar este recurso os seguintes passos devem ser seguidos:
 - criar uma secret key para este usuário. A secret key terá um ID e seu real valor, ambos serão utilizados;
 - criar um bucket S3 para arquivos estáticos e anexar uma política de permissão que permita ao usuário IAM a ação
 'PutObject' no bucket e em todas as suas pastas;
-- criar outro bucket S3, agora para arquívos de mídia. Este ter a configuração 'Block all public access' desativada,
+- criar outro bucket S3, agora para arquívos de mídia. Este terá a configuração 'Block all public access' desativada,
 já que armazenará arquivos que deverão ser visíveis a quem acessar o site. Além desta configuração, a política de
 acesso deverá permitir ao usuário IAM a ação 'PutObject' no bucket (e mais alguma outra se necessário), além de
 conceder a todos (*) a ação 'GetObject' para o bucket e todas as suas pastas.
@@ -71,8 +71,9 @@ Após executadas as etapas listadas, podemos definir as variáveis de ambiente n
   - AWS_STORAGE_BUCKET_NAME_MEDIA = nome-do-bucket-de-arquivos-de-midia
 
 Feitas as configurações, ao rodar o comando 'python manage.py collectstatic', os arquivos estáticos serão enviados para
-o bucket criado na AWS. Caso os valores das variáveis da AWS não sejam preenchidos, os arquivos estáticos serão copiados
-para uma pasta chamada 'staticfiles' na pasta principal do projeto (configuração STATIC_ROOT no arquivo settings.py).
+o bucket criado na AWS. Caso os valores das variáveis da AWS não sejam preenchidos (especialmente o valor da variável
+AWS_ACCESS_KEY_ID), os arquivos estáticos serão copiados para uma pasta chamada 'staticfiles' na pasta principal do
+projeto (configuração STATIC_ROOT no arquivo settings.py). Se esta pasta não existir ela será criada automaticamente.
 
 
 ## Integração com SendGrid
@@ -91,7 +92,7 @@ nosso grupo criado, e devemos salvar seu ID que estará a mostra.
 verificação, consultar Settings > Sender Authentication > clicar no domínio de email verificado e clicar em editar. Na
 URL aparecerá o ID deste emissor (Sender), devemos salvar este valor;
 - Ainda na plataforma SendGrid, devemos criar dois 'Email Design' na seção 'Design Library'. Estes designs criados também
-possuirão ID's listado em suas URL's que devemos salvar. Um design será para publicações de newsletters, e o outro para
+possuirão ID's listados em suas URL's que devemos salvar. Um design será para publicações de newsletters, e o outro para
 publicações de vídeos;
 - Após concluídas estas etapas devemos definir as seguintes variáveis de ambiente no arquivo .env:
 
@@ -106,3 +107,32 @@ As variáveis listadas acima deverão ser cadastradas apenas em caso de uso do s
 utilizado, no momento da publicação de algum conteúdo, sempre que tiver a opção 'Criar rascunho de email', esta deve ser
 marcada como 'Não', caso contrário ocorrerá erro ao publicar por não ter as variáveis definidas. Caso alguma variável
 seja definida incorretamente ou não seja definida também poderão ocorrer erros ao publicar.
+
+
+## Modelos
+
+O projeto, atualmente, possui 5 modelos:
+- User: usuário padrão do Django com pequenas customizações. Para a criação de novos usuários devemos informar os campos
+email, primeiro nome (first_name) e password. O campo email é único, portanto não pode se repetir e precisa ser informado
+no momento do login;
+- Subject: este modelo, também chamado de 'assunto', foi criado para que os conteúdos publicados no site sejam separados
+de alguma forma. Neste caso, alguns conteúdos terão relacionamento de 1 - N com este modelo, o que possibilitará filtragem
+e separação dos conteúdos por assunto. É interessante, no início, cadastrar um assunto chamado 'Assuntos gerais', para
+que permita a inserção de conteúdos diversos sem a necessidade da criação de vários assuntos distintos.
+- Service: este modelo permite que sejam inseridos os serviços prestados pelo consultor. O campo 'intro' deve ser uma
+breve introdução que aparecerá na home page, na seção de Serviços. Além da 'intro', os campos 'title' e 'home_picture'
+também estarão presentes na home page, ao lado de um link responsável por direcionar o usuário à pagina de detalhes do
+serviço prestado, onde poderá visualizar um texto mais detalhado. Este modelo não tem relacionamento com o modelo Subject;
+- Newsletter: serão textos publicados conforme necessidade do consultor. Existe, aqui, a possibilidade de inserção de
+textos ricos, com letras formatadas e também fotos. É possível, também, ao adicionar uma nova newsletter, assinalar a
+opção 'Criar rascunho de email'. Esta opção, se assinalada, fará com que um rascunho de email seja criado na plataforma
+do SendGrid (Single Sends), sendo necessários pequenos complementos para o envio aos integrantes da lista de emails
+cadastrados. O design para a montagem do email será o mesmo que criamos ao definir a variável de ambiente
+SENDGRID_NEWSLETTER_DESIGN_ID;
+- Video: este modelo permite a inserção de vídeos no site. Para publicar um vídeo devemos, primeiramente, publicar este
+no YouTube. Após publicado, o vídeo terá um ID que aparecerá na URL do site do YouTube, e este deve ser salvo para que
+seja informado no campo 'ID da plataforma' no momento da postagem neste website. Este modelo possui um relacionamento
+com o modelo Subject, portanto em toda postagem de vídeo deverá ser informado um assunto já criado anteriormente. Existe,
+também, a possibilidade de envio de emails a cada novo vídeo postado, bastando assinalar a opção 'Criar rascunho de email'
+no momento da postagem. O design utilizado para a montagem do email será o mesmo que criamos no momento da definição
+da variável de ambiente SENDGRID_VIDEO_DESIGN_ID.
