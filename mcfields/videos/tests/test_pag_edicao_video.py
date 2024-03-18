@@ -69,8 +69,19 @@ def test_infos_video_pag_edicao(resp_pag_edicao_video_usuario_logado_com_perm, v
     """
     Certifica de que as informações do vídeo estão presentes na página de edição.
     """
-    assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, video.title)
+    assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, f'<input type="text" name="title" '
+                                                                   f'value="{video.title}" maxlength="64" '
+                                                                   f'required id="id_title">')
     assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, video.description)
     assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, video.subject)
     assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, video.platform_id)
     assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, video.slug)
+
+
+def test_titulo_form(resp_pag_edicao_video_usuario_logado_com_perm, video):
+    """
+    Certifica de que o título do formulário está presente e
+    indicando a edição de um vídeo existente.
+    """
+    assert_contains(resp_pag_edicao_video_usuario_logado_com_perm, f'<h1 class="form-title">Edição do Vídeo '
+                                                                   f'"{video.title}"</h1>')

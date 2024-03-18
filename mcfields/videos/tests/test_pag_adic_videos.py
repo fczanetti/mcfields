@@ -88,3 +88,11 @@ def test_form_pag_adic_videos(resp_pag_adic_video_usuario_log_com_perm):
     assert_contains(resp_pag_adic_video_usuario_log_com_perm, '<a class="canc-button" href="/videos/">Cancelar</a>')
     assert_contains(resp_pag_adic_video_usuario_log_com_perm, '<button class="submit-button" '
                                                               'type="submit">Publicar</button>')
+
+
+def test_titulo_form(resp_pag_adic_video_usuario_log_com_perm):
+    """
+    Certifica de que o título do formulário de está presente e
+    indicando a adição de um novo vídeo.
+    """
+    assert_contains(resp_pag_adic_video_usuario_log_com_perm, '<h1 class="form-title">Novo Vídeo</h1>')

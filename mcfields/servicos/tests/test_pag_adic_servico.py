@@ -62,7 +62,7 @@ def test_title_pag_adic_servicos(resp_pag_adic_servico_usuario_logado_com_perm):
     Certifica de que o título da página de adição de serviços está presente e correto.
     """
     assert_contains(resp_pag_adic_servico_usuario_logado_com_perm,
-                    "<title>McField's - Novo serviço</title>")
+                    "<title>McField's - Novo Serviço</title>")
 
 
 def test_form_adic_serv(resp_pag_adic_servico_usuario_logado_com_perm):
@@ -94,3 +94,11 @@ def test_direcionamento_botao_cancelar(resp_pag_adic_servico_usuario_logado_com_
     """
     assert_contains(resp_pag_adic_servico_usuario_logado_com_perm, f'<a class="canc-button" '
                                                                    f'href="{reverse("base:home")}">Cancelar</a>')
+
+
+def test_titulo_form(resp_pag_adic_servico_usuario_logado_com_perm):
+    """
+    Certifica de que o título do formulário está presente e
+    indicando a adição de um novo serviço.
+    """
+    assert_contains(resp_pag_adic_servico_usuario_logado_com_perm, '<h1 class="form-title">Novo Serviço</h1>')
