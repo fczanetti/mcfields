@@ -65,7 +65,9 @@ def test_infos_subject_pag_edicao(resp_pag_edic_subject_usuario_log_com_perm, su
     Certifica de que as informções do subject a ser editado
     estão presentes na página de edição.
     """
-    assert_contains(resp_pag_edic_subject_usuario_log_com_perm, subject.title)
+    assert_contains(resp_pag_edic_subject_usuario_log_com_perm, f'<input type="text" name="title" '
+                                                                f'value="{subject.title}" maxlength="64" required '
+                                                                f'id="id_title">')
     assert_contains(resp_pag_edic_subject_usuario_log_com_perm, subject.description)
     assert_contains(resp_pag_edic_subject_usuario_log_com_perm, subject.slug)
 
@@ -76,3 +78,12 @@ def test_titulo_pag_edicao_subject(resp_pag_edic_subject_usuario_log_com_perm):
     está presente e correto.
     """
     assert_contains(resp_pag_edic_subject_usuario_log_com_perm, "<title>McField's - Edição de Assunto</title>")
+
+
+def test_titulo_form(resp_pag_edic_subject_usuario_log_com_perm, subject):
+    """
+    Certifica de que o título do formulário está presente e
+    informando a edição de um assunto existente.
+    """
+    assert_contains(resp_pag_edic_subject_usuario_log_com_perm, f'<h1 class="form-title">Edição do Assunto '
+                                                                f'"{subject.title}"</h1>')

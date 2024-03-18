@@ -73,7 +73,9 @@ def test_infos_newsletter_pag_edicao(newsletter, resp_pag_edicao_usuario_logado_
     Certifica de que o conteúdo da newsletter está presente na página de edição.
     :return:
     """
-    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.title)
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, f'<input type="text" name="title" '
+                                                             f'value="{newsletter.title}" maxlength="64" '
+                                                             f'required id="id_title">')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.intro)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.content)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.author)
@@ -87,3 +89,12 @@ def test_botao_cancelar_edicao(resp_pag_edicao_usuario_logado_com_perm):
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, f'<a class="canc-button" '
                                                              f'href="{reverse("newsletter:indice_newsletters")}">'
                                                              f'Cancelar</a>')
+
+
+def test_titulo_form(resp_pag_edicao_usuario_logado_com_perm, newsletter):
+    """
+    Certifica de que o título do formulário está presente e indicando
+    a edição de uma newsletter existente.
+    """
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, f'<h1 class="form-title">Edição da Newsletter '
+                                                             f'"{newsletter.title}"</h1>')

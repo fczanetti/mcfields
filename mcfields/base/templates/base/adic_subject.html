@@ -15,6 +15,11 @@
 
 {% block maincontent_2 %}
     <div id="main-content-adit-subject">
+        {% if subject %}
+            <h1 class="form-title">Edição do Assunto "{{ subject.title }}"</h1>
+        {% else %}
+            <h1 class="form-title">Novo Assunto</h1>
+        {% endif %}
         <form class="disp-flex flex-dir-col" action="" method="POST">
             {% csrf_token %}
             {% for field in form %}

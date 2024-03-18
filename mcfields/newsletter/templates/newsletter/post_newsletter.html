@@ -15,6 +15,11 @@
 
 {% block maincontent_2 %}
     <div id="main-content-post-newsletter">
+        {% if newsletter.id %}
+            <h1 class="form-title">Edição da Newsletter "{{ newsletter.title }}"</h1>
+        {% else %}
+            <h1 class="form-title">Nova Newsletter</h1>
+        {% endif %}
         <form action="" method="POST" class="disp-flex flex-dir-col">
             {% csrf_token %}
             {{ form.media }}

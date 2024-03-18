@@ -81,3 +81,11 @@ def test_form_pag_adic_subject(resp_pag_adic_subject_usuario_log_com_perm):
     assert_contains(resp_pag_adic_subject_usuario_log_com_perm, '<input type="text" name="slug" maxlength="64" '
                                                                 'required id="id_slug">')
     assert_contains(resp_pag_adic_subject_usuario_log_com_perm, 'Cancelar')
+
+
+def test_titulo_form(resp_pag_adic_subject_usuario_log_com_perm):
+    """
+    Certifica de que o título do formulário está presente e informando
+    da adição de um novo assunto.
+    """
+    assert_contains(resp_pag_adic_subject_usuario_log_com_perm, '<h1 class="form-title">Novo Assunto</h1>')

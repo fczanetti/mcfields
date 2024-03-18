@@ -6,6 +6,11 @@
     flex-direction: column;
 }
 
+.form-title {
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
 .form-field {
     display: flex;
     flex-direction: column;

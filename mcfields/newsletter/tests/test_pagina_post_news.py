@@ -84,3 +84,11 @@ def test_botao_canc_postagem(resp_post_page_usuario_logado_com_permissao):
     assert_contains(resp_post_page_usuario_logado_com_permissao, f'<a class="canc-button" '
                                                                  f'href="{reverse("newsletter:indice_newsletters")}">'
                                                                  f'Cancelar</a>')
+
+
+def test_titulo_form(resp_post_page_usuario_logado_com_permissao):
+    """
+    Certifica de que o título do formulário está presente
+    e indicando adição de uma nova newsletter.
+    """
+    assert_contains(resp_post_page_usuario_logado_com_permissao, '<h1 class="form-title">Nova Newsletter</h1>')

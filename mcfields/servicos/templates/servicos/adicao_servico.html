@@ -7,14 +7,19 @@
 
 {% block title %}
     {% if servico %}
-        <title>McField's - Edição de serviço</title>
+        <title>McField's - Edição de Serviço</title>
     {% else %}
-        <title>McField's - Novo serviço</title>
+        <title>McField's - Novo Serviço</title>
     {% endif %}
 {% endblock title %}
 
 {% block maincontent_2 %}
     <div id="main-content-service-adit">
+        {% if servico %}
+            <h1 class="form-title">Edição do Serviço "{{ servico.title }}"</h1>
+        {% else %}
+            <h1 class="form-title">Novo Serviço</h1>
+        {% endif %}
         <form class="disp-flex flex-dir-col" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}

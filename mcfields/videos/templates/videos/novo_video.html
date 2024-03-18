@@ -15,6 +15,11 @@
 
 {% block maincontent_2 %}
     <div id="main-content-post-video">
+        {% if video %}
+            <h1 class="form-title">Edição do Vídeo "{{ video.title }}"</h1>
+        {% else %}
+            <h1 class="form-title">Novo Vídeo</h1>
+        {% endif %}
         <form class="disp-flex flex-dir-col" action="" method="POST">
             {% csrf_token %}
             {% for field in form %}
