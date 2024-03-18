@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'servicos/css/adicionar_servico.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/formularios.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -15,23 +15,23 @@
 
 {% block maincontent_2 %}
     <div id="main-content-service-adit">
-        <form id="services-form" action="" method="POST" enctype="multipart/form-data">
+        <form class="disp-flex flex-dir-col" action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
             {% for field in form %}
-                <div class="services-form-field">
+                <div class="form-field">
                     {{ field.label_tag }} {{ field }}
                     <p class="errornote">{{ field.errors }}</p>
                 </div>
             {{ field.help_text }}
             {% endfor %}
-            <div id="service-form-buttons">
+            <div class="form-buttons">
                 {% if servico %}
                     <a class="canc-button" href="{% url 'servicos:detalhe_servico' servico.slug %}">Cancelar</a>
                 {% else %}
                     <a class="canc-button" href="{% url 'base:home' %}">Cancelar</a>
                 {% endif %}
-                <button id="submit-service-button" type="submit">Publicar</button>
+                <button class="submit-button" type="submit">Publicar</button>
             </div>
         </form>
 

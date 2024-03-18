@@ -94,7 +94,7 @@ def test_bot_cancelar_pag_remocao_subject(resp_pag_remoc_subj_usuario_log_com_pe
     Certifica de que o botão de cancelar remoção está presente e direcionando
     para a página de índice de assuntos.
     """
-    assert_contains(resp_pag_remoc_subj_usuario_log_com_perm_rem, f'<a id="canc-removal-button" '
+    assert_contains(resp_pag_remoc_subj_usuario_log_com_perm_rem, f'<a class="canc-removal-button" '
                                                                   f'href="{reverse("base:subjects")}">Cancelar</a>')
 
 

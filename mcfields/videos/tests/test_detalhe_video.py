@@ -96,28 +96,31 @@ def test_infos_video_pag_detalhe_video(resp_pag_det_video_usuario_nao_logado, vi
     assert_contains(resp_pag_det_video_usuario_nao_logado, '<h6 id="video-post-date">12 de Março de 2024</h6>')
 
 
-def test_bot_edicao_nao_disp_usuario_nao_logado(resp_pag_det_video_usuario_nao_logado):
+def test_bot_edicao_nao_disp_usuario_nao_logado(resp_pag_det_video_usuario_nao_logado, video):
     """
     Certifica de que o botão de edição de vídeo não está
     presente na página para o usuário não logado.
     """
-    assert_not_contains(resp_pag_det_video_usuario_nao_logado, 'Editar')
+    assert_not_contains(resp_pag_det_video_usuario_nao_logado, f'<a class="update-link" '
+                                                               f'href="{video.get_edition_url()}">Editar</a>')
 
 
-def test_bot_edicao_nao_disp_usuario_log_sem_perm(resp_pag_det_video_usuario_log_sem_perm_edic):
+def test_bot_edicao_nao_disp_usuario_log_sem_perm(resp_pag_det_video_usuario_log_sem_perm_edic, video):
     """
     Certifica de que o botão de edição de vídeo não está
     presente na página para o usuário logado sem permissão.
     """
-    assert_not_contains(resp_pag_det_video_usuario_log_sem_perm_edic, 'Editar')
+    assert_not_contains(resp_pag_det_video_usuario_log_sem_perm_edic, f'<a class="update-link" '
+                                                                      f'href="{video.get_edition_url()}">Editar</a>')
 
 
-def test_bot_edicao_disp_usuario_logado_com_perm(resp_pag_det_video_usuario_log_com_perm_edic):
+def test_bot_edicao_disp_usuario_logado_com_perm(resp_pag_det_video_usuario_log_com_perm_edic, video):
     """
     Certifica de que o botão de edição de vídeo está
     presente na página para o usuário logado com permissão.
     """
-    assert_contains(resp_pag_det_video_usuario_log_com_perm_edic, 'Editar')
+    assert_contains(resp_pag_det_video_usuario_log_com_perm_edic, f'<a class="update-link" '
+                                                                  f'href="{video.get_edition_url()}">Editar</a>')
 
 
 def test_botao_remocao_indisp_usuario_nao_logado(resp_pag_det_video_usuario_nao_logado, video):
@@ -144,4 +147,4 @@ def test_botao_remocao_disp_usuario_logado_com_perm(resp_pag_det_video_usuario_l
     disponível para o usuário logado com permissão de remoção.
     """
     assert_contains(resp_pag_det_video_usuario_log_com_perm_remocao,
-                    f'<a id="video-removal-link" href="{video.get_removal_url()}">Remover</a>')
+                    f'<a class="removal-link" href="{video.get_removal_url()}">Remover</a>')

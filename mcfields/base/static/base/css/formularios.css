@@ -1,35 +1,32 @@
-#video_form {
+.disp-flex {
     display: flex;
+}
+
+.flex-dir-col {
     flex-direction: column;
 }
 
-.video-form-field {
+.form-field {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-bottom: 1rem;
 }
 
-.video-form-field input,
-.video-form-field textarea,
-.video-form-field select {
+.form-field input,
+.form-field textarea,
+.form-field select {
     border: 0.5px solid lightgrey;
     border-radius: 5px;
     padding: 0 5px;
 }
 
-#id_criar_rascunho_0,
-#id_criar_rascunho_1 {
-    height: auto;
-    margin-top: 1rem;
-}
-
-.video-form-field input,
-.video-form-field select {
+.form-field input,
+.form-field select {
     height: 2rem;
 }
 
-#form-buttons {
+.form-buttons {
     display: flex;
     justify-content: end;
 }
@@ -46,7 +43,7 @@
     border: none;
 }
 
-#submit-video-button {
+.submit-button {
     background-color: var(--light-green);
     color: var(--white-color);
     padding: 5px 0px;
@@ -55,4 +52,10 @@
     align-self: end;
     border: none;
     margin-left: 1rem;
+}
+
+#id_criar_rascunho_0,
+#id_criar_rascunho_1 {
+    height: auto;
+    margin-top: 1rem;
 }

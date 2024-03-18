@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'videos/css/confirmacao_remocao.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/confirmacao_remocao.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -11,11 +11,11 @@
 
 {% block maincontent_2 %}
     <div id="main-cont-video_removal">
-        <h4 id="removal-msg">Tem certeza que deseja remover o vídeo "<strong>{{ video.title }}</strong>"?</h4>
+        <h4 class="removal-msg">Tem certeza que deseja remover o vídeo "<strong>{{ video.title }}</strong>"?</h4>
         <form action="{% url 'videos:remocao' video.id %}" method="POST">
             {% csrf_token %}
-            <a id="canc-removal-button" href="{% url 'videos:detalhe_video' subject_slug=video.subject.slug slug=video.slug %}">Cancelar</a>
-            <button id="conf-removal-button" type="submit">Confirmar</button>
+            <a class="canc-removal-button" href="{% url 'videos:detalhe_video' subject_slug=video.subject.slug slug=video.slug %}">Cancelar</a>
+            <button class="conf-removal-button" type="submit">Confirmar</button>
         </form>
     </div>
 {% endblock maincontent_2 %}

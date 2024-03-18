@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'newsletter/css/post_newsletter.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/formularios.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -15,19 +15,19 @@
 
 {% block maincontent_2 %}
     <div id="main-content-post-newsletter">
-        <form action="" method="POST" id="news-form">
+        <form action="" method="POST" class="disp-flex flex-dir-col">
             {% csrf_token %}
             {{ form.media }}
             {% for field in form %}
-                <div class="news-form-field">
+                <div class="form-field">
                     {{ field.label_tag }} {{ field }}
                     <p class="errornote">{{ field.errors }}</p>
                 </div>
             {{ field.help_text }}
             {% endfor %}
-            <div id="form-buttons">
+            <div class="form-buttons">
                 <a class="canc-button" href="{% url 'newsletter:indice_newsletters' %}">Cancelar</a>
-                <button id="submit-news-button" type="submit">Publicar</button>
+                <button class="submit-button" type="submit">Publicar</button>
             </div>
         </form>
     </div>

@@ -72,7 +72,7 @@ def test_newsletter_dados(resp_detalhe_newsletter, newsletter):
     Certifica de que os dados da newsletter estão presentes na página de detalhe desta.
     """
     pub_date = date.strftime(newsletter.pub_date, '%d/%m/%Y')
-    assert_contains(resp_detalhe_newsletter, f'<h1 id="newsletter-title">{newsletter.title}</h1>')
+    assert_contains(resp_detalhe_newsletter, f'<h1 class="title">{newsletter.title}</h1>')
     assert_contains(resp_detalhe_newsletter, newsletter.intro)
     assert_contains(resp_detalhe_newsletter, newsletter.content)
     assert_contains(resp_detalhe_newsletter, f'<div id="news-pub-date">{pub_date}</div>')
@@ -85,7 +85,7 @@ def test_link_edicao_usuario_nao_logado(resp_detalhe_newsletter, newsletter):
     presente na página de detalhes para usuários não logados.
     """
     assert_not_contains(resp_detalhe_newsletter,
-                        f'<a id="news-update-link" '
+                        f'<a class="update-link" '
                         f'href="{reverse("newsletter:edicao", args=(newsletter.id,))}">Editar</a>')
 
 
@@ -95,7 +95,7 @@ def test_link_edicao_usuario_logado_sem_perm_edicao(resp_detalhe_news_usuario_lo
     o link não estará presente na página de detalhes da newsletter.
     """
     assert_not_contains(resp_detalhe_news_usuario_log_sem_perm_edicao,
-                        f'<a id="news-update-link" '
+                        f'<a class="update-link" '
                         f'href="{reverse("newsletter:edicao", args=(newsletter.id,))}">Editar</a>')
 
 
@@ -105,7 +105,7 @@ def test_link_edicao_usuario_logado_com_perm_edicao(resp_detalhe_news_usuario_lo
     e com permissão de edição.
     """
     assert_contains(resp_detalhe_news_usuario_log_com_perm_edicao,
-                    f'<a id="news-update-link" '
+                    f'<a class="update-link" '
                     f'href="{reverse("newsletter:edicao", args=(newsletter.id,))}">Editar</a>')
 
 
@@ -114,7 +114,7 @@ def test_botao_remocao_usuario_nao_logado(resp_detalhe_newsletter, newsletter):
     Certifica de que o botão de remoção de newsletter não está disponível para usuários não logados.
     """
     assert_not_contains(resp_detalhe_newsletter,
-                        f'<a id="news-removal-link" href="{newsletter.get_removal_url()}">Remover</a>')
+                        f'<a class="removal-link" href="{newsletter.get_removal_url()}">Remover</a>')
 
 
 def test_botao_remocao_usuario_logado_sem_perm(resp_detalhe_news_usuario_log_sem_perm_remocao, newsletter):
@@ -123,7 +123,7 @@ def test_botao_remocao_usuario_logado_sem_perm(resp_detalhe_news_usuario_log_sem
     disponível para usuários logados sem permissão de remoção.
     """
     assert_not_contains(resp_detalhe_news_usuario_log_sem_perm_remocao,
-                        f'<a id="news-removal-link" href="{newsletter.get_removal_url()}">Remover</a>')
+                        f'<a class="removal-link" href="{newsletter.get_removal_url()}">Remover</a>')
 
 
 def test_botao_remocao_usuario_logado_com_perm(resp_detalhe_news_usuario_log_com_perm_remocao, newsletter):
@@ -132,4 +132,4 @@ def test_botao_remocao_usuario_logado_com_perm(resp_detalhe_news_usuario_log_com
     disponível para usuários logados sem permissão de remoção.
     """
     assert_contains(resp_detalhe_news_usuario_log_com_perm_remocao,
-                    f'<a id="news-removal-link" href="{newsletter.get_removal_url()}">Remover</a>')
+                    f'<a class="removal-link" href="{newsletter.get_removal_url()}">Remover</a>')

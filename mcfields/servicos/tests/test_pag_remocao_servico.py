@@ -81,7 +81,7 @@ def test_botao_cancelar_pag_conf_remocao_serv(resp_conf_remoc_serv_usuario_log_c
     a página de detalhes do serviço que será removido.
     """
     assert_contains(resp_conf_remoc_serv_usuario_log_com_perm_remocao,
-                    f'<a id="canc-removal-button" href="{service.get_absolute_url()}">Cancelar</a>')
+                    f'<a class="canc-removal-button" href="{service.get_absolute_url()}">Cancelar</a>')
 
 
 def test_action_form_remocao_servico(resp_conf_remoc_serv_usuario_log_com_perm_remocao, service):

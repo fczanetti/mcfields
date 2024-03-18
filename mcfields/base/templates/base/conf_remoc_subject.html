@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'base/css/conf_remoc_subject.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/confirmacao_remocao.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -11,11 +11,11 @@
 
 {% block maincontent_2 %}
     <div id="main-cont-news_removal">
-        <h4 id="removal-msg">Tem certeza que deseja remover o assunto "<strong>{{ subject.title }}</strong>"?</h4>
+        <h4 class="removal-msg">Tem certeza que deseja remover o assunto "<strong>{{ subject.title }}</strong>"?</h4>
         <form action="{% url 'base:remoc_subject' subject.id %}" method="POST">
             {% csrf_token %}
-            <a id="canc-removal-button" href="{% url 'base:subjects' %}">Cancelar</a>
-            <button id="conf-removal-button" type="submit">Confirmar</button>
+            <a class="canc-removal-button" href="{% url 'base:subjects' %}">Cancelar</a>
+            <button class="conf-removal-button" type="submit">Confirmar</button>
         </form>
     </div>
 {% endblock maincontent_2 %}

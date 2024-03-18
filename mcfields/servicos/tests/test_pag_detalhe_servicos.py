@@ -83,7 +83,7 @@ def test_infos_pag_detalhe_servico(resp_pagina_detalhe_servico, service):
     """
     Certifica de que as informações do serviço estão presentes na página de detalhes deste.
     """
-    assert_contains(resp_pagina_detalhe_servico, f'<h1 id="service-title">{service.title}</h1>')
+    assert_contains(resp_pagina_detalhe_servico, f'<h1 class="title">{service.title}</h1>')
     assert_contains(resp_pagina_detalhe_servico, service.content)
 
 
@@ -91,7 +91,7 @@ def test_botao_edicao_e_adicao_servico_usuario_nao_logado(resp_pagina_detalhe_se
     """
     Certifica de que os botões de edição e adição de serviço não estão presentes.
     """
-    assert_not_contains(resp_pagina_detalhe_servico, f'<a id="service-update-link" '
+    assert_not_contains(resp_pagina_detalhe_servico, f'<a class="update-link" '
                                                      f'href="{service.get_edition_url()}">Editar</a>')
     assert_not_contains(resp_pagina_detalhe_servico, f'<a id="service-adit-link" '
                                                      f'href="{reverse("servicos:adicionar")}">Novo serviço</a>')
@@ -101,7 +101,7 @@ def test_botao_edic_e_adic_serv_usuario_log_sem_perm(resp_pag_det_servico_usuari
     """
     Certifica de que os botões de edição e adição de serviço não estão presentes.
     """
-    assert_not_contains(resp_pag_det_servico_usuario_logado_sem_perm, f'<a id="service-update-link" '
+    assert_not_contains(resp_pag_det_servico_usuario_logado_sem_perm, f'<a class="update-link" '
                                                                       f'href="{service.get_edition_url()}">Editar</a>')
     assert_not_contains(resp_pag_det_servico_usuario_logado_sem_perm, f'<a id="service-adit-link" '
                                                                       f'href="{reverse("servicos:adicionar")}">'
@@ -123,29 +123,34 @@ def test_botao_edic_usuario_logado_com_perm_edic(resp_pag_det_serv_usuario_log_c
     Certifica de que o botão de edição de serviço está presente
     para o usuário logado com permissão.
     """
-    assert_contains(resp_pag_det_serv_usuario_log_com_perm_edic, f'<a id="service-update-link" '
+    assert_contains(resp_pag_det_serv_usuario_log_com_perm_edic, f'<a class="update-link" '
                                                                  f'href="{service.get_edition_url()}">Editar</a>')
 
 
-def test_botao_remocao_indisp_usuario_nao_logado(resp_pagina_detalhe_servico):
+def test_botao_remocao_indisp_usuario_nao_logado(resp_pagina_detalhe_servico, service):
     """
     Certifica de que o botão de remoção de serviço não está disponível
     na página de detalhes para o usuário que não está logado.
     """
-    assert_not_contains(resp_pagina_detalhe_servico, 'Remover')
+    assert_not_contains(resp_pagina_detalhe_servico, f'<a class="removal-link" href="{service.get_removal_url()}">'
+                                                     f'Remover</a>')
 
 
-def test_botao_remoc_indisp_usuario_log_sem_perm_remoc_serv(resp_pag_det_servico_usuario_logado_sem_perm):
+def test_botao_remoc_indisp_usuario_log_sem_perm_remoc_serv(resp_pag_det_servico_usuario_logado_sem_perm, service):
     """
     Certifica de que o botão de remoção de serviço não está disponível
     para o usuário logado sem permissão de remoção.
     """
-    assert_not_contains(resp_pag_det_servico_usuario_logado_sem_perm, 'Remover')
+    assert_not_contains(resp_pag_det_servico_usuario_logado_sem_perm, f'<a class="removal-link" '
+                                                                      f'href="{service.get_removal_url()}">'
+                                                                      f'Remover</a>')
 
 
-def test_botao_remoc_disp_usuario_log_com_perm_remoc_serv(resp_pag_det_serv_usuario_log_com_perm_remocao_serv):
+def test_botao_remoc_disp_usuario_log_com_perm_remoc_serv(resp_pag_det_serv_usuario_log_com_perm_remocao_serv, service):
     """
     Certifica de que o botão de remoção de serviço está disponível
     para o usuário logado e com permissão de remoção.
     """
-    assert_contains(resp_pag_det_serv_usuario_log_com_perm_remocao_serv, 'Remover')
+    assert_contains(resp_pag_det_serv_usuario_log_com_perm_remocao_serv, f'<a class="removal-link" '
+                                                                         f'href="{service.get_removal_url()}">'
+                                                                         f'Remover</a>')
