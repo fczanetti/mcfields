@@ -3,6 +3,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'servicos/css/detalhe_servico.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/pag_detalhes.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -15,12 +16,12 @@
             <a id="service-adit-link" href="{% url 'servicos:adicionar' %}">Novo serviço</a>
         {% endif %}
         {% if perms.servicos.change_service %}
-            <a id="service-update-link" href="{{ servico.get_edition_url }}">Editar</a>
+            <a class="update-link" href="{{ servico.get_edition_url }}">Editar</a>
         {% endif %}
         {% if perms.servicos.delete_service %}
-            <a id="service-removal-link" href="{{ servico.get_removal_url }}">Remover</a>
+            <a class="removal-link" href="{{ servico.get_removal_url }}">Remover</a>
         {% endif %}
-        <h1 id="service-title">{{ servico.title }}</h1>
+        <h1 class="title">{{ servico.title }}</h1>
         <div id="service-content">{{ servico.content|safe|linebreaks }}</div>
     </div>
 {% endblock maincontent_2 %}

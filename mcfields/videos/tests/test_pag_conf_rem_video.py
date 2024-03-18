@@ -81,5 +81,5 @@ def test_botao_canc_direc_pag_detalhe_video(resp_pag_conf_rem_video_usuario_log_
     Certifica de que o botão de cancelar está direcionando o
     usuário para a página de detalhes do vídeo que seria removido.
     """
-    assert_contains(resp_pag_conf_rem_video_usuario_log_com_perm, f'<a id="canc-removal-button" '
+    assert_contains(resp_pag_conf_rem_video_usuario_log_com_perm, f'<a class="canc-removal-button" '
                                                                   f'href="{video.get_absolute_url()}">Cancelar</a>')

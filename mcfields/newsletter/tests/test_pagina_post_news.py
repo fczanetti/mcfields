@@ -81,4 +81,6 @@ def test_botao_canc_postagem(resp_post_page_usuario_logado_com_permissao):
     """
     Certifica de que o botão de cancelar postagem está presente na página de postagem de newsletter.
     """
-    assert_contains(resp_post_page_usuario_logado_com_permissao, 'Cancelar')
+    assert_contains(resp_post_page_usuario_logado_com_permissao, f'<a class="canc-button" '
+                                                                 f'href="{reverse("newsletter:indice_newsletters")}">'
+                                                                 f'Cancelar</a>')

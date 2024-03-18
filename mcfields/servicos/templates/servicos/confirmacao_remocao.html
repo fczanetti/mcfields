@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'servicos/css/confirmacao_remocao.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/confirmacao_remocao.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -11,11 +11,11 @@
 
 {% block maincontent_2 %}
     <div id="main-cont-serv_removal">
-        <h4 id="removal-msg">Tem certeza que deseja remover o serviço "<strong>{{ servico.title }}</strong>"?</h4>
+        <h4 class="removal-msg">Tem certeza que deseja remover o serviço "<strong>{{ servico.title }}</strong>"?</h4>
         <form action="{% url 'servicos:remocao' servico.id %}" method="POST">
             {% csrf_token %}
-            <a id="canc-removal-button" href="{% url 'servicos:detalhe_servico' servico.slug %}">Cancelar</a>
-            <button id="conf-removal-button" type="submit">Confirmar</button>
+            <a class="canc-removal-button" href="{% url 'servicos:detalhe_servico' servico.slug %}">Cancelar</a>
+            <button class="conf-removal-button" type="submit">Confirmar</button>
         </form>
     </div>
 {% endblock maincontent_2 %}

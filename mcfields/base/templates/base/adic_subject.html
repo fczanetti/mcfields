@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'base/css/adic_subject.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/formularios.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -15,18 +15,18 @@
 
 {% block maincontent_2 %}
     <div id="main-content-adit-subject">
-        <form id="subject-form" action="" method="POST">
+        <form class="disp-flex flex-dir-col" action="" method="POST">
             {% csrf_token %}
             {% for field in form %}
-                <div class="subject-form-field">
+                <div class="form-field">
                     {{ field.label_tag }} {{ field }}
                     <p class="errornote">{{ field.errors }}</p>
                 </div>
                 {{ field.help_text }}
             {% endfor %}
-            <div id="form-buttons">
+            <div class="form-buttons">
                 <a class="canc-button" href="{% url 'base:subjects' %}">Cancelar</a>
-                <button id="submit-subject-button" type="submit">Publicar</button>
+                <button class="submit-button" type="submit">Publicar</button>
             </div>
         </form>
     </div>

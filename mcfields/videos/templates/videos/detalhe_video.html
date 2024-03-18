@@ -3,6 +3,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'videos/css/detalhe_video.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/pag_detalhes.css' %}">
 {% endblock css %}
 
 {% block title %}
@@ -12,10 +13,10 @@
 {% block maincontent_2 %}
     <div id="main-content-video-det">
         {% if perms.videos.change_video %}
-            <a id="video-update-link" href="{{ video.get_edition_url }}">Editar</a>
+            <a class="update-link" href="{{ video.get_edition_url }}">Editar</a>
         {% endif %}
         {% if perms.videos.delete_video %}
-            <a id="video-removal-link" href="{{ video.get_removal_url }}">Remover</a>
+            <a class="removal-link" href="{{ video.get_removal_url }}">Remover</a>
         {% endif %}
         <iframe src="https://www.youtube.com/embed/{{ video.platform_id }}?rel=0"
                 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;

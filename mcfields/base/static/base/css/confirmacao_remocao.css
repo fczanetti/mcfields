@@ -1,8 +1,8 @@
-#removal-msg {
+.removal-msg {
     margin-bottom: 10%;
 }
 
-#canc-removal-button {
+.canc-removal-button {
     text-decoration: none;
     text-align: center;
     background-color: #999;
@@ -14,7 +14,7 @@
     border: none;
 }
 
-#conf-removal-button {
+.conf-removal-button {
     background-color: red;
     color: var(--white-color);
     padding: 5px 0px;
