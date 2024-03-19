@@ -9,7 +9,8 @@ def resp_detalhe_newsletter(client, newsletter):
     """
     Cria uma requisição na página de detalhes da newsletter.
     """
-    response = client.get(reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+    response = client.get(reverse('newsletter:detalhe_newsletter',
+                                  kwargs={'subject_slug': newsletter.subject.slug, 'slug': newsletter.slug}))
     return response
 
 
@@ -18,7 +19,8 @@ def resp_detalhe_news_usuario_log_sem_perm_edicao(client_usuario_logado, newslet
     """
     Cria uma requisição na página de detalhes da newsletter com um usuário logado sem permissão de edição.
     """
-    resp = client_usuario_logado.get(reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+    resp = client_usuario_logado.get(reverse('newsletter:detalhe_newsletter',
+                                             kwargs={'subject_slug': newsletter.subject.slug, 'slug': newsletter.slug}))
     return resp
 
 
@@ -28,7 +30,8 @@ def resp_detalhe_news_usuario_log_com_perm_edicao(client_usuario_logado_com_perm
     Cria uma requisição na página de detalhes da newsletter com usuário logado e com permissão de edição.
     """
     resp = client_usuario_logado_com_perm_edicao.get(
-        reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+        reverse('newsletter:detalhe_newsletter',
+                kwargs={'subject_slug': newsletter.subject.slug, 'slug': newsletter.slug}))
     return resp
 
 
@@ -38,7 +41,8 @@ def resp_detalhe_news_usuario_log_sem_perm_remocao(client_usuario_logado, newsle
     Realiza uma requisição na página de detalhe da newsletter com usuário logado
     sem permissão de remoção.
     """
-    resp = client_usuario_logado.get(reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+    resp = client_usuario_logado.get(reverse('newsletter:detalhe_newsletter',
+                                             kwargs={'subject_slug': newsletter.subject.slug, 'slug': newsletter.slug}))
     return resp
 
 
@@ -49,7 +53,8 @@ def resp_detalhe_news_usuario_log_com_perm_remocao(client_usuario_logado_com_per
     sem permissão de remoção.
     """
     resp = client_usuario_logado_com_perm_remocao.get(
-        reverse('newsletter:detalhe_newsletter', args=(newsletter.slug,)))
+        reverse('newsletter:detalhe_newsletter',
+                kwargs={'subject_slug': newsletter.subject.slug, 'slug': newsletter.slug}))
     return resp
 
 
@@ -75,6 +80,7 @@ def test_newsletter_dados(resp_detalhe_newsletter, newsletter):
     assert_contains(resp_detalhe_newsletter, f'<h1 class="title">{newsletter.title}</h1>')
     assert_contains(resp_detalhe_newsletter, newsletter.intro)
     assert_contains(resp_detalhe_newsletter, newsletter.content)
+    assert_contains(resp_detalhe_newsletter, f'<div id="newsletter-subject">{newsletter.subject}</div>')
     assert_contains(resp_detalhe_newsletter, f'<div id="news-pub-date">{pub_date}</div>')
     assert_contains(resp_detalhe_newsletter, f'<div id="newsletter-author">{newsletter.author}</div>')
 

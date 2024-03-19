@@ -21,7 +21,7 @@ def newsletter(db):
 
 
 @pytest.fixture
-def resp_post_news_repeated_slug(client_usuario_logado_com_perm_postagem, newsletter, db):
+def resp_post_news_repeated_slug(client_usuario_logado_com_perm_postagem, newsletter, db, subject):
     """
     Tenta realizar uma postagem de newsletter com slug já existente no bando de dados.
     """
@@ -29,6 +29,7 @@ def resp_post_news_repeated_slug(client_usuario_logado_com_perm_postagem, newsle
                                                             {'title': 'Titulo newsletter repetida',
                                                              'intro': 'Introdução newsletter repetida',
                                                              'content': 'Conteúdo newsletter repetida',
+                                                             'subject': subject.pk,
                                                              'author': 'Autor newsletter repetida',
                                                              'slug': 'teste-slug-repetida',
                                                              'criar_rascunho': 'YES'})
@@ -36,7 +37,7 @@ def resp_post_news_repeated_slug(client_usuario_logado_com_perm_postagem, newsle
 
 
 @pytest.fixture
-def resp_post_news_success(client_usuario_logado_com_perm_postagem, db):
+def resp_post_news_success(client_usuario_logado_com_perm_postagem, db, subject):
     """
     Realiza a postagem de uma nova newsletter.
     """
@@ -45,6 +46,7 @@ def resp_post_news_success(client_usuario_logado_com_perm_postagem, db):
                                                             {'title': 'Titulo teste news',
                                                              'intro': 'Introdução da newsletter',
                                                              'content': 'Conteúdo da newsletter',
+                                                             'subject': subject.pk,
                                                              'author': 'Autor da newsletter',
                                                              'slug': 'titulo-teste-news',
                                                              'criar_rascunho': 'YES'})
@@ -69,7 +71,7 @@ def test_path_after_post_newsletter(resp_post_news_success):
     """
     Certifica de que o usuário é mantido na mesma url após a postagem da newsletter.
     """
-    assert resp_post_news_success.wsgi_request.path == '/newsletter/adm/post'
+    assert resp_post_news_success.wsgi_request.path == '/newsletter/adm/post/'
 
 
 def test_title_on_post_success_page(resp_post_news_success):
@@ -114,7 +116,7 @@ def test_news_repeated_slug_not_saved(resp_post_news_repeated_slug):
     assert_false(saved_news)
 
 
-def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_postagem):
+def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_postagem, subject):
     """
     Certifica de que, ao postar uma newsletter, a função de
     criação de rascunhos no Sendgrid é acionada.
@@ -124,6 +126,7 @@ def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_post
                                                  {'title': 'Titulo teste news 2',
                                                   'intro': 'Introdução da newsletter 2',
                                                   'content': 'Conteúdo da newsletter 2',
+                                                  'subject': subject.pk,
                                                   'author': 'Autor da newsletter 2',
                                                   'slug': 'titulo-teste-news-2',
                                                   'criar_rascunho': 'YES'})
@@ -133,7 +136,7 @@ def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_post
                                                  design_id=settings.SENDGRID_NEWSLETTER_DESIGN_ID)
 
 
-def test_nao_criacao_rascunho_sendgrid(client_usuario_logado_com_perm_postagem):
+def test_nao_criacao_rascunho_sendgrid(client_usuario_logado_com_perm_postagem, subject):
     """
     Certifica de que o rascunho não é criado se o usuário não escolher a opção de criar.
     """
@@ -142,6 +145,7 @@ def test_nao_criacao_rascunho_sendgrid(client_usuario_logado_com_perm_postagem):
                                                  {'title': 'Titulo teste news 2',
                                                   'intro': 'Introdução da newsletter 2',
                                                   'content': 'Conteúdo da newsletter 2',
+                                                  'subject': subject.pk,
                                                   'author': 'Autor da newsletter 2',
                                                   'slug': 'titulo-teste-news-2',
                                                   'criar_rascunho': 'NO'})

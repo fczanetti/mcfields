@@ -57,6 +57,7 @@ def test_status_code_pag_edicao_newsletter(resp_pag_edicao_usuario_logado_com_pe
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_title">Título:</label>')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_intro">Introdução:</label>')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_content">Conteúdo:</label>')
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_subject">Assunto:</label>')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_author">Autor:</label>')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, '<label for="id_slug">Slug:</label>')
 
@@ -78,16 +79,17 @@ def test_infos_newsletter_pag_edicao(newsletter, resp_pag_edicao_usuario_logado_
                                                              f'required id="id_title">')
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.intro)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.content)
+    assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.subject)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.author)
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, newsletter.slug)
 
 
-def test_botao_cancelar_edicao(resp_pag_edicao_usuario_logado_com_perm):
+def test_botao_cancelar_edicao(resp_pag_edicao_usuario_logado_com_perm, newsletter):
     """
     Certifica de que o botão de cancelamento de edição está presente na página de edição de newsletter.
     """
     assert_contains(resp_pag_edicao_usuario_logado_com_perm, f'<a class="canc-button" '
-                                                             f'href="{reverse("newsletter:indice_newsletters")}">'
+                                                             f'href="{newsletter.get_absolute_url()}">'
                                                              f'Cancelar</a>')
 
 

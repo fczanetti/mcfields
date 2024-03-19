@@ -82,7 +82,7 @@ def test_botoes_pag_remocao(resp_pag_rem_news_usuario_logado_com_perm, newslette
     """
     assert_contains(resp_pag_rem_news_usuario_logado_com_perm,
                     f'<a class="canc-removal-button" '
-                    f'href="{reverse("newsletter:detalhe_newsletter", args=(newsletter.slug,))}">'
+                    f'href="{newsletter.get_absolute_url()}">'
                     f'Cancelar</a>')
     assert_contains(resp_pag_rem_news_usuario_logado_com_perm, '<button class="conf-removal-button" type="submit">'
                                                                'Confirmar</button>')

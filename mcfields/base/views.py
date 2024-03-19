@@ -97,7 +97,7 @@ def remoc_subject(request, id):
     """
     sub = Subject.objects.get(id=id)
     titulo = sub.title
-    if sub.video_set.exists():
+    if sub.video_set.exists() or sub.newsletter_set.exists():
         return render(request, 'base/remocao_nao_permitida.html', {'titulo': titulo})
     if request.method == 'POST':
         path = request.path

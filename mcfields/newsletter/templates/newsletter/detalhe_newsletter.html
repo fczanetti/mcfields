@@ -20,6 +20,7 @@
         {% endif %}
         <h1 class="title">{{ newsletter.title }}</h1>
         <h5 id="newsletter-intro">{{ newsletter.intro|linebreaks }}</h5>
+        <div id="newsletter-subject">{{ newsletter.subject }}</div>
         <div id="news-adit-info">
             <div id="newsletter-author">{{ newsletter.author }}</div>
             <div id="news-pub-date">{{ newsletter.pub_date|date:"d/m/Y" }}</div>

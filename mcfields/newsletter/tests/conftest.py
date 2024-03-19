@@ -6,11 +6,11 @@ from django.contrib.contenttypes.models import ContentType
 
 
 @pytest.fixture
-def newsletter(db):
+def newsletter(subject, db):
     """
     Cria uma newsletter para que sua página de detalhes seja acessada.
     """
-    news = baker.make(Newsletter, content='Texto da newsletter')
+    news = baker.make(Newsletter, content='Texto da newsletter', subject=subject)
     return news
 
 

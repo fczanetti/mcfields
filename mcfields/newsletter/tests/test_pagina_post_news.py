@@ -62,6 +62,8 @@ def test_form_fields_news_post_page(resp_post_page_usuario_logado_com_permissao)
                                                                  'maxlength="512" required id="id_intro">\n</textarea>')
     assert_contains(resp_post_page_usuario_logado_com_permissao, '<label for="id_content">Conteúdo:</label>')
     assert_contains(resp_post_page_usuario_logado_com_permissao, '<div class="ck-editor-container">')
+    assert_contains(resp_post_page_usuario_logado_com_permissao, '<label for="id_subject">Assunto:</label>')
+    assert_contains(resp_post_page_usuario_logado_com_permissao, '<select name="subject" required id="id_subject">')
     assert_contains(resp_post_page_usuario_logado_com_permissao, '<label for="id_author">Autor:</label>')
     assert_contains(resp_post_page_usuario_logado_com_permissao, '<input type="text" name="author" maxlength="32" '
                                                                  'required id="id_author">')
