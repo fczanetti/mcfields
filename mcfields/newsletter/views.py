@@ -12,8 +12,8 @@ def indice_newsletters(request):
     return render(request, 'newsletter/indice_newsletter.html', {'newsletters': newsletters})
 
 
-def detalhe_newsletter(request, slug):
-    newsletter = Newsletter.objects.get(slug=slug)
+def detalhe_newsletter(request, slug, subject_slug):
+    newsletter = Newsletter.objects.select_related('subject').get(slug=slug)
     return render(request, 'newsletter/detalhe_newsletter.html', {'newsletter': newsletter})
 
 

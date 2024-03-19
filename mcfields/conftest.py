@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from model_bakery import baker
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+
+from mcfields.base.models import Subject
 from mcfields.servicos.models import Service
 
 
@@ -47,3 +49,12 @@ def client_usuario_log_com_perm_adic_serv(usuario_senha_plana_com_perm_adic_serv
     """
     client.force_login(usuario_senha_plana_com_perm_adic_serv)
     return client
+
+
+@pytest.fixture
+def subject(db):
+    """
+    Cria e retorna um subject.
+    """
+    sub = baker.make(Subject)
+    return sub

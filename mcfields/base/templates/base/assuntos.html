@@ -35,8 +35,14 @@
                             {{ video.title }}
                         </a>
                     </li>
-                {% empty %}
-                    <li class="list-item">Não há vídeos relacionados à este assunto.</li>
+                {% endfor %}
+                {% for news in sub.newsletters %}
+                    <li class="list-item">
+                        <a class="content-link" href="{{ news.get_absolute_url }}">
+                            <i class="bi bi-envelope-paper"></i>
+                            {{ news.title }}
+                        </a>
+                    </li>
                 {% endfor %}
             </ol>
         {% endfor %}

@@ -1,17 +1,7 @@
 import pytest
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from model_bakery import baker
 from mcfields.base.models import Subject
-
-
-@pytest.fixture
-def subject(db):
-    """
-    Cria e retorna um subject.
-    """
-    sub = baker.make(Subject)
-    return sub
 
 
 @pytest.fixture

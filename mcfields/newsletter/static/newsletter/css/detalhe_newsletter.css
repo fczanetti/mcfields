@@ -7,6 +7,11 @@
     display: flex;
 }
 
+#newsletter-subject {
+    color: gray;
+    margin-bottom: 1rem;
+}
+
 #newsletter-author, #news-pub-date {
     margin-right: 1rem;
     color: gray;

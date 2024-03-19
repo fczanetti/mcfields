@@ -31,7 +31,11 @@
             {{ field.help_text }}
             {% endfor %}
             <div class="form-buttons">
-                <a class="canc-button" href="{% url 'newsletter:indice_newsletters' %}">Cancelar</a>
+                {% if newsletter %}
+                    <a class="canc-button" href="{{ newsletter.get_absolute_url }}">Cancelar</a>
+                {% else %}
+                    <a class="canc-button" href="{% url 'newsletter:indice_newsletters' %}">Cancelar</a>
+                {% endif %}
                 <button class="submit-button" type="submit">Publicar</button>
             </div>
         </form>

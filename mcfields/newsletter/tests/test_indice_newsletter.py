@@ -7,13 +7,13 @@ from mcfields.newsletter.models import Newsletter
 
 
 @pytest.fixture
-def newsletters(db):
+def newsletters(subject, db):
     """
     Cria algumas newsletters para serem apresentadas na página de índice. O campo 'content' foi preenchido por conta
     de ser um campo CKEditor5Field, que não é suportado pelo baker.
     :return: Newsletters criadas.
     """
-    news = baker.make(Newsletter, _quantity=3, content='Texto da newsletter')
+    news = baker.make(Newsletter, _quantity=3, content='Texto da newsletter', subject=subject)
     return news
 
 

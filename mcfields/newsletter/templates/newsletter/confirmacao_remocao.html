@@ -14,7 +14,7 @@
         <h4 class="removal-msg">Tem certeza que deseja remover a newsletter "<strong>{{ newsletter.title }}</strong>"?</h4>
         <form action="{% url 'newsletter:remocao' newsletter.id %}" method="POST">
             {% csrf_token %}
-            <a class="canc-removal-button" href="{% url 'newsletter:detalhe_newsletter' newsletter.slug %}">Cancelar</a>
+            <a class="canc-removal-button" href="{{ newsletter.get_absolute_url }}">Cancelar</a>
             <button class="conf-removal-button" type="submit">Confirmar</button>
         </form>
     </div>

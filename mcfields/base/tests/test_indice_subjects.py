@@ -3,6 +3,7 @@ from django.urls import reverse
 from model_bakery import baker
 from mcfields.base.models import Subject
 from mcfields.django_assertions import assert_contains, assert_not_contains
+from mcfields.newsletter.models import Newsletter
 from mcfields.videos.models import Video
 
 
@@ -28,6 +29,17 @@ def videos(subjects, db):
 
 
 @pytest.fixture
+def newsletters(subjects, db):
+    """
+    Cria algumas newsletters para serem exibidas no índice de subjects/assuntos.
+    """
+    news = []
+    for sub in subjects:
+        news.extend(baker.make(Newsletter, content='Conteúdo', subject=sub, _quantity=2))
+    return news
+
+
+@pytest.fixture
 def resp_indice_subject_usuario_nao_logado(client):
     """
     Realiza uma requisição na página de índice de assuntos
@@ -48,7 +60,7 @@ def resp_indice_subject_usuario_log_sem_perm_view(client_usuario_logado):
 
 
 @pytest.fixture
-def resp_indice_subject_usuario_log_com_perm_view(client_usuario_logado_com_perm_view_subject, videos):
+def resp_indice_subject_usuario_log_com_perm_view(client_usuario_logado_com_perm_view_subject, videos, newsletters):
     """
     Realiza uma requisição na página de índice de assuntos
     com usuário logado com permissão de visualização.
@@ -147,6 +159,16 @@ def test_videos_presentes_no_indice_de_assuntos(resp_indice_subject_usuario_log_
     """
     for video in videos:
         assert_contains(resp_indice_subject_usuario_log_com_perm_view, video.title)
+        assert_contains(resp_indice_subject_usuario_log_com_perm_view, video.get_absolute_url())
+
+
+def test_newsletters_presentes_indice_assuntos(resp_indice_subject_usuario_log_com_perm_view, newsletters):
+    """
+    Certifica de que as newsletters estão presentes no índice de assuntos.
+    """
+    for news in newsletters:
+        assert_contains(resp_indice_subject_usuario_log_com_perm_view, news.title)
+        assert_contains(resp_indice_subject_usuario_log_com_perm_view, news.get_absolute_url())
 
 
 def test_botao_adic_subj_indisp_usuario_log_sem_perm_adic(resp_indice_subject_usuario_log_sem_perm_adic):

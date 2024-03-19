@@ -6,7 +6,7 @@ from mcfields.newsletter.models import Newsletter
 
 @pytest.fixture
 def resp_alteracao_newsletter(newsletter,
-                              client_usuario_logado_com_perm_edicao):
+                              client_usuario_logado_com_perm_edicao, subject):
     """
     Realiza a alteração em uma newsletter e retorna a resposta dessa alteração.
     """
@@ -15,6 +15,7 @@ def resp_alteracao_newsletter(newsletter,
         {'title': newsletter.title,
          'intro': 'Introdução alterada',
          'content': 'Conteúdo alterado',
+         'subject': subject.pk,
          'author': newsletter.author,
          'slug': newsletter.slug,
          'criar_rascunho': 'NO'})
@@ -45,7 +46,7 @@ def test_titulo_news_pag_edicao_concluida(resp_alteracao_newsletter, newsletter)
 
 
 def test_alteracao_newsletter(newsletter,
-                              client_usuario_logado_com_perm_edicao):
+                              client_usuario_logado_com_perm_edicao, subject):
     """
     Certifica de que uma alteração feita em uma newsletter é salva no banco de dados.
     """
@@ -55,6 +56,7 @@ def test_alteracao_newsletter(newsletter,
         {'title': newsletter.title,
          'intro': 'Introdução alterada novamente',
          'content': 'Conteúdo alterado novamente',
+         'subject': subject.pk,
          'author': newsletter.author,
          'slug': newsletter.slug,
          'criar_rascunho': 'NO'})
