@@ -119,19 +119,21 @@ no momento do login;
 - Subject: este modelo, também chamado de 'assunto', foi criado para que os conteúdos publicados no site sejam separados
 de alguma forma. Neste caso, alguns conteúdos terão relacionamento de 1 - N com este modelo, o que possibilitará filtragem
 e separação dos conteúdos por assunto. É interessante, no início, cadastrar um assunto chamado 'Assuntos gerais', para
-que permita a inserção de conteúdos diversos sem a necessidade da criação de vários assuntos distintos;
+que permita a inserção de conteúdos diversos sem a necessidade da criação de vários assuntos distintos. Não será possível
+cadastrar Newsletters ou Vídeos sem que antes tenha sido cadastrado um assunto para ser relacionado;
 
 - Service: este modelo permite que sejam inseridos os serviços prestados pelo consultor. O campo 'intro' deve ser uma
 breve introdução que aparecerá na home page, na seção de Serviços. Além da 'intro', os campos 'title' e 'home_picture'
 também estarão presentes na home page, ao lado de um link responsável por direcionar o usuário à pagina de detalhes do
 serviço prestado, onde poderá visualizar um texto mais detalhado. Este modelo não tem relacionamento com o modelo Subject;
 
-- Newsletter: serão textos publicados conforme necessidade do consultor. Existe, aqui, a possibilidade de inserção de
-textos ricos, com letras formatadas e também fotos. É possível, também, ao adicionar uma nova newsletter, assinalar a
-opção 'Criar rascunho de email'. Esta opção, se assinalada, fará com que um rascunho de email seja criado na plataforma
-do SendGrid (Single Sends), sendo necessários pequenos complementos para o envio aos integrantes da lista de emails
-cadastrados. O design para a montagem do email será o mesmo que criamos ao definir a variável de ambiente
-SENDGRID_NEWSLETTER_DESIGN_ID;
+- Newsletter: serão textos publicados conforme necessidade do consultor. Este modelo possui relacionamento com o modelo
+Subject, portanto em toda publicação de newsletters deverá ser informado um assunto já criado anteriormente. Existe, aqui,
+a possibilidade de inserção de textos ricos, com letras formatadas e também fotos. É possível, também, ao adicionar uma
+nova newsletter, assinalar a opção 'Criar rascunho de email'. Esta opção, se assinalada, fará com que um rascunho de
+email seja criado na plataforma do SendGrid (Single Sends), sendo necessários pequenos complementos para o envio aos
+integrantes da lista de emails cadastrados. O design para a montagem do email será o mesmo que criamos ao definir a
+variável de ambiente SENDGRID_NEWSLETTER_DESIGN_ID;
 
 - Video: este modelo permite a inserção de vídeos no site. Para publicar um vídeo devemos, primeiramente, publicar este
 no YouTube. Após publicado, o vídeo terá um ID que aparecerá na URL do site do YouTube, e este deve ser salvo para que

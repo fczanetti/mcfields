@@ -27,7 +27,13 @@
             <ol class="videos-list hidden-videos">
                 {% for video in assunto.videos %}
                     <li class="video-list-item">
-                        <a class="video-link" href="{{ video.get_absolute_url }}">{{ video.title }}<i class="bi bi-play-circle"></i></a>
+                        <a class="video-link" href="{{ video.get_absolute_url }}">
+                            <div>
+                                <div>{{ video.title }}</div>
+                                <div class="post-date">{{ video.post_date|date:"d/m/Y" }}</div>
+                            </div>
+                            <i class="bi bi-play-circle"></i>
+                        </a>
                     </li>
                 {% empty %}
                     <li>Não há vídeos cadastrados.</li>

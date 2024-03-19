@@ -1,3 +1,5 @@
+from datetime import date
+
 import pytest
 from django.urls import reverse
 from model_bakery import baker
@@ -77,12 +79,14 @@ def test_titulo_assunto_indice_videos(criar_subjects, resp_indice_videos_usuario
         assert_contains(resp_indice_videos_usuario_nao_logado, subject.title)
 
 
-def test_titulo_videos_indice_videos(criar_videos, resp_indice_videos_usuario_nao_logado):
+def test_titulo_e_data_post_videos_indice_videos(criar_videos, resp_indice_videos_usuario_nao_logado):
     """
-    Certifica de que os títulos dos vídeos estão presentes na página de índices.
+    Certifica de que os títulos e datas de publicação dos vídeos estão presentes na página de índices.
     """
     for video in criar_videos:
+        post_date = date.strftime(video.post_date, "%d/%m/%Y")
         assert_contains(resp_indice_videos_usuario_nao_logado, video.title)
+        assert_contains(resp_indice_videos_usuario_nao_logado, f'<div class="post-date">{post_date}</div>')
 
 
 def test_links_videos_indice_videos(criar_videos, resp_indice_videos_usuario_nao_logado):
