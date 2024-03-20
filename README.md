@@ -84,7 +84,7 @@ será necessário seguir as seguintes etapas:
 - criar uma conta na plataforma SendGrid e acessá-la;
 - na plataforma SendGrid, acessar a seção de 'API Keys' e criar uma chave;
 - na plataforma SendGrid, na seção 'Marketing', acessar 'Contacts', criar uma lista e acessar. O ID desta lista estará
-na URL, e devemos salvá-lo;
+na URL, e devemos salvá-lo. Esta será a lista onde os contatos serão cadastrados para recebimento de emails;
 - na plataforma SendGrid, na seção Marketing, acessar 'Unsubscribe Groups' e criar um grupo. Este grupo será utilizado
 para armazenar contatos que se descadastraram de nosso sistema de envio de emails. Na página de criação do grupo veremos
 nosso grupo criado, e devemos salvar seu ID que estará a mostra.
@@ -142,3 +142,24 @@ com o modelo Subject, portanto em toda postagem de vídeo deverá ser informado 
 também, a possibilidade de envio de emails a cada novo vídeo postado, bastando assinalar a opção 'Criar rascunho de email'
 no momento da postagem. O design utilizado para a montagem do email será o mesmo que criamos no momento da definição
 da variável de ambiente SENDGRID_VIDEO_DESIGN_ID.
+
+
+## Permissões
+
+Para que seja possível postar, editar e deletar conteúdos do site é necessário ter um usuário cadastrado, logado e com
+as devidas permissões concedidas. Para cada modelo (Video, Newsletter etc.) existe um conjunto de permissões que pode
+ser concedido ao usuário, o que pode ser customizado conforme a necessidade.
+
+Existem 4 tipos de permissões, são elas: visualização, edição, remoção e adição. Cada uma delas pode ser concedida
+separadamente. Se, por exemplo, for acordado que o usuário "X" terá permissão de apenas Editar Video, poderá ser
+concedida apenas esta permissão, e tanto o link para adiçao quanto o link para remoção não estarão disponíveis para este
+usuário. O acesso às páginas de adição e remoção também será bloqueado para este usuário.
+
+Atualmente todo usuário, logado ou não, tem permissão de visualização de qualquer conteúdo, exceto a página de Assuntos
+(Subject) que precisa de um usuário logado e com permissão de visualização de Subject. O link de acesso desta página
+estará na navbar do website, e será visível apenas para quem tem permissão de visualização de Subject.
+
+Recomenda-se, sempre que for concedida permissão de adição, remoção ou edição de Subject para algum usuário, que seja
+também concedida a permissão de visualização, já que os links de cancelamento de edição ou adição de Subject direcionarão
+o usuário para a página de visualização/índice de Subject(Assuntos). Neste caso, se a permissão de visualização não for
+concedida, o usuário será direcionado para a página de acesso negado.

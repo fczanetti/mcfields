@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from mcfields import settings
 from mcfields.base.forms import EmailForm, SubjectForm
-from sendgrid import SendGridAPIClient
 from mcfields.base import facade
 from mcfields.base.models import Subject
 from mcfields.servicos.models import Service
@@ -20,23 +19,27 @@ def sobre(request):
 
 
 def inscricao_email(request):
+    """
+    Antes de inscrever um email é verificado se este está registrado no grupo de emails descadastrados.
+    Caso esteja, o email será apenas removido do grupo e passará a receber emails novamente. Caso esteja
+    no grupo de descadastrados não é necessário adicioná-lo à lista de emails, pois este já estará presente.
+    :param request:
+    :return:
+    """
     if request.POST:
         emailform = EmailForm(request.POST)
         if emailform.is_valid():
             email = emailform.cleaned_data['email']
-            cadastrar_email(
-                key=settings.SENDGRID_API_KEY,
-                user_email=email,
-                list_id=settings.SENDGRID_LIST_ID
-            )
+            api_key = settings.SENDGRID_API_KEY
+            sg_list_id = settings.SENDGRID_LIST_ID
+            suppr_group_id = settings.SUPPRESSION_GROUP_ID
+            resp_email_desc = facade.checar_email_descadastrado(key=api_key, email=email, suppr_group_id=suppr_group_id)
+            if bytes(email, 'utf-8') in resp_email_desc.body:
+                facade.remover_da_lista_desc(key=api_key, email=email, supp_group_id=suppr_group_id)
+            else:
+                facade.cadastrar_email(key=api_key, user_email=email, list_id=sg_list_id)
             return render(request, 'base/inscricao_concluida.html', {'email': email})
     return redirect(reverse('base:home'))
-
-
-def cadastrar_email(key, user_email, list_id):
-    sg = SendGridAPIClient(key)
-    data = {"contacts": [{"email": user_email}], 'list_ids': [list_id]}
-    return sg.client.marketing.contacts.put(request_body=data)
 
 
 @login_required
