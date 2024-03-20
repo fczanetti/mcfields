@@ -1,5 +1,7 @@
 import pytest
 from django.urls import reverse
+from model_bakery import baker
+
 from mcfields.base.models import Subject
 from mcfields.django_assertions import assert_contains
 
@@ -43,3 +45,18 @@ def test_pag_edicao_subject_concluida(resp_edicao_subject, subject):
     """
     assert resp_edicao_subject.status_code == 200
     assert resp_edicao_subject.wsgi_request.path == f'/assuntos/adm/edicao/{subject.pk}'
+
+
+def test_tentativa_edicao_slug_repetida(client_usuario_logado_com_perm_edic_subject, subject):
+    """
+    Certifica de que, ao tentar editar um subject/assunto inserindo alguma slug já existente
+    no banco de dados, a mensagem de erro é retornada para o usuário. Para isso um subject é
+    criado com uma slug conhecida, e em outro é realizada a tentativa de edição inserindo a
+    mesma slug.
+    """
+    baker.make(Subject, slug='slug-repetida')
+    resp = client_usuario_logado_com_perm_edic_subject.post(reverse('base:edic_subject', args=(subject.pk,)),
+                                                            {'title': subject.title,
+                                                             'description': subject.description,
+                                                             'slug': 'slug-repetida'})
+    assert_contains(resp, 'Subject com este Slug já existe.')
