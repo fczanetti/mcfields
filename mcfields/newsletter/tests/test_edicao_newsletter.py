@@ -1,5 +1,7 @@
 import pytest
 from django.urls import reverse
+from model_bakery import baker
+
 from mcfields.django_assertions import assert_contains
 from mcfields.newsletter.models import Newsletter
 
@@ -64,3 +66,23 @@ def test_alteracao_newsletter(newsletter,
     assert news_editada.intro == 'Introdução alterada novamente'
     assert news_editada.content == 'Conteúdo alterado novamente'
     assert news_editada.id == id_newsletter
+
+
+def test_tentativa_alteracao_slug_repetida(newsletter,
+                                           client_usuario_logado_com_perm_edicao, subject):
+    """
+    Certifica de que, ao tentar editar uma newsletter inserindo uma slug já existente no banco de dados,
+    a mensagem de erro é exibida para o usuário.
+    """
+    id_newsletter = newsletter.id
+    baker.make(Newsletter, content='Conteúdo', slug='slug-repetida')
+    resp = client_usuario_logado_com_perm_edicao.post(
+        reverse('newsletter:edicao', args=(id_newsletter,)),
+        {'title': newsletter.title,
+         'intro': newsletter.intro,
+         'content': newsletter.content,
+         'subject': subject.pk,
+         'author': newsletter.author,
+         'slug': 'slug-repetida',
+         'criar_rascunho': 'NO'})
+    assert_contains(resp, 'Newsletter com este Slug já existe.')

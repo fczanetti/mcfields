@@ -1,5 +1,7 @@
 import pytest
 from django.urls import reverse
+from model_bakery import baker
+
 from mcfields.django_assertions import assert_contains
 from mcfields.servicos.models import Service
 
@@ -44,3 +46,18 @@ def test_alteracoes_servico_editado(resp_edicao_servico, service):
     assert serv.title == 'Título alterado'
     assert serv.intro == 'Introdução alterada'
     assert serv.content == 'Conteúdo alterado'
+
+
+def test_tentativa_edicao_slug_repetida(service, imagem, client_usuario_log_com_perm_edic_serv):
+    """
+    Certifica de que, ao tentar editar um serviço inserindo uma slug já existente no banco de dados,
+    a mensagem de erro é exibida para o usuário.
+    """
+    baker.make(Service, content='Conteúdo', slug='slug-repetida')
+    resp = client_usuario_log_com_perm_edic_serv.post(reverse('servicos:edicao', args=(service.pk,)),
+                                                      {'title': service.title,
+                                                       'intro': service.intro,
+                                                       'home_picture': imagem,
+                                                       'content': service.content,
+                                                       'slug': 'slug-repetida'})
+    assert_contains(resp, 'Service com este Slug já existe.')
