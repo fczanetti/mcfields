@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
-from sendgrid import SendGridAPIClient
 
 from mcfields import settings
 from mcfields.videos import facade
@@ -26,34 +25,18 @@ def post_video(request):
         if form.is_valid():
             form.save()
             path = request.path
+            api_key = settings.SENDGRID_API_KEY
+            titulo = request.POST['title']
+            sg_list_id = settings.SENDGRID_LIST_ID
+            sg_video_design_id = settings.SENDGRID_VIDEO_DESIGN_ID
             if request.POST['criar_rascunho'] == 'YES':
-                criar_rascunho(
-                    key=settings.SENDGRID_API_KEY,
-                    titulo=request.POST['title'],
-                    list_id=settings.SENDGRID_LIST_ID,
-                    design_id=settings.SENDGRID_VIDEO_DESIGN_ID
-                )
+                facade.criar_rascunho(key=api_key, titulo=titulo, list_id=sg_list_id, design_id=sg_video_design_id)
             return render(request, 'base/post_success.html',
                           {'titulo': request.POST['title'], 'path': path})
         else:
             return render(request, 'videos/novo_video.html', {'form': form})
     form = VideoForm()
     return render(request, 'videos/novo_video.html', {'form': form})
-
-
-def criar_rascunho(key, titulo, list_id, design_id):
-    """
-    Cria um rascunho de email no Sendgrid.
-    """
-    sg = SendGridAPIClient(key)
-    data = {
-        'name': f'Novo vídeo: {titulo}',
-        'send_to': {'list_ids': [list_id]},
-        'email_config': {'design_id': design_id,
-                         'suppression_group_id': settings.SUPPRESSION_GROUP_ID,
-                         'sender_id': settings.SENDER_ID}
-    }
-    return sg.client.marketing.singlesends.post(request_body=data)
 
 
 @login_required
@@ -64,6 +47,12 @@ def edicao_video(request, id):
         form = VideoForm(request.POST, instance=video)
         if form.is_valid():
             form.save()
+            api_key = settings.SENDGRID_API_KEY
+            titulo = request.POST['title']
+            sg_list_id = settings.SENDGRID_LIST_ID
+            sg_video_design_id = settings.SENDGRID_VIDEO_DESIGN_ID
+            if request.POST['criar_rascunho'] == 'YES':
+                facade.criar_rascunho(key=api_key, titulo=titulo, list_id=sg_list_id, design_id=sg_video_design_id)
             return render(request, 'base/edicao_concluida.html', {'video': video})
         else:
             return render(request, 'videos/novo_video.html', {'form': form, 'video': video})

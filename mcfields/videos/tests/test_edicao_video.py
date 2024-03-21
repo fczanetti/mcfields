@@ -1,7 +1,10 @@
+from unittest.mock import Mock
+
 from django.urls import reverse
 from model_bakery import baker
 
 from mcfields.django_assertions import assert_contains
+from mcfields.videos import facade
 from mcfields.videos.models import Video
 
 
@@ -52,3 +55,35 @@ def test_tentativa_edicao_slug_repetida(video, client_usuario_log_com_perm_edic_
                                                         'slug': 'slug-repetida',
                                                         'criar_rascunho': 'NO'})
     assert_contains(resp, 'Video com este Slug já existe.')
+
+
+def test_criar_rascunho_email_apos_edicao(video, client_usuario_log_com_perm_edic_video, subject):
+    """
+    Certifica de que a função de criar rascunho de email é chamada após a edição de um vídeo. Para
+    que seja chamada é necessário que o usuário tenha assinalado a opção de criar rascunho.
+    """
+    facade.criar_rascunho = Mock()
+    client_usuario_log_com_perm_edic_video.post(reverse('videos:edicao', args=(video.pk,)),
+                                                {'title': 'Teste enviar rascunho de email',
+                                                 'description': video.description,
+                                                 'subject': video.subject.pk,
+                                                 'platform_id': video.platform_id,
+                                                 'slug': video.slug,
+                                                 'criar_rascunho': 'YES'})
+    facade.criar_rascunho.assert_called_once()
+
+
+def test_nao_criar_rascunho_email_apos_edicao(video, client_usuario_log_com_perm_edic_video, subject):
+    """
+    Certifica de que a função de criar rascunho de email não é chamada após a edição de um vídeo
+    se o usuário não assinalou a opção de criação de rascunho.
+    """
+    facade.criar_rascunho = Mock()
+    client_usuario_log_com_perm_edic_video.post(reverse('videos:edicao', args=(video.pk,)),
+                                                {'title': 'Teste não enviar rascunho de email',
+                                                 'description': video.description,
+                                                 'subject': video.subject.pk,
+                                                 'platform_id': video.platform_id,
+                                                 'slug': video.slug,
+                                                 'criar_rascunho': 'NO'})
+    facade.criar_rascunho.assert_not_called()

@@ -1,8 +1,11 @@
+from unittest.mock import Mock
+
 import pytest
 from django.urls import reverse
 from model_bakery import baker
 
 from mcfields.django_assertions import assert_contains
+from mcfields.newsletter import facade
 from mcfields.newsletter.models import Newsletter
 
 
@@ -86,3 +89,43 @@ def test_tentativa_alteracao_slug_repetida(newsletter,
          'slug': 'slug-repetida',
          'criar_rascunho': 'NO'})
     assert_contains(resp, 'Newsletter com este Slug já existe.')
+
+
+def test_criar_rascunho_email_apos_alteracao(newsletter,
+                                             client_usuario_logado_com_perm_edicao, subject):
+    """
+    Certifica de que a função de criar rascunho de emails é chamada após a edição de uma
+    newsletter. Para que seja chamada o usuário também deve selecionar a opção de criar rascunho.
+    """
+    facade.criar_rascunho = Mock()
+    id_newsletter = newsletter.id
+    client_usuario_logado_com_perm_edicao.post(
+        reverse('newsletter:edicao', args=(id_newsletter,)),
+        {'title': newsletter.title,
+         'intro': newsletter.intro,
+         'content': 'Teste criação rascunho de email',
+         'subject': subject.pk,
+         'author': newsletter.author,
+         'slug': newsletter.slug,
+         'criar_rascunho': 'YES'})
+    facade.criar_rascunho.assert_called_once()
+
+
+def test_nao_criar_rascunho_email_apos_alteracao(newsletter,
+                                                 client_usuario_logado_com_perm_edicao, subject):
+    """
+    Certifica de que a função de criar rascunho de emails não é chamada após a edição de uma
+    newsletter se o usuário não assinala a opção de criar rascunho.
+    """
+    facade.criar_rascunho = Mock()
+    id_newsletter = newsletter.id
+    client_usuario_logado_com_perm_edicao.post(
+        reverse('newsletter:edicao', args=(id_newsletter,)),
+        {'title': newsletter.title,
+         'intro': newsletter.intro,
+         'content': 'Teste não criação rascunho de email',
+         'subject': subject.pk,
+         'author': newsletter.author,
+         'slug': newsletter.slug,
+         'criar_rascunho': 'NO'})
+    facade.criar_rascunho.assert_not_called()

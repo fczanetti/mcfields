@@ -6,7 +6,7 @@ from model_bakery import baker
 
 from mcfields import settings
 from mcfields.django_assertions import assert_contains, assert_true, assert_false
-from mcfields.newsletter import views
+from mcfields.newsletter import facade
 from mcfields.newsletter.models import Newsletter
 
 
@@ -41,7 +41,7 @@ def resp_post_news_success(client_usuario_logado_com_perm_postagem, db, subject)
     """
     Realiza a postagem de uma nova newsletter.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     response = client_usuario_logado_com_perm_postagem.post(reverse('newsletter:post'),
                                                             {'title': 'Titulo teste news',
                                                              'intro': 'Introdução da newsletter',
@@ -121,7 +121,7 @@ def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_post
     Certifica de que, ao postar uma newsletter, a função de
     criação de rascunhos no Sendgrid é acionada.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     client_usuario_logado_com_perm_postagem.post(reverse('newsletter:post'),
                                                  {'title': 'Titulo teste news 2',
                                                   'intro': 'Introdução da newsletter 2',
@@ -130,17 +130,17 @@ def test_criacao_rascunho_sendgrid_ao_postar(client_usuario_logado_com_perm_post
                                                   'author': 'Autor da newsletter 2',
                                                   'slug': 'titulo-teste-news-2',
                                                   'criar_rascunho': 'YES'})
-    views.criar_rascunho.assert_called_once_with(key=settings.SENDGRID_API_KEY,
-                                                 titulo='Titulo teste news 2',
-                                                 list_id=settings.SENDGRID_LIST_ID,
-                                                 design_id=settings.SENDGRID_NEWSLETTER_DESIGN_ID)
+    facade.criar_rascunho.assert_called_once_with(key=settings.SENDGRID_API_KEY,
+                                                  titulo='Titulo teste news 2',
+                                                  list_id=settings.SENDGRID_LIST_ID,
+                                                  design_id=settings.SENDGRID_NEWSLETTER_DESIGN_ID)
 
 
 def test_nao_criacao_rascunho_sendgrid(client_usuario_logado_com_perm_postagem, subject):
     """
     Certifica de que o rascunho não é criado se o usuário não escolher a opção de criar.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     client_usuario_logado_com_perm_postagem.post(reverse('newsletter:post'),
                                                  {'title': 'Titulo teste news 2',
                                                   'intro': 'Introdução da newsletter 2',
@@ -149,4 +149,4 @@ def test_nao_criacao_rascunho_sendgrid(client_usuario_logado_com_perm_postagem, 
                                                   'author': 'Autor da newsletter 2',
                                                   'slug': 'titulo-teste-news-2',
                                                   'criar_rascunho': 'NO'})
-    views.criar_rascunho.assert_not_called()
+    facade.criar_rascunho.assert_not_called()
