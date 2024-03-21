@@ -7,7 +7,7 @@ from model_bakery import baker
 from mcfields import settings
 from mcfields.base.models import Subject
 from mcfields.django_assertions import assert_contains, assert_false, assert_true
-from mcfields.videos import views
+from mcfields.videos import facade
 from mcfields.videos.models import Video
 
 
@@ -25,7 +25,7 @@ def resp_adicao_video(client_usuario_log_com_perm_adic_video, subject):
     """
     Adiciona um vídeo novo na plataforma.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     resp = client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                        {'title': 'Título do vídeo',
                                                         'description': 'Descrição do vídeo',
@@ -41,7 +41,7 @@ def resp_adicao_video_slug_repetida(client_usuario_log_com_perm_adic_video, subj
     """
     Adiciona um vídeo novo na plataforma.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     baker.make(Video, subject=subject, slug='teste-slug-repetida')
     resp = client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                        {'title': 'Título slug repetida',
@@ -94,7 +94,7 @@ def test_funcao_enviar_rascunho_email_chamada(client_usuario_log_com_perm_adic_v
     """
     Certifica de que a função de envio de rascunho de emails foi chamada ao salvar o vídeo.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                 {'title': 'Criar email',
                                                  'description': 'Descrição do vídeo',
@@ -102,17 +102,17 @@ def test_funcao_enviar_rascunho_email_chamada(client_usuario_log_com_perm_adic_v
                                                  'platform_id': 'abcde',
                                                  'slug': 'criar-email',
                                                  'criar_rascunho': 'YES'})
-    views.criar_rascunho.assert_called_once_with(key=settings.SENDGRID_API_KEY,
-                                                 titulo='Criar email',
-                                                 list_id=settings.SENDGRID_LIST_ID,
-                                                 design_id=settings.SENDGRID_VIDEO_DESIGN_ID)
+    facade.criar_rascunho.assert_called_once_with(key=settings.SENDGRID_API_KEY,
+                                                  titulo='Criar email',
+                                                  list_id=settings.SENDGRID_LIST_ID,
+                                                  design_id=settings.SENDGRID_VIDEO_DESIGN_ID)
 
 
 def test_funcao_enviar_rascunho_email_nao_chamada(client_usuario_log_com_perm_adic_video, subject):
     """
     Certifica de que a função de envio de rascunho de emails não foi chamada ao salvar o vídeo.
     """
-    views.criar_rascunho = Mock()
+    facade.criar_rascunho = Mock()
     client_usuario_log_com_perm_adic_video.post(reverse('videos:post'),
                                                 {'title': 'Não criar email',
                                                  'description': 'Descrição do vídeo',
@@ -120,4 +120,4 @@ def test_funcao_enviar_rascunho_email_nao_chamada(client_usuario_log_com_perm_ad
                                                  'platform_id': 'abcde',
                                                  'slug': 'nao-criar-email',
                                                  'criar_rascunho': 'NO'})
-    views.criar_rascunho.assert_not_called()
+    facade.criar_rascunho.assert_not_called()
