@@ -4,6 +4,7 @@ from mcfields.base import views
 app_name = 'base'
 urlpatterns = [
     path('', views.home, name='home'),
+    path('politica_privacidade', views.politica_privac, name='politica_privacidade'),
     path('sobre', views.sobre, name='sobre'),
     path('assuntos', views.subjects, name='subjects'),
     path('assuntos/adm/adicao', views.adic_subject, name='adic_subject'),
