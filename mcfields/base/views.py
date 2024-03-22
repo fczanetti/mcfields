@@ -107,3 +107,7 @@ def remoc_subject(request, id):
         sub.delete()
         return render(request, 'base/remocao_concluida.html', {'titulo': titulo, 'path': path})
     return render(request, 'base/conf_remoc_subject.html', {'subject': sub})
+
+
+def politica_privac(request):
+    return render(request, 'base/politica_privacidade.html')

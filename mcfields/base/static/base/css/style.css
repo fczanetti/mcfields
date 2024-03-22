@@ -338,7 +338,7 @@
 /* --------------- Configurações FOOTER --------------- */
 
 #footer {
-    padding: 3% 4% 4% 4%;
+    padding: 3% 4% 2% 4%;
     width: 100%;
     background-color: var(--light-green);
     position: relative;
@@ -370,6 +370,7 @@
 
 #hr-footer {
     color: var(--white-color);
+
 }
 
 #soc-net-links {
@@ -458,6 +459,16 @@
 #form-text {
     color: var(--white-color);
     margin: 1rem 0 0 0;
+}
+
+#priv-policy-div {
+    display: flex;
+    justify-content: center;
+}
+
+#priv-policy-link {
+    text-decoration: none;
+    color: var(--white-color);
 }
 
 @media screen and (max-width: 1100px) {
@@ -551,6 +562,9 @@
                 #main-content, #footer {
                     top: 75.2px;
                 }
+
+                #footer {
+                    padding: 3% 4% 8% 4%;
 
                 #top-image-div, #more-infos {
                     background-attachment: unset;

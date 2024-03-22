@@ -240,3 +240,11 @@ def test_link_indice_subj_indisp_usuario_log_com_perm_view(resp_home_usuario_log
     assert_contains(resp_home_usuario_log_com_perm_view_subjects, f'<li class="navbar-li"><a class="navbar-link" '
                                                                   f'href="{reverse("base:subjects")}">'
                                                                   f'Assuntos</a></li>')
+
+
+def test_link_politica_de_privacidade(resp_home):
+    """
+    Certifica de que o link para a página de política de privacidade está presente na home page.
+    """
+    assert_contains(resp_home, f'<a href="{reverse("base:politica_privacidade")}" '
+                               f'id="priv-policy-link">Política de Privacidade</a>')
