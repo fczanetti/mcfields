@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from mcfields import settings
-from mcfields.base.forms import EmailForm, SubjectForm
+from mcfields.base.forms import EmailForm, SubjectForm, ContactForm
 from mcfields.base import facade
 from mcfields.base.models import Subject
 from mcfields.servicos.models import Service
@@ -111,3 +111,8 @@ def remoc_subject(request, id):
 
 def politica_privac(request):
     return render(request, 'base/politica_privacidade.html')
+
+
+def contato(request):
+    form = ContactForm()
+    return render(request, 'base/contato.html', {'form': form})

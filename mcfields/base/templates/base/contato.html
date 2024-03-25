@@ -1,0 +1,51 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'base/css/formularios.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/contato.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Contato</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-cont-contact">
+        <form id="contact-form" action="{% url 'base:contato' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-field">
+                {{ form.name.label_tag }} {{ form.name }}
+                <p class="errornote">{{ form.name.errors }}</p>
+                {{ form.name.help_text }}
+            </div>
+            <div class="form-field">
+                {{ form.email.label_tag }} {{ form.email }}
+                <p class="errornote">{{ form.email.errors }}</p>
+                {{ form.email.help_text }}
+            </div>
+            <div class="form-field">
+                {{ form.subject.label_tag }} {{ form.subject }}
+                <p class="errornote">{{ form.subject.errors }}</p>
+                {{ form.subject.help_text }}
+            </div>
+            <div class="form-field">
+                {{ form.message.label_tag }} {{ form.message }}
+                <p class="errornote">{{ form.message.errors }}</p>
+                {{ form.message.help_text }}
+            </div>
+            <div id="priv-policy-div-form">
+                {{ form.agree_with_policy }}
+                <label id="priv-policy-label" for="{{ form.agree_with_policy.id_for_label }}">
+                    Estou ciente e de acordo com a <a href="{% url 'base:politica_privacidade' %}">Política de Privacidade</a>.
+                </label>
+                <p class="errornote">{{ form.agree_with_policy.errors }}</p>
+                {{ form.agree_with_policy.help_text }}
+            </div>
+            <div class="form-buttons">
+                <a class="canc-button" href="{% url 'base:home' %}">Cancelar</a>
+                <button class="submit-button" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+{% endblock maincontent_2 %}
