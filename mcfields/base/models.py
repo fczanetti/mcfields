@@ -142,3 +142,15 @@ class Subject(OrderedModel):
 
     def get_removal_url(self):
         return reverse('base:remoc_subject', args=(self.pk,))
+
+
+class Contact(OrderedModel):
+    name = models.CharField(max_length=32, verbose_name='Nome')
+    email = models.EmailField(max_length=48, verbose_name='Email')
+    subject = models.CharField(max_length=128, verbose_name='Assunto')
+    message = models.TextField(verbose_name='Mensagem')
+    agree_with_policy = models.BooleanField()
+    send_date = models.DateField(auto_now_add=True, verbose_name='Data de envio')
+
+    def __str__(self):
+        return self.subject

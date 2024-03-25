@@ -98,7 +98,8 @@ def test_nav_bar_home_page(resp_home):
                                f'href="{reverse("base:sobre")}">Sobre</a></li>')
     assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
                                f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a></li>')
-    assert_contains(resp_home, '<li class="navbar-li"><a class="navbar-link" href="">Artigos</a></li>')
+    assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
+                               f'href="{reverse("base:contato")}">Contato</a></li>')
     assert_contains(resp_home, f'<li class="navbar-li"><a class="navbar-link" '
                                f'href="{reverse("videos:indice")}">Vídeos</a></li>')
 

@@ -23,10 +23,9 @@
 .form-field select {
     border: 0.5px solid lightgrey;
     border-radius: 5px;
-    padding: 0 5px;
+    padding: 5px;
 }
 
-.form-field input,
 .form-field select {
     height: 2rem;
 }
