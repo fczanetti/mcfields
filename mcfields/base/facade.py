@@ -1,5 +1,8 @@
 from django.db.models import Prefetch
+from django.template.loader import render_to_string
 from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 from mcfields.base.models import Subject
 from mcfields.newsletter.models import Newsletter
 from mcfields.videos.models import Video
@@ -56,3 +59,26 @@ def remover_da_lista_desc(key, email, supp_group_id):
     """
     sg = SendGridAPIClient(key)
     return sg.client.asm.groups._(supp_group_id).suppressions._(email).delete()
+
+
+def enviar_mensagem(key, name, email, subject, message, from_email, to_email):
+    """
+    Envia um email através da API do SendGrid com as informações preenchidas no formulário de contato.
+    :param from_email: FROM_EMAIL;
+    :param to_email: TO_EMAIL;
+    :param key: SENDGRID_API_KEY;
+    :param name: Nome do usuário que preencheu o formulário;
+    :param email: Email que será usado para retornar a mensagem enviada;
+    :param subject: Assunto mencionado no formulário de contato, e também o assunto do email;
+    :param message: Mensagem inserida no formulário de contato;
+    :return: Envio do email.
+    """
+    sg = SendGridAPIClient(key)
+    context = {'name': name, 'email': email, 'message': message}
+    msg = Mail(
+        from_email=from_email,
+        to_emails=to_email,
+        subject=subject,
+        html_content=render_to_string('base/msg_form_contato.html', context=context)
+    )
+    return sg.send(msg)

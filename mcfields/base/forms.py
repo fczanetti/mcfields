@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from mcfields.base.models import Subject, Contact
 
 
@@ -17,3 +19,9 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = '__all__'
+
+    def clean_agree_with_policy(self):
+        data = self.cleaned_data['agree_with_policy']
+        if not data:
+            raise ValidationError('Você deve concordar com nossa política de privacidade.')
+        return data

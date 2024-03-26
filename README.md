@@ -108,6 +108,11 @@ utilizado, no momento da publicação de algum conteúdo, sempre que tiver a op�
 marcada como 'Não', caso contrário ocorrerá erro ao publicar por não ter as variáveis definidas. Caso alguma variável
 seja definida incorretamente ou não seja definida também poderão ocorrer erros ao publicar.
 
+Para o funcionamento do envio de mensagens via formulário de contato devemos cadastrar mais duas variáveis de ambiente:
+
+  - FROM_EMAIL = email cadastrado e verificado no SendGrid, que será utilizado para envio de emails;
+  - TO_EMAIL = email que será utilizado para receber e responder as mensagens enviadas.
+
 
 ## Modelos
 

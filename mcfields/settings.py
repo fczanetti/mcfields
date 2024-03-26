@@ -194,13 +194,17 @@ if SENTRY_DSN:
         profiles_sample_rate=1.0,
     )
 
-# Configurações de cadastro de emails do Sendgrid
+# Configurações de cadastro e envio de emails do Sendgrid (Newsletters)
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 SENDGRID_LIST_ID = config('SENDGRID_LIST_ID')
 SUPPRESSION_GROUP_ID = config('SUPPRESSION_GROUP_ID', cast=int)
 SENDER_ID = config('SENDER_ID', cast=int)
 SENDGRID_NEWSLETTER_DESIGN_ID = config('SENDGRID_NEWSLETTER_DESIGN_ID')
 SENDGRID_VIDEO_DESIGN_ID = config('SENDGRID_VIDEO_DESIGN_ID')
+
+# Configurações de envio de email via formulário de contato
+FROM_EMAIL = config('FROM_EMAIL')
+TO_EMAIL = config('TO_EMAIL')
 
 # Configurações django-ckeditor-5
 customColorPalette = [
