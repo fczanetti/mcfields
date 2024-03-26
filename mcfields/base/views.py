@@ -114,5 +114,27 @@ def politica_privac(request):
 
 
 def contato(request):
+    """
+    Acessa a página de contato. Após preenchido e submetido o formulário, uma mensagem de email será enviada
+    do remetente configurado como FROM_EMAIL nas váriáveis de ambiente para o destinatário TO_EMAIL, também
+    configurado nas variáveis de ambiente. A mensagem será enviada através da API do SendGrid via função
+    enviar_mensagem().
+    """
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            key = settings.SENDGRID_API_KEY
+            name = request.POST['name']
+            email = request.POST['email']
+            subject = request.POST['subject']
+            message = request.POST['message']
+            from_email = settings.FROM_EMAIL
+            to_email = settings.TO_EMAIL
+            form.save()
+            facade.enviar_mensagem(key=key, name=name, email=email, subject=subject, message=message,
+                                   from_email=from_email, to_email=to_email)
+            return render(request, 'base/envio_msg_concludo.html')
+        else:
+            return render(request, 'base/contato.html', {'form': form})
     form = ContactForm()
     return render(request, 'base/contato.html', {'form': form})

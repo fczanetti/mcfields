@@ -7,8 +7,14 @@
 
 #priv-policy-div-form {
     display: flex;
-    align-items: center;
     margin-bottom: 1rem;
+    flex-direction: column;
+    align-items: start;
+}
+
+#aux-div {
+    display: flex;
+    align-items: center;
 }
 
 #priv-policy-div-form input {

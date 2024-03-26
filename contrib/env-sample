@@ -20,3 +20,7 @@ SUPPRESSION_GROUP_ID = 123
 SENDER_ID = 123
 SENDGRID_NEWSLETTER_DESIGN_ID =
 SENDGRID_VIDEO_DESIGN_ID =
+
+# Configurações de envio de email (mensagens via formulário de contato)
+FROM_EMAIL =
+TO_EMAIL =

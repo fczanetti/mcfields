@@ -35,10 +35,12 @@
                 {{ form.message.help_text }}
             </div>
             <div id="priv-policy-div-form">
-                {{ form.agree_with_policy }}
-                <label id="priv-policy-label" for="{{ form.agree_with_policy.id_for_label }}">
-                    Estou ciente e de acordo com a <a href="{% url 'base:politica_privacidade' %}">Política de Privacidade</a>.
-                </label>
+                <div id="aux-div">
+                    {{ form.agree_with_policy }}
+                    <label id="priv-policy-label" for="{{ form.agree_with_policy.id_for_label }}">
+                        Estou ciente e de acordo com a <a href="{% url 'base:politica_privacidade' %}">Política de Privacidade</a>.
+                    </label>
+                </div>
                 <p class="errornote">{{ form.agree_with_policy.errors }}</p>
                 {{ form.agree_with_policy.help_text }}
             </div>
