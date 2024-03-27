@@ -20,7 +20,7 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from mcfields.base.models import User
+from mcfields.base.models import User, Contact
 from mcfields.base.models import Subject
 
 csrf_protect_m = method_decorator(csrf_protect)
@@ -222,3 +222,8 @@ class UserAdmin(admin.ModelAdmin):
 class SubjectAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug']
     prepopulated_fields = {'slug': ['title']}
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'subject', 'agree_with_policy', 'send_date']

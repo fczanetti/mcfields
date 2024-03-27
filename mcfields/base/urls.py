@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('politica_privacidade', views.politica_privac, name='politica_privacidade'),
     path('contato', views.contato, name='contato'),
+    path('indice_mensagens', views.indice_mensagens, name='indice_mensagens'),
     path('sobre', views.sobre, name='sobre'),
     path('assuntos', views.subjects, name='subjects'),
     path('assuntos/adm/adicao', views.adic_subject, name='adic_subject'),

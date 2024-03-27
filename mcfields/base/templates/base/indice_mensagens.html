@@ -1,0 +1,31 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'base/css/indice_mensagens.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Mensagens recebidas</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-cont-received-contacts">
+        <h1>Mensagens (Admin)</h1>
+        <ul>
+            {% for msg in mensagens %}
+                <li class="message">
+                    <a class="message-link" href="">
+                        <div>
+                            {{ msg.name }}
+                            <div class="subject">{{ msg.subject }}</div>
+                        </div>
+                        {{ msg.send_date|date:"d/m/Y" }}
+                    </a>
+                </li>
+            {% empty %}
+                <li>Não há mensagens recebidas.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock maincontent_2 %}

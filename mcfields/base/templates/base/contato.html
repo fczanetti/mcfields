@@ -12,6 +12,7 @@
 
 {% block maincontent_2 %}
     <div id="main-cont-contact">
+        <h1>Deixe-nos uma mensagem para entrarmos em contato</h1>
         <form id="contact-form" action="{% url 'base:contato' %}" method="POST">
             {% csrf_token %}
             <div class="form-field">

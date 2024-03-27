@@ -27,6 +27,13 @@ def test_titulo_pag_contato(resp_pag_contato):
     assert_contains(resp_pag_contato, "<title>McField's - Contato</title>")
 
 
+def test_titulo_formulario_contato(resp_pag_contato):
+    """
+    Certifica de que o título do formulário de contato está presente.
+    """
+    assert_contains(resp_pag_contato, "Deixe-nos uma mensagem para entrarmos em contato")
+
+
 def test_form_contato(resp_pag_contato):
     """
     Certifica de que os campos do formulário de contato estão presentes.

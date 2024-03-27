@@ -138,3 +138,10 @@ def contato(request):
             return render(request, 'base/contato.html', {'form': form})
     form = ContactForm()
     return render(request, 'base/contato.html', {'form': form})
+
+
+@login_required
+@permission_required('base.view_contact', login_url='/nao_permitido/')
+def indice_mensagens(request):
+    mensagens = facade.listar_mensagens_recebidas()
+    return render(request, 'base/indice_mensagens.html', {'mensagens': mensagens})
