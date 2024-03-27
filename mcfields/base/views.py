@@ -152,3 +152,15 @@ def indice_mensagens(request):
 def detalhe_mensagem(request, id):
     mensagem = Contact.objects.get(id=id)
     return render(request, 'base/detalhe_mensagem.html', {'mensagem': mensagem})
+
+
+@login_required
+@permission_required('base.delete_contact', login_url='/nao_permitido/')
+def remoc_contact(request, id):
+    mensagem = Contact.objects.get(id=id)
+    if request.method == 'POST':
+        nome = mensagem.name
+        path = request.path
+        mensagem.delete()
+        return render(request, 'base/remocao_concluida.html', {'nome': nome, 'path': path})
+    return render(request, 'base/remoc_contact.html', {'mensagem': mensagem})
