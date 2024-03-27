@@ -5,7 +5,7 @@ from django.urls import reverse
 from mcfields import settings
 from mcfields.base.forms import EmailForm, SubjectForm, ContactForm
 from mcfields.base import facade
-from mcfields.base.models import Subject
+from mcfields.base.models import Subject, Contact
 from mcfields.servicos.models import Service
 
 
@@ -145,3 +145,10 @@ def contato(request):
 def indice_mensagens(request):
     mensagens = facade.listar_mensagens_recebidas()
     return render(request, 'base/indice_mensagens.html', {'mensagens': mensagens})
+
+
+@login_required
+@permission_required('base.view_contact', login_url='/nao_permitido/')
+def detalhe_mensagem(request, id):
+    mensagem = Contact.objects.get(id=id)
+    return render(request, 'base/detalhe_mensagem.html', {'mensagem': mensagem})
