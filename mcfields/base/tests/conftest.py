@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from mcfields.base.models import Subject
+from mcfields.base.models import Subject, Contact
 
 
 @pytest.fixture
@@ -151,4 +151,25 @@ def client_usuario_logado_com_perm_view_e_remoc_subject(client, usuario_senha_pl
     Cria um cliente com usuário logado e com permissão de visualização e remoção de subjects (assuntos).
     """
     client.force_login(usuario_senha_plana_com_perm_view_e_remoc_subject)
+    return client
+
+
+@pytest.fixture
+def usuario_senha_plana_com_perm_view_contact(usuario_senha_plana):
+    """
+    Cria um usuário com permissão de visualização de mensagens (contacts) a partir do usuário_senha_plana.
+    """
+    content_type = ContentType.objects.get_for_model(Contact)
+    permission = Permission.objects.get(codename='view_contact', content_type=content_type)
+    usuario_senha_plana.user_permissions.add(permission)
+    usuario_com_perm_view_contact = usuario_senha_plana
+    return usuario_com_perm_view_contact
+
+
+@pytest.fixture
+def client_usuario_logado_com_perm_view_contact(client, usuario_senha_plana_com_perm_view_contact):
+    """
+    Cria um cliente com usuário logado e com permissão de visualização de mensagens (contacts).
+    """
+    client.force_login(usuario_senha_plana_com_perm_view_contact)
     return client

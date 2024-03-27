@@ -3,7 +3,7 @@ from django.template.loader import render_to_string
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-from mcfields.base.models import Subject
+from mcfields.base.models import Subject, Contact
 from mcfields.newsletter.models import Newsletter
 from mcfields.videos.models import Video
 
@@ -82,3 +82,12 @@ def enviar_mensagem(key, name, email, subject, message, from_email, to_email):
         html_content=render_to_string('base/msg_form_contato.html', context=context)
     )
     return sg.send(msg)
+
+
+def listar_mensagens_recebidas():
+    """
+    Retorna todas as mensagens recebidas através do formulário de contato. As mensagens devem vir ordenadas
+    inversamente pela data de envio.
+    :return:
+    """
+    return Contact.objects.order_by('-send_date').all()

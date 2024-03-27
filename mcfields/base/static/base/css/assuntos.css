@@ -40,6 +40,7 @@ h4 {
 
 .cover:hover {
     cursor: pointer;
+    background-color: rgba(33, 100, 44, 0.1);
 }
 
 .subject-div {
