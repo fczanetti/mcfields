@@ -8,6 +8,7 @@ urlpatterns = [
     path('contato', views.contato, name='contato'),
     path('indice_mensagens', views.indice_mensagens, name='indice_mensagens'),
     path('mensagem/<int:id>', views.detalhe_mensagem, name='detalhe_mensagem'),
+    path('mensagem/adm/remocao/<int:id>', views.remoc_contact, name='remoc_contact'),
     path('sobre', views.sobre, name='sobre'),
     path('assuntos', views.subjects, name='subjects'),
     path('assuntos/adm/adicao', views.adic_subject, name='adic_subject'),

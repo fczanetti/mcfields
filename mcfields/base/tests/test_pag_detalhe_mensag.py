@@ -1,18 +1,7 @@
 import pytest
 from django.urls import reverse
-from model_bakery import baker
 
-from mcfields.base.models import Contact
 from mcfields.django_assertions import assert_contains
-
-
-@pytest.fixture
-def mensagem(db):
-    """
-    Cria e retorna uma mensagem.
-    """
-    msg = baker.make(Contact)
-    return msg
 
 
 @pytest.fixture
