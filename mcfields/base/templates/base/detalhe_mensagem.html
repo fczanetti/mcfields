@@ -12,6 +12,9 @@
 
 {% block maincontent_2 %}
     <div id="main-content-contact-det">
+        {% if perms.base.delete_contact %}
+            <a class="removal-link" href="{{ mensagem.get_removal_url }}">Remover</a>
+        {% endif %}
         <h1 class="title">Mensagem de {{ mensagem.name }}</h1>
         <a id="reply-email" href="mailto:{{ mensagem.email }}?subject={{ mensagem.subject }}">{{ mensagem.email }}</a>
         <h5 id="message_subject">{{ mensagem.subject }}</h5>
