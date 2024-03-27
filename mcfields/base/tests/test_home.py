@@ -71,6 +71,16 @@ def resp_home_usuario_log_com_perm_view_subjects(client_usuario_logado_com_perm_
     return resp
 
 
+@pytest.fixture
+def resp_home_usuario_log_com_perm_view_mensagens(client_usuario_logado_com_perm_view_contact):
+    """
+    Realiza uma requisição na home page com usuário logado com permissão
+    de visualização de mensagens (contacts).
+    """
+    resp = client_usuario_logado_com_perm_view_contact.get(reverse('base:home'))
+    return resp
+
+
 def test_status_code_home(resp_home):
     """
     Certifica de que a home page foi carregada com sucesso.
@@ -249,3 +259,27 @@ def test_link_politica_de_privacidade(resp_home):
     """
     assert_contains(resp_home, f'<a href="{reverse("base:politica_privacidade")}" '
                                f'id="priv-policy-link">Política de Privacidade</a>')
+
+
+def test_link_mensagens_nao_disp_usuario_nao_log(resp_home):
+    """
+    Certifica de que o link de índice de mensagens (contacts) não está disponível na navbar
+    para o usuário não logado.
+    """
+    assert_not_contains(resp_home, 'Mensagens')
+
+
+def test_link_mensagens_nao_disp_usuario_log_sem_perm_view(resp_home):
+    """
+    Certifica de que o link de índice de mensagens (contacts) não está disponível na navbar
+    para o usuário logado sem permissão de visualização de mensagens.
+    """
+    assert_not_contains(resp_home, 'Mensagens')
+
+
+def test_link_mensagens_disp_usuario_log_com_perm_view(resp_home_usuario_log_com_perm_view_mensagens):
+    """
+    Certifica de que o link de índice de mensagens (contacts) está disponível na navbar
+    para o usuário logado com permissão de visualização de mensagens.
+    """
+    assert_contains(resp_home_usuario_log_com_perm_view_mensagens, 'Mensagens')
