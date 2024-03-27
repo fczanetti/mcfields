@@ -116,7 +116,7 @@ Para o funcionamento do envio de mensagens via formulário de contato devemos ca
 
 ## Modelos
 
-Este projeto possui, atualmente, 5 modelos:
+Este projeto possui, atualmente, 6 modelos:
 - User: usuário padrão do Django com pequenas customizações. Para a criação de novos usuários devemos informar os campos
 email, primeiro nome (first_name) e password. O campo email é único, portanto não pode se repetir e precisa ser informado
 no momento do login;
@@ -148,6 +148,14 @@ também, a possibilidade de envio de emails a cada novo vídeo postado, bastando
 no momento da postagem. O design utilizado para a montagem do email será o mesmo que criamos no momento da definição
 da variável de ambiente SENDGRID_VIDEO_DESIGN_ID.
 
+- Contact: este modelo serve para salvar mensagens que são enviadas ao consultor através do formulário de contato. Sempre
+que um contato é feito uma mensagem é enviada, e são salvos o nome, email, assunto, conteúdo e data de envio desta.
+As mensagens recebidas são listadas na página de índice de mensagens, que pode ser acessada através do link 'Mensagens'
+que se encontra na navbar, porém disponível apenas para quem tem permissão de visualização. Além de salvar as mensagens
+no banco de dados, estas são também enviadas por email, por onde o consultor poderá dar continuidade no assunto com o
+usuário que iniciou a conversa através do formulário de contato. Após finalizado o contato, se desejar, o consultor poderá
+remover a mensagem do banco de dados através do botão de remoção que se encontra na página de detalhes da mensagem.
+
 
 ## Permissões
 
@@ -167,4 +175,4 @@ estará na navbar do website, e será visível apenas para quem tem permissão d
 Recomenda-se, sempre que for concedida permissão de adição, remoção ou edição de Subject para algum usuário, que seja
 também concedida a permissão de visualização, já que os links de cancelamento de edição ou adição de Subject direcionarão
 o usuário para a página de visualização/índice de Subject(Assuntos). Neste caso, se a permissão de visualização não for
-concedida, o usuário será direcionado para a página de acesso negado.
+concedida, o usuário será direcionado para a página de acesso negado. Serve também para o modelo Contact.

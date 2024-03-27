@@ -205,3 +205,25 @@ def client_usuario_logado_com_perm_remoc_contact(client, usuario_senha_plana_com
     """
     client.force_login(usuario_senha_plana_com_perm_remoc_contact)
     return client
+
+
+@pytest.fixture
+def usuario_senha_plana_com_perm_view_e_remoc_contact(usuario_senha_plana_com_perm_remoc_contact):
+    """
+    Cria um usuário com permissão de visualização e remoção de
+    mensagens (contacts) a partir do usuário com permissão de remoção.
+    """
+    content_type = ContentType.objects.get_for_model(Contact)
+    permission = Permission.objects.get(codename='view_contact', content_type=content_type)
+    usuario_senha_plana_com_perm_remoc_contact.user_permissions.add(permission)
+    usuario_com_perm_view_e_remocao_contact = usuario_senha_plana_com_perm_remoc_contact
+    return usuario_com_perm_view_e_remocao_contact
+
+
+@pytest.fixture
+def client_usuario_logado_com_perm_view_e_remoc_contact(client, usuario_senha_plana_com_perm_view_e_remoc_contact):
+    """
+    Cria um cliente com usuário logado e com permissão de visualização e remoção de mensagens (contacts).
+    """
+    client.force_login(usuario_senha_plana_com_perm_view_e_remoc_contact)
+    return client

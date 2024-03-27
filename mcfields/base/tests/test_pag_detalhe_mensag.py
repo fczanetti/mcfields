@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 
-from mcfields.django_assertions import assert_contains
+from mcfields.django_assertions import assert_contains, assert_not_contains
 
 
 @pytest.fixture
@@ -31,6 +31,18 @@ def resp_pag_det_mensag_usuario_log_com_perm_view(client_usuario_logado_com_perm
     com usuário logado com permissão de visualização de mensagens (contacts).
     """
     resp = client_usuario_logado_com_perm_view_contact.get(reverse('base:detalhe_mensagem',
+                                                                   args=(mensagem.pk,)))
+    return resp
+
+
+@pytest.fixture
+def resp_pag_det_mensag_usuario_log_com_perm_view_e_remoc(
+        client_usuario_logado_com_perm_view_e_remoc_contact, mensagem):
+    """
+    Realiza uma requisição na página de detalhes de uma mensagem recebida
+    com usuário logado com permissão de visualização e remoção de mensagens (contacts).
+    """
+    resp = client_usuario_logado_com_perm_view_e_remoc_contact.get(reverse('base:detalhe_mensagem',
                                                                    args=(mensagem.pk,)))
     return resp
 
@@ -79,3 +91,23 @@ def test_infos_mensagem_pag_detalhes(resp_pag_det_mensag_usuario_log_com_perm_vi
     assert_contains(resp_pag_det_mensag_usuario_log_com_perm_view, f'<h5 id="message_subject">{mensagem.subject}</h5>')
     assert_contains(resp_pag_det_mensag_usuario_log_com_perm_view, f'<div id="message_content">'
                                                                    f'<p>{mensagem.message}</p></div>')
+
+
+def test_botao_remoc_mensag_indisp_usuario_sem_perm(resp_pag_det_mensag_usuario_log_com_perm_view, mensagem):
+    """
+    Certifica de que o botão de remoção de mensagem não está presente para
+    o usuário que não tem permissão de remoção.
+    """
+    assert_not_contains(resp_pag_det_mensag_usuario_log_com_perm_view, f'<a class="removal-link" '
+                                                                       f'href="{mensagem.get_removal_url()}">'
+                                                                       f'Remover</a>')
+
+
+def test_botao_remoc_mensag_disp_usuario_com_perm(resp_pag_det_mensag_usuario_log_com_perm_view_e_remoc, mensagem):
+    """
+    Certifica de que o botão de remoção de mensagem está presente para
+    o usuário que tem permissão de remoção.
+    """
+    assert_contains(resp_pag_det_mensag_usuario_log_com_perm_view_e_remoc, f'<a class="removal-link" '
+                                                                           f'href="{mensagem.get_removal_url()}">'
+                                                                           f'Remover</a>')
