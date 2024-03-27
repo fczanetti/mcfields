@@ -154,3 +154,6 @@ class Contact(OrderedModel):
 
     def __str__(self):
         return self.subject
+
+    def get_absolute_url(self):
+        return reverse('base:detalhe_mensagem', args=(self.pk,))

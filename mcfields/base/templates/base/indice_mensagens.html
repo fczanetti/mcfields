@@ -15,7 +15,7 @@
         <ul>
             {% for msg in mensagens %}
                 <li class="message">
-                    <a class="message-link" href="">
+                    <a class="message-link" href="{{ msg.get_absolute_url }}">
                         <div>
                             {{ msg.name }}
                             <div class="subject">{{ msg.subject }}</div>

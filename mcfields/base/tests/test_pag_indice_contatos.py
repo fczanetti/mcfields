@@ -88,3 +88,4 @@ def test_dados_mensagens_pag_indice(resp_indice_mensag_usuario_log_com_perm_view
         assert_contains(resp_indice_mensag_usuario_log_com_perm_view, msg.name)
         assert_contains(resp_indice_mensag_usuario_log_com_perm_view, msg.subject)
         assert_contains(resp_indice_mensag_usuario_log_com_perm_view, send_date)
+        assert_contains(resp_indice_mensag_usuario_log_com_perm_view, msg.get_absolute_url())

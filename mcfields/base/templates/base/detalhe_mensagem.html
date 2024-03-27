@@ -1,0 +1,20 @@
+{% extends 'base/base_2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'base/css/pag_detalhes.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/detalhe_mensagem.css' %}">
+{% endblock css %}
+
+{% block title %}
+    <title>McField's - Mensagem recebida</title>
+{% endblock title %}
+
+{% block maincontent_2 %}
+    <div id="main-content-contact-det">
+        <h1 class="title">Mensagem de {{ mensagem.name }}</h1>
+        <a id="reply-email" href="mailto:{{ mensagem.email }}?subject={{ mensagem.subject }}">{{ mensagem.email }}</a>
+        <h5 id="message_subject">{{ mensagem.subject }}</h5>
+        <div id="message_content">{{ mensagem.message|linebreaks }}</div>
+    </div>
+{% endblock maincontent_2 %}
