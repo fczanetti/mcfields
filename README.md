@@ -99,7 +99,7 @@ publicações de vídeos;
   - SENDGRID_API_KEY = chave-api-criada-na-plataforma
   - SENDGRID_LIST_ID = id-da-lista-de-email-criada
   - SUPPRESSION_GROUP_ID = id-do-grupo-de-subscricao-criado (Unsubscribe Groups)
-  - SENDER_ID = id-do-email-emissor-verificado
+  - SENDER_ID = id-do-email-emissor-verificado (Email principal)
   - SENDGRID_NEWSLETTER_DESIGN_ID = id-do-design-de-email-criado-para-newsletters
   - SENDGRID_VIDEO_DESIGN_ID = id-do-design-de-email-criado-para-videos
 
@@ -110,8 +110,12 @@ seja definida incorretamente ou não seja definida também poderão ocorrer erro
 
 Para o funcionamento do envio de mensagens via formulário de contato devemos cadastrar mais duas variáveis de ambiente:
 
-  - FROM_EMAIL = email cadastrado e verificado no SendGrid, que será utilizado para envio de emails;
-  - TO_EMAIL = email que será utilizado para receber e responder as mensagens enviadas.
+  - FROM_EMAIL = email cadastrado e verificado no SendGrid, que será utilizado para envio de emails (Email secundário)
+  - TO_EMAIL = email que será utilizado para receber e responder as mensagens enviadas
+
+Note que serão necessários dois emails para que a integração com o SendGrid funcione por completo. Um será o email principal,
+que será utilizado para envio de newsletters e aviso de novas publicações, e o outro será utilizado para envio de mensagens
+para o email principal através do formulário de contato.
 
 
 ## Modelos

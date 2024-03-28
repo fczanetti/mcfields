@@ -74,7 +74,7 @@ def enviar_mensagem(key, name, email, subject, message, from_email, to_email):
     :return: Envio do email.
     """
     sg = SendGridAPIClient(key)
-    context = {'name': name, 'email': email, 'message': message}
+    context = {'name': name, 'email': email, 'message': message, 'subject': subject}
     msg = Mail(
         from_email=from_email,
         to_emails=to_email,
