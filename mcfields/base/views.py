@@ -39,6 +39,11 @@ def inscricao_email(request):
             else:
                 facade.cadastrar_email(key=api_key, user_email=email, list_id=sg_list_id)
             return render(request, 'base/inscricao_concluida.html', {'email': email})
+        else:
+            email_errors = emailform.errors.get('email')
+            policy_agreement_errors = emailform.errors.get('policy_agreement')
+            context = {'email_errors': email_errors, 'policy_agreement_errors': policy_agreement_errors}
+            return render(request, 'base/inscricao_concluida.html', context=context)
     return redirect(reverse('base:home'))
 
 

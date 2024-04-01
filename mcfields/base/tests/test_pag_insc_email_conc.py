@@ -14,7 +14,7 @@ def resp_inscricao_email_concluida(client):
     response.body = b''
     facade.checar_email_descadastrado = Mock(return_value=response)
     facade.cadastrar_email = Mock()
-    resp = client.post(reverse('base:inscricao_email'), {'email': 'teste@teste.com'})
+    resp = client.post(reverse('base:inscricao_email'), {'email': 'teste@teste.com', 'policy_agreement': True})
     return resp
 
 

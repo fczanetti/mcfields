@@ -6,6 +6,6 @@
     --fifth-color: ;
 }
 
-#main-msg, #main-msg-2 {
+.main-msg, .main-msg-2 {
     margin-bottom: 10%;
 }

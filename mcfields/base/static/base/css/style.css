@@ -361,7 +361,6 @@
     display: inline-flex;
     flex-direction: column;
     margin-right: 3rem;
-    justify-content: space-between;
 }
 
 #logo-footer {
@@ -437,6 +436,20 @@
     border-radius: 5px;
     min-width: 68%;
     padding: 0 5px;
+}
+
+#agreement {
+    display: flex;
+    margin: 0.5rem 0;
+    color: var(--white-color);
+}
+
+#agreement a {
+    color: var(--white-color);
+}
+
+#agreement label {
+    margin-left: 0.5rem;
 }
 
 #input-button {
