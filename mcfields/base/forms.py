@@ -6,7 +6,11 @@ from mcfields.base.models import Subject, Contact
 
 class EmailForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=128,
-                             widget=forms.EmailInput(attrs={'placeholder': 'example@gmail.com'}))
+                             widget=forms.EmailInput(attrs={'placeholder': 'example@gmail.com'}),
+                             error_messages={'required': 'É necessário informar um email para cadastro.',
+                                             'invalid': 'Informe um endereço de email válido.'})
+    policy_agreement = forms.BooleanField(error_messages={
+        'required': 'É necessário concordar com nossa política de privacidade.'})
 
 
 class SubjectForm(forms.ModelForm):

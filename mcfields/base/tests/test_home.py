@@ -168,10 +168,15 @@ def test_footer_home_page(resp_home):
                                f'href="{reverse("newsletter:indice_newsletters")}">Newsletter</a>')
     assert_contains(resp_home, f'<a class="link-div-footer" '
                                f'href="{reverse("videos:indice")}">Vídeos</a>')
+    assert_contains(resp_home, f'<a class="link-div-footer" '
+                               f'href="{reverse("base:contato")}">Contato</a>')
     assert_contains(resp_home, '<label id="label-email-form" for="id_email">Fique por dentro:</label>')
     assert_contains(resp_home, '<input type="email" name="email" placeholder="example@gmail.com" '
                                'maxlength="128" required id="id_email">')
     assert_contains(resp_home, '<input id="input-button" type="submit" value="Inscrever-se">')
+    assert_contains(resp_home, f'<label for="id_policy_agreement">Estou de acordo com a <a '
+                               f'href="{reverse("base:politica_privacidade")}">Política de Privacidade</a></label>')
+    assert_contains(resp_home, '<input type="checkbox" name="policy_agreement" required id="id_policy_agreement">')
 
 
 def test_scripts_home_page(resp_home):

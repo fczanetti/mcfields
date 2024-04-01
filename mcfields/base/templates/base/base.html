@@ -79,6 +79,7 @@
                             <a class="link-div-footer" href="{% url 'base:sobre' %}">Sobre</a>
                             <a class="link-div-footer" href="{% url 'newsletter:indice_newsletters' %}">Newsletter</a>
                             <a class="link-div-footer" href="{% url 'videos:indice' %}">Vídeos</a>
+                            <a class="link-div-footer" href="{% url 'base:contato' %}">Contato</a>
                         </nav>
                     </div>
                     <div id="contact-div">
@@ -95,6 +96,11 @@
                         <label id="label-email-form" for="{{ EMAILFORM.email.id_for_label }}">Fique por dentro:</label>
                         <div id="input-email-form">
                             {{ EMAILFORM.email }}
+                            <div id="agreement">
+                                {{ EMAILFORM.policy_agreement }}
+                                <label for="id_policy_agreement">Estou de acordo com a <a href="{% url 'base:politica_privacidade' %}">Política de Privacidade</a></label>
+                            </div>
+                            {{ EMAILFORM.policy_agreement.errors }}
                             <input id="input-button" type="submit" value="Inscrever-se">
                         </div>
                     </form>

@@ -11,7 +11,17 @@
 
 {% block maincontent_2 %}
     <div id="main-content-success-subscription">
-        <h4 id="main-msg">O email <strong>{{ email }}</strong> foi cadastrado com sucesso. Muito obrigado!</h4>
-        <h5 id="main-msg-2">Fique atento à sua caixa de entrada de emails, você será notificado sempre que postarmos algum conteúdo.</h5>
+        {% if email_errors or policy_agreement_errors %}
+            <h4 class="main-msg">Seu email não pôde ser cadastrado pelos seguintes motivos:</h4>
+            {% if policy_agreement_errors %}
+                <h5>{{ policy_agreement_errors }}</h5>
+            {% endif %}
+            {% if email_errors %}
+                <h5>{{ email_errors }}</h5>
+            {% endif %}
+        {% else %}
+            <h4 class="main-msg">O email <strong>{{ email }}</strong> foi cadastrado com sucesso. Muito obrigado!</h4>
+            <h5 class="main-msg-2">Fique atento à sua caixa de entrada de emails, você será notificado sempre que postarmos algum conteúdo.</h5>
+        {% endif %}
     </div>
 {% endblock maincontent_2 %}
