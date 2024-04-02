@@ -11,12 +11,12 @@ Este projeto foi desenvolvido no sistema operacional Linux, através do Windows 
 
 # Conteúdo
 
-### [Instalação](https://github.com/fczanetti/mcfields?tab=readme-ov-file#instala%C3%A7%C3%A3o)
-### [Monitoramento de erros com Sentry SDK](https://github.com/fczanetti/mcfields?tab=readme-ov-file#monitoramento-de-erros-com-sentry-sdk)
-### [Configurações arquivos estáticos](https://github.com/fczanetti/mcfields?tab=readme-ov-file#configura%C3%A7%C3%B5es-arquivos-est%C3%A1ticos)
-### [Integração com SendGrid](https://github.com/fczanetti/mcfields?tab=readme-ov-file#integra%C3%A7%C3%A3o-com-sendgrid)
-### [Modelos](https://github.com/fczanetti/mcfields?tab=readme-ov-file#modelos)
-### [Permissões](https://github.com/fczanetti/mcfields?tab=readme-ov-file#permiss%C3%B5es)
+- [Instalação](https://github.com/fczanetti/mcfields?tab=readme-ov-file#instala%C3%A7%C3%A3o)
+- [Monitoramento de erros com Sentry SDK](https://github.com/fczanetti/mcfields?tab=readme-ov-file#monitoramento-de-erros-com-sentry-sdk)
+- [Configurações arquivos estáticos](https://github.com/fczanetti/mcfields?tab=readme-ov-file#configura%C3%A7%C3%B5es-arquivos-est%C3%A1ticos)
+- [Integração com SendGrid](https://github.com/fczanetti/mcfields?tab=readme-ov-file#integra%C3%A7%C3%A3o-com-sendgrid)
+- [Modelos](https://github.com/fczanetti/mcfields?tab=readme-ov-file#modelos)
+- [Permissões](https://github.com/fczanetti/mcfields?tab=readme-ov-file#permiss%C3%B5es)
 
 
 ## Instalação
