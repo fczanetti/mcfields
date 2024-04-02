@@ -3,10 +3,20 @@
 ## Projeto de website para publicação de conteúdos relacionados à Agronomia
 
 [![Static Badge](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
-[![Static Badge](https://img.shields.io/badge/Django-5.0.2-green)](https://www.djangoproject.com/)
+[![Static Badge](https://img.shields.io/badge/Django-5.0.3-green)](https://www.djangoproject.com/)
 [![codecov](https://codecov.io/gh/fczanetti/mcfields/graph/badge.svg?token=XiQdJaQNse)](https://codecov.io/gh/fczanetti/mcfields)
 
 Este projeto foi desenvolvido no sistema operacional Linux, através do Windows Subsystem for Linux (WSL).
+
+
+# Conteúdo
+
+### [Instalação](https://github.com/fczanetti/mcfields?tab=readme-ov-file#instala%C3%A7%C3%A3o)
+### [Monitoramento de erros com Sentry SDK](https://github.com/fczanetti/mcfields?tab=readme-ov-file#monitoramento-de-erros-com-sentry-sdk)
+### [Configurações arquivos estáticos](https://github.com/fczanetti/mcfields?tab=readme-ov-file#configura%C3%A7%C3%B5es-arquivos-est%C3%A1ticos)
+### [Integração com SendGrid](https://github.com/fczanetti/mcfields?tab=readme-ov-file#integra%C3%A7%C3%A3o-com-sendgrid)
+### [Modelos](https://github.com/fczanetti/mcfields?tab=readme-ov-file#modelos)
+### [Permissões](https://github.com/fczanetti/mcfields?tab=readme-ov-file#permiss%C3%B5es)
 
 
 ## Instalação
