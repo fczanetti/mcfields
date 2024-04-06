@@ -1,4 +1,13 @@
+# Esta variável de ambiente DATABASE_URL deve ser mantida neste arquivo env-sample, pois é utilizada no momento da
+# execução do workflows.yml no GitHub Actions. Ao criar um arquivo .env para rodar o projeto localmente uma nova
+# variável DATABASE_URL deve ser definida, e esta nova variável será responsável por conectar o banco de dados Postgres
+# (criado em um conteiner Docker) com a aplicação.
+
 DATABASE_URL = postgres://postuser:postpass@localhost:5432/postgres
+POSTGRES_PASSWORD =
+POSTGRES_USER =
+POSTGRES_DB =
+
 ALLOWED_HOSTS =
 DEBUG =
 SECRET_KEY = secret

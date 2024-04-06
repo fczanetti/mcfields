@@ -6,9 +6,32 @@ services:
     restart: no
     volumes:
       - ./.pgdata:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: mcfieldsdbpass
-      POSTGRES_USER: mcfieldsdbuser
-      POSTGRES_DB: mcfields_db
+    env_file: .env
     ports:
       - 5436:5432
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -d $POSTGRES_DB -U $POSTGRES_USER"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      args:
+        DEV_LIBS: -d
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://mcfieldsdbuser:mcfieldsdbpass@database:5432/mcfields_db
+    command: ./start.sh
+    depends_on:
+      database:
+        condition: service_healthy
