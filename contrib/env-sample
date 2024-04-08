@@ -3,33 +3,32 @@
 # variável DATABASE_URL deve ser definida, e esta nova variável será responsável por conectar o banco de dados Postgres
 # (criado em um conteiner Docker) com a aplicação.
 
-DATABASE_URL = postgres://postuser:postpass@localhost:5432/postgres
-POSTGRES_PASSWORD =
-POSTGRES_USER =
-POSTGRES_DB =
+DATABASE_URL=postgres://postuser:postpass@localhost:5432/postgres
+POSTGRES_PASSWORD=
+POSTGRES_USER=
+POSTGRES_DB=
 
-ALLOWED_HOSTS =
-DEBUG =
-SECRET_KEY = secret
-INTERNAL_IPS = 127.0.0.1
-CSRF_TRUSTED_ORIGINS =
-SENTRY_DSN =
+ALLOWED_HOSTS=
+DEBUG=
+SECRET_KEY=secret
+CSRF_TRUSTED_ORIGINS=
+SENTRY_DSN=
 
 # Configurações do AWS
-AWS_ACCESS_KEY_ID =
-AWS_SECRET_ACCESS_KEY =
-AWS_STORAGE_BUCKET_NAME =
-AWS_STORAGE_BUCKET_NAME_MEDIA =
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_STORAGE_BUCKET_NAME=
+AWS_STORAGE_BUCKET_NAME_MEDIA=
 
 # Configurações SENDGRID. Manter algum valor numérico nas variáveis SUPPRESSION_GROUP_ID e SENDER_ID,
 # caso contrário testes automáticos no GitHub Actions podem falhar.
-SENDGRID_API_KEY =
-SENDGRID_LIST_ID =
-SUPPRESSION_GROUP_ID = 123
-SENDER_ID = 123
-SENDGRID_NEWSLETTER_DESIGN_ID =
-SENDGRID_VIDEO_DESIGN_ID =
+SENDGRID_API_KEY=
+SENDGRID_LIST_ID=
+SUPPRESSION_GROUP_ID=123
+SENDER_ID=123
+SENDGRID_NEWSLETTER_DESIGN_ID=
+SENDGRID_VIDEO_DESIGN_ID=
 
 # Configurações de envio de email (mensagens via formulário de contato)
-FROM_EMAIL =
-TO_EMAIL =
+FROM_EMAIL=
+TO_EMAIL=

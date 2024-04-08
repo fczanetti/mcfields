@@ -21,35 +21,60 @@ Este projeto foi desenvolvido no sistema operacional Linux, através do Windows 
 
 ## Instalação
 
-O gerenciamento das dependências foi feito através do PIPENV. Para instalar as dependências necessárias devem ser
-utilizados os seguintes comandos no terminal:
+Este projeto foi configurado para que possa ser instalado de duas maneiras, com o aplicativo (backend e frontend) em
+um conteiner Docker e o banco de dados PostgreSQL em outro, ou então com apenas o banco de dados em conteiner.
 
-Criação do ambiente virtual e instalação das dependências listadas no Pipfile:
-  - pipenv install
+### Para instalar com o aplicativo e banco de dados em conteiners deve-se seguir os seguintes passos:
 
-Caso o ambiente virtual não seja ativado automaticamente após o comando 'pipenv install', devemos ativá-lo através do
-seguinte comando:
-  - pipenv shell
+  - clonar o projeto;
+  - criar um arquivo chamado .env na raiz do projeto;
+  - copiar todo o conteúdo do arquivo env-sample, que se encontra na pasta 'contrib', para dentro do arquivo .env;
+  - definir um valor para a variável POSTGRES_DB (nome do banco de dados);
+  - definir um valor para a variável POSTGRES_USER (algum nome de usuário para conexão com o banco de dados);
+  - definir um valor para a variável POSTGRES_PASSWORD (senha de conexão com o banco de dados);
+  - ajustar valor da variável DATABASE_URL para o seguinte formato: postgres://POSTGRES_USER:POSTGRES_PASSWORD@localhost:5436/POSTGRES_DB.
+  Note que os valores definidos para as variáveis de ambiente do banco de dados devem ser substituídos na variável
+  DATABASE_URL;
+  - no arquivo docker-compose.yml, que se encontra na raiz do projeto, ajustar o valor da variável de ambiente
+  DATABASE_URL da seguinte forma: postgres://POSTGRES_USER:POSTGRES_PASSWORD@database:5432/POSTGRES_DB;
+  - deve ser mantido um valor numérico inteiro para as variáveis SUPPRESSION_GROUP_ID e SENDER_ID, mesmo que as
+  configurações de envio de email com SendGrid não sejam utilizadas;
+  - deve ser mantido algum valor qualquer na variável de ambiente SECRET_KEY;
+  - ajustar valor da variável DEBUG para True;
+  - executar comando 'docker compose up -d';
 
-O banco de dados utilizado localmente foi uma imagem do PostgreSQL configurado através do arquivo docker-compose.yml
-que se encontra na pasta do projeto. Para utilizá-lo será necessário ter o Docker instalado. Após instalado, deve ser
-executado o seguinte comando no terminal para que o banco de dados seja criado e entre em execução:
-  - docker compose up -d
+Após executadas as etapas listadas acima, o projeto deve estar acessível no endereço https://127.0.0.1:8000.
 
-Para que o Django reconheça e se conecte com o banco de dados criado devemos criar um arquivo chamado .env e inserir
-a variável de ambiente DATABASE_URL no formato mostrado a seguir. Note que os valores POSTGRES_USER, POSTGRES_PASSWORD,
-PORT e POSTGRES_DB devem ser substituídos com os valores definidos no arquivo docker-compose.yml para que a conexão com
-o banco aconteça com sucesso.
-  - DATABASE_URL = postgres://POSTGRES_USER:POSTGRES_PASSWORD@localhost:PORT/POSTGRES_DB
+
+### Para instalar com apenas o banco de dados em conteiner Docker:
+
+O gerenciamento das dependências foi feito através do PIPENV.
+
+  - clonar o projeto;
+  - executar o comando 'pipenv install -d' (criação de ambiente virtual e instalação das dependências listadas no
+  Pipfile);
+  - executar o comando 'pipenv shell' para ativar o ambiente virtual;
+  - criar um arquivo chamado .env na raiz do projeto;
+  - copiar todo o conteúdo do arquivo env-sample, que se encontra na pasta 'contrib', para dentro do arquivo .env;
+  - definir um valor para a variável POSTGRES_DB (nome do banco de dados);
+  - definir um valor para a variável POSTGRES_USER (algum nome de usuário para conexão com o banco de dados);
+  - definir um valor para a variável POSTGRES_PASSWORD (senha de conexão com o banco de dados);
+  - ajustar valor da variável DATABASE_URL para o seguinte formato: postgres://POSTGRES_USER:POSTGRES_PASSWORD@localhost:5436/POSTGRES_DB.
+  Note que os valores definidos para as variáveis de ambiente do banco de dados devem ser substituídos na variável
+  DATABASE_URL;
+  - ajustar valor da variável DEBUG para True;
+  - deve ser mantido algum valor qualquer na variável de ambiente SECRET_KEY;
+  - deve ser mantido um valor numérico inteiro para as variáveis SUPPRESSION_GROUP_ID e SENDER_ID, mesmo que as
+  configurações de envio de email com SendGrid não sejam utilizadas;
+  - rodar o comando 'docker compose up -d database' para que seja criado e executado o conteiner do banco de dados;
+  - rodar migrações através do comando 'python manage.py migrate';
+  - rodar o comando 'python manage.py runserver' para iniciar o aplicativo.
+
+Após executadas as etapas listadas teremos um conteiner com uma imagem do PostgreSQL em execução, e poderemos acessar
+o aplicativo no endereço https://127.0.0.1:8000.
 
 Atentar que no arquivo 'env-sample' que se encontra dentro da pasta 'contrib' existe também uma variável de ambiente
 DATABASE_URL, e esta não deve ser alterada pois é utilizada no funcionamento da integração contínua (GitHub Actions).
-
-Devem ser definidas as seguintes variáveis de ambiente no arquivo .env:
-
-  - DEBUG=True
-  - SECRET_KEY=secret
-  - CSRF_TRUSTED_ORIGINS= (esta não precisa ter um valor)
 
 
 ## Monitoramento de erros com Sentry SDK
